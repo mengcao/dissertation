@@ -37,11 +37,11 @@ With these definitions, the spacetime metric can be written in terms of the spat
 \end{equation}
 Spacetime indices $\mu$, $\nu$, ... are always raised and lowered with the spacetime metric $^{\left(4\right)}g_{\mu\nu}$ and its inverse $^{\left(4\right)}g^{\mu\nu}$, while spatial indices $a$, $b$, ... are always raised and lowered with the spatial metric $g_{ab}$ and its inverse $g^{ab}$. 
 
-Another important quantity in 3 + 1 splitting, the extrinsic curvature is defined as
+The notion of extrinsic curvature in 3 + 1 decomposition context represents a well-defined time derivative of the spatial metric on the spacelike hypersurface. It is defined as
 \begin{equation}\label{extrinsic}
-K_{ab} = - \frac{1}{2\alpha}\left[\partial_{t}g_{ab} - 2D_{(a}\beta_{b)}\right]
+K_{ab} = - \frac{1}{2\alpha}(\partial_{t} - \mathcal{L}_{\beta})g_{ab} \ ,
 \end{equation}
-Time derivative of metric. Symmetrize indices. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+and it is easy to show that $K_{ab}$ is a symmetric tensor, i.e., $K_{ab} = K_{ba}$. Physically, the extrinsic curvature defines how the foliation is embedded in the spacetime manifold. Imagine parallel transporting the normal covector $n_{a}$ of foliation $\Sigma$ from point $p$ to point $q$. This parallel transported covector will fail to coincide with the normal covector $n_{a}$ on $q$. This failure reflects the bending of foliation $\Sigma$ in the spacetime and extrinsic curvature directly measures the deviation between the parallel transported covector and $n_{a}$ at $q$. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Well-posedness}\label{wellposedness}
 \section{Numerical Formulation of General Relativity}\label{numericalformulation}
