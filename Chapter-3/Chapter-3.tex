@@ -60,4 +60,20 @@ Unfortunately, ADM formalism was later proved to be impractical to construct sta
 Instead of evolving the spatial metric and extrinsic curvature, the BSSN formalism chooses a conformal factor $\phi$, the trace of extrinsic curvature $K \equiv K_{ab}g^{ab}$ and a set of conformal variables, namely the conformal spatial metric ${\tilde g}_{ab} \equiv e^{-4\phi}g_{ab}$, conformal trace-free extrinsic curvature ${\tilde A}_{ab} \equiv e^{-4\phi}(K_{ab} - \frac{1}{3}g_{ab}K)$ and conformal connection functions ${\tilde \Gamma}^{a} \equiv {\tilde g}^{bc}{\tilde \Gamma}^{a}_{~bc}$, as the fundamental variables to evolve along with time. This choice of dynamic variables is considered more appealing than ADM formalism, from both a theoretical and computational point of view. Supplemented with the moving puncture gauge conditions which govern evolution of the lapse function and shift vector, BSSN formalism is widely used in the numerical relativity society to analyze a diversity of gravitational problems. 
 
 \subsection{Generalized Harmonic Formulation}
-Another well recognized numerical formulation of Einstein's equations is the generalized harmonic equations\cite{Friedrich:1985, Garfinkle:2001ni}. 
+Another well recognized numerical formulation of Einstein's equations is the generalized harmonic(GH) equations\cite{Friedrich:1985, Garfinkle:2001ni, Pretorius:2006tp}. As many numerical algorithms are recognized as stable and efficient when dealing with wave equations, GH formulation interprets Einstein field equations in a form which is similar to curved spacetime wave equations by utilizing harmonic coordinates. The generalized harmonic coordinates used by GH formulation satisfy the wave equations as following
+\begin{equation}
+	\nabla^{\alpha}\nabla_{\alpha}x^{\mu} = H^{\mu} \ ,
+\end{equation}
+where $H^{\mu}$ is an undetermined source vector for the wave equation. 
+
+The GH version of Einstein field equations can be expressed in an abstract form as
+\begin{equation}\label{ghequations}
+	g^{\alpha\beta}\partial_{\alpha}\partial_{\beta}g_{\mu\nu} + \partial_{(\mu}H_{\nu)} = Q_{\mu\nu}(H, g, \partial g) \ , 
+\end{equation}
+where $Q_{\mu\nu}$ are functions depend on the source vector, spacetime metric and its first-order derivatives. Gauge conditions for the source terms $H^{\mu}$ are evolved along with Eqs.~\ref{ghequations} to solve Einstein's equations numerically. Improved gauge drivers are developed to evolve with Eqs.~\ref{ghequations} and they are proved to be stable, efficient and effective while maintaining symmetric hyperbolicity of the system\cite{Lindblom:2007xw, Lindblom:2009tu}. 
+
+The development of GH formulation doesn't stop from there. In recent years, 3 + 1 form of GH equations\cite{Brown:2011qg} is developed
+to reveal the relationships between GH formulation and ADM/BSSN formulations. Furthermore, the action principle of GH formulation\cite{Brown:2010rya} is presented to provide an alternative perspective to understand this formalism. The foundation laid down by these two pieces of work and the significant role Hamiltonian perspective played in history of physics as stated in Sec.~\ref{ham} motivate us to develop the Hamiltonian system of GH equations. 
+
+During our research on Hamiltonian approach to GH formalism, we discovered that despite of their supremacy in practical application, both BSSN and GH formulation have some drawbacks regarding general covariance. This issue is addressed in Chap.~\ref{generalcovariance} before we move on to the Hamiltonian formulation. 
+
