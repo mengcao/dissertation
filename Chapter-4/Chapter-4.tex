@@ -114,50 +114,50 @@ In Ref.~\cite{Brown:2009dd} the BSSN equations and the moving puncture gauge wer
 Likewise, in Ref.~\cite{Brown:2011qg}, the GH equations were written in 3+1 form with manifest covariance 
 under spatial coordinate transformations.  Here we write both systems, and their associated gauge conditions, in a form 
 that is manifestly covariant under the more general foliation preserving transformations. 
-\section{Covariant Time Derivative}
-\subsection{}
-This foliation preserving coordinate transformation (\ref{foliationpreservingtransf}) is a time dependent spatial diffeomorphism combined with 
-time reparameterization. The inverse transformation is  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Transformation Rules}
+With foliation preserving coordinate transformation being defined in the previous section, we start to investigate transformation rules of various important physical variables under this coordinate transformation, such as $g_{ab}$, $\alpha$ and $\beta^{a}$.
+
+The inverse transformation of Eqs.~(\ref{foliationpreservingtransf}) is  
 \begin{subequations}
 \begin{eqnarray}
 t & = & t(t')\\
-x^{a} & = & x^{a}(t',x^{a'})
+x^{a} & = & x^{a}(t',x^{a'}) \ .
 \end{eqnarray}
 \end{subequations}
-Use the chain rule of partial differentiation to inspect the delta function for this tranformation, we have
-\[
-\delta^{a}_{b} = \frac{\partial x^{a}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial x^{\mu'}}\frac{\partial x^{\mu'}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial t'}\frac{\partial t'}{\partial x^{b}} + \frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{a'}}{\partial x^{b}}
-\]
-and since $t' = t'\left(t\right)$, $\partial t'/\partial x^{b} = 0$, hence we obtain an important identity of this coordinate transformation
+Use the chain rule of partial differentiation to inspect the delta function for this transformation, we have
+\begin{equation}\label{chainrule}
+\delta^{a}_{b} = \frac{\partial x^{a}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial x^{\mu'}}\frac{\partial x^{\mu'}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial t'}\frac{\partial t'}{\partial x^{b}} + \frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{a'}}{\partial x^{b}} \ .
+\end{equation}
+Since $t'\left(t\right)$ is independent of $x^{a}$, the term with $\partial t'/\partial x^{b}$ vanishes in Eq.~\ref{chainrule}. Hence we obtain an important identity of foliation preserving coordinate transformation
 \begin{equation}
 \frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{a'}}{\partial x^{b}} = \delta^{a}_{b}
 \end{equation}
 and equivalently
 \begin{equation}
-\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial x^{b'}} = \delta^{a'}_{b'}
+\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial x^{b'}} = \delta^{a'}_{b'} \ .
 \end{equation}
-The spacetime metric transforms regularly under this transformation
-\begin{align}\label{spacetime metric}
-^{\left(4\right)}g_{\mu'\nu'} &=~^{\left(4\right)}g_{\mu\nu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}\notag\\
-& = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}
-\end{align}
-By substituting the indices $\mu'$ and $\nu'$ for $a'$ and $b'$ respectively in Eq.~(\ref{spacetime metric}), we can obtain the transformation rule of the spatial metric
+To achieve transformation rules of the spatial metric $g_{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$, we need to start with the spacetime metric $^{(4)}g_{\mu\nu}$. The spacetime metric transforms tensorially under this transformation, i.e., $^{(4)}g_{\mu' \nu'} =~^{(4)}g_{\mu\nu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}$. Plug it into Eq.~(\ref{spacetime metric 3 + 1}), we have
+\begin{equation}\label{spacetime metric}
+^{\left(4\right)}g_{\mu'\nu'} = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}
+\end{equation}
+By substituting indices $\mu'$ and $\nu'$ for $a'$ and $b'$ respectively in Eq.~(\ref{spacetime metric}), we can obtain the transformation rule of the spatial metric as following
 \begin{align}
 g_{a'b'} & = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial x^{b'}}\notag\\
 &= g_{ab}\left(\frac{\partial x^{a}}{\partial x^{a'}} + \beta^{a}\frac{\partial t}{\partial x^{a'}}\right)\left(\frac{\partial x^{b}}{\partial x^{b'}} + \beta^{b}\frac{\partial t}{\partial x^{b'}}\right) - \alpha^2\frac{\partial t}{\partial x^{a'}}\frac{\partial t}{\partial x^{b'}}\notag\\
-& = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}
+& = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} \ .
 \end{align}
 According to the result above, the spatial metric $g_{ab}$ transforms as a type $0 \choose 2$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization.
 
 And its inverse transforms as
 \begin{equation}
-g^{a'b'} = g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}}\label{spatial metric}
+g^{a'b'} = g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}} \ , \label{spatial metric}
 \end{equation}
 which is a type $2 \choose 0$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization. 
 
 Let $g$ denote the determinant of the spatial metric $g_{ab}$. It transforms as
 \begin{equation}
-g' = \left|g_{a'b'}\right| = \left|g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right|  = g\left|\frac{\partial x}{\partial x'}\right|^{2}
+g' = \left|g_{a'b'}\right| = \left|g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right|  = g\left|\frac{\partial x}{\partial x'}\right|^{2} \ ,
 \end{equation}
 where $\left|\partial x/\partial x'\right|$ stands for the Jacobian matrix determinant of this coordinate transformation. This shows that $g$ transforms as a weight +2 density under the spatial diffeomorphism and a scalar under the time reparameterization. 
 
