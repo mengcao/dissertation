@@ -143,7 +143,8 @@ and equivalently
 \begin{equation}\label{deltainverse}
 \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial x^{b'}} = \delta^{a'}_{b'} \ .
 \end{equation}
-Although they are not directly referred to, Eqs.~(\ref{delta, deltainverse}) are extensively used in the following derivations. We list them here for readers who want to repeat our works. 
+Although they are not directly referred to, Eqs.~(\ref{delta}, \ref{deltainverse}) are extensively used in the following derivations. We list them here for readers who want to reiterate our work. 
+
 To achieve transformation rules of the spatial metric $g_{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$, we need to start with the spacetime metric $^{(4)}g_{\mu\nu}$. The spacetime metric transforms tensorially under this transformation, i.e., $^{(4)}g_{\mu' \nu'} =~^{(4)}g_{\mu\nu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}$. Plug it into Eq.~(\ref{spacetime metric 3 + 1}), we have
 \begin{equation}\label{spacetime metric}
 ^{\left(4\right)}g_{\mu'\nu'} = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}
@@ -188,37 +189,51 @@ Use the results from Eq.~(\ref{spatialmetric}) and Eq.~(\ref{shiftcovectortransf
 & = \left(\beta_{b}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} + g_{cd}\frac{\partial x^{d}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial t'}\right)g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}}\notag\\
 & = \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\label{shiftvectortransform}
 \end{align}
-From the calculation above we can tell that either the shift vector $\beta^{a}$ or its covector $\beta_{a}$ transforms tensorially under this change of coordinates and this issue is revisited in the next section. 
+From the calculation above we can tell that either the shift vector $\beta^{a}$ or its covector $\beta_{a}$ transforms tensorially under this change of coordinates. This issue can be addressed by subtracting the background shift vector from physical shift vector. The background shift vector transforms similarly as physical shift vector, i.e., 
+\begin{equation}\label{backgroundshiftvector}
+{\bar \beta}^{a'} = {\bar \beta}^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'} \ .
+\end{equation}
+Eq.~(\ref{backgroundshiftvector}) yields that the difference between physical and background shift vector $\Delta \beta^{a} \equiv \beta^{a} - {\bar \beta}^{a}$ transforms as a type $1 \choose 0$ tensor under spatial diffeomorphism and a weight 1 density under time reparameterization, 
+\begin{equation}\label{covariantshiftvector}
+	\Delta \beta^{a'} = \Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} \ ,
+\end{equation}
+and it serves as the covariant version of $\beta^{a}$. 
 
 Use the result from Eq.~(\ref{shiftvectortransform}) along with Eq.~(\ref{lapse}) and Eq.~(\ref{spacetime metric}), we can derive the transformation rule of the lapse function. 
 \begin{align*}
 \alpha'^{2} & = - \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial t'}\frac{\partial x^{\nu}}{\partial t'} + g_{a'b'}\beta^{a'}\beta^{b'}\notag\\ 
-& = \alpha^2\left(\frac{\partial t}{\partial t'}\right)^{2}
+& = \alpha^2\left(\frac{\partial t}{\partial t'}\right)^{2} \ .
 \end{align*}
 Therefore we have
-\begin{equation}
-\alpha' = \alpha\frac{\partial t}{\partial t'}\label{lapse transform}
+\begin{equation}\label{lapse transform}
+\alpha' = \alpha\frac{\partial t}{\partial t'}
 \end{equation}
-and hence the lapse function transforms as a scalar under the spatial diffeomorphism and a weight +1 density under the time reparameterization. 
+and hence the lapse function transforms as a scalar under spatial diffeomorphism and a weight +1 density under time reparameterization. 
 
-Now we have investigated the transformation rule of the terms without any derivatives. However, since the 1 + log slicing condition and Gamma-driver shift condition are both first order partial differential equations, we still need to learn how partial derivative terms transform under the foliation preserving coordinate transformation. 
+Now transformation rules of significant $3 + 1$ terms with zero-order time or spatial derivatives are written down above. However, since partial differential equations play an important role in all the numerical recipes for solving Einstein's equations, we still seek to understand how partial derivative terms transform under the foliation preserving coordinate transformation. 
 
-In order to study how partial derivatives transform, let's review the chain rule for this diffeomorphism briefly. The chain rule in spacetime domain states as below
-\begin{equation*}
-\partial_{\mu'} = \frac{\partial x^{\mu}}{\partial x^{\mu'}}\partial_{\mu}
-\end{equation*}
+In order to study how partial derivatives transform, let's review the chain rule for this transformation briefly. The chain rule in spacetime domain states as below
+\begin{equation}
+\partial_{\mu'} = \frac{\partial x^{\mu}}{\partial x^{\mu'}}\partial_{\mu} \ .
+\end{equation}
 Therefore, if $\mu' = t'$, we have that
 \begin{equation}\label{time derivative}
 \partial_{t'} = \frac{\partial x^{c}}{\partial t'}\partial_{c} + \frac{\partial t}{\partial t'}\partial_{t}
 \end{equation}
-and if $\mu' = a'$, since $\partial t/\partial x^{a'} = 0$, we have
+and if $\mu' = a'$, with $\partial t/\partial x^{a'} = 0$, we have
 \begin{equation}\label{spatial derivative}
-\partial_{a'} = \frac{\partial x^{c}}{\partial x^{a'}}\partial_{c}
+\partial_{a'} = \frac{\partial x^{c}}{\partial x^{a'}}\partial_{c} \ .
 \end{equation}
-From Eq.~(\ref{time derivative}) and Eq.~(\ref{spatial derivative}) we can tell that the spatial derivative transforms just like a type $0 \choose 1$ tensor without introducing any extra terms. On the other hand, in the time derivative transformations, there are one extra term $\left(\partial t/\partial t'\right)\partial_{t}$ involved, since $\partial t/\partial t' \ne 0$. According to this analysis, the spatial Christoffel symbols transform regularly, since it is only constructed by the spatial metric and its spatial derivatives. 
+From Eq.~(\ref{time derivative}) and Eq.~(\ref{spatial derivative}) we can tell that the spatial derivative transforms as a type $0 \choose 1$ tensor without introducing any extra terms. On the other hand, in the time derivative transformations, there are one extra term $\left(\partial t/\partial t'\right)\partial_{t}$ involved, since $\partial t/\partial t' \ne 0$. According to this analysis, the spatial Christoffel symbols transform as its spacetime counterpart under spacetime coordinate transformation, due to the fact that it is only constructed by the spatial metric and its spatial derivatives, 
 \begin{equation}
-\Gamma^{a'}_{~b'c'} = \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial^{2} x^{d}}{\partial x^{b'}\partial x^{c'}}
+\Gamma^{a'}_{~b'c'} = \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial^{2} x^{d}}{\partial x^{b'}\partial x^{c'}} \ .
 \end{equation}
+The covariant spatial Christoffel symbols can be easily obtained as $\Delta \Gamma^{a}_{~bc} \equiv \Gamma^{a}_{~bc} - {\bar \Gamma}^{a}_{~bc}$ and it transforms as a type $1 \choose 2$ tensor under spatial diffeomorphism and a scalar under time reparameterization. 
+\begin{equation}
+	\Delta \Gamma^{a'}_{~b'c'} = \Delta \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} \ .	
+\end{equation}
+
+%%%%%%%%%%%%%%%%% I am here %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Furthermore, the spatial covariant derivative of a tensor also transforms as a tensor. Specifically, the spatial covariant derivative of the shift covector transforms as
 \begin{align}
