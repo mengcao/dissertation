@@ -116,9 +116,15 @@ under spatial coordinate transformations.  Here we write both systems, and their
 that is manifestly covariant under the more general foliation preserving transformations. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Transformation Rules}
-With foliation preserving coordinate transformation being defined in the previous section, we start to investigate transformation rules of various important physical variables under this coordinate transformation, such as $g_{ab}$, $\alpha$ and $\beta^{a}$.
+With foliation preserving coordinate transformation being defined in the previous section, we start to investigate transformation rules of various important physical variables under this coordinate transformation, such as $g_{ab}$, $\alpha$ and $\beta^{a}$. More specifically, we try to determine which physical variables transform tensorially under foliation preserving coordinate transformation. For an arbitrary tensor density $T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{m}}$, if it transforms as
+\begin{equation}
+	T^{a_{1}'...a_{n}'}_{~~~~~~~~b_{1}'...b_{m}'} = T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{n}}\frac{\partial x^{a_{1}'}}{\partial x^{a_{1}}}...\frac{\partial x^{a_{n}'}}{\partial x^{a_{n}}}\frac{\partial x^{b_{1}}}{\partial x^{b_{1'}}}...\frac{\partial x^{b_{m}}}{\partial x^{b_{m'}}}\left|\frac{\partial t}{\partial t'}\right|^{i}\left|\frac{\partial x}{\partial x'}\right|^{j} \ ,
+\end{equation}
+it is regarded as ``transform tensorially" in this context. $\left|\frac{\partial t}{\partial t'}\right|$ and $\left|\frac{\partial x}{\partial x'}\right|$ are the Jacobian matrix determinant of time reparemeterization and spatial diffeomorphism, respectively. We refer this class of variables as a weight $i$ density under time reparameterization and a weight $j$ type $n \choose m$ tensor density under time dependent spatial diffeomorphism. If one quantity turns out to be a non-tensor, it will be ``tensorized" by combining with background metric terms, other physical variables and their derivatives. 
 
-The inverse transformation of Eqs.~(\ref{foliationpreservingtransf}) is  
+As discussed in Ref.~\cite{Brown:2010rya, Brown:2011qg}, background metric is introduced to achieve general covariance of non-tensor physical variables. An analogy of this tensorize action the use of background connection in spacetime coordinate transformations. It is well recognized that the four dimensional physical connection $\Gamma^{\alpha}_{~\mu\nu}$ is not a tensor. However, the difference between the physical connection and background connection $\Delta \Gamma^{\alpha}_{~\mu\nu} \equiv \Gamma^{\alpha}_{~\mu\nu} - {\bar \Gamma}^{\alpha}_{~\mu\nu}$ is a type $1 \choose 2$ tensor. The fact that background metric terms are often neglected from practical numerical equations can be justified by choosing the background metric to be flat. 
+
+We start by listing several important identities revealed by the transformation rule of delta symbol. The inverse transformation of Eqs.~(\ref{foliationpreservingtransf}) is  
 \begin{subequations}
 \begin{eqnarray}
 t & = & t(t')\\
@@ -130,13 +136,14 @@ Use the chain rule of partial differentiation to inspect the delta function for 
 \delta^{a}_{b} = \frac{\partial x^{a}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial x^{\mu'}}\frac{\partial x^{\mu'}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial t'}\frac{\partial t'}{\partial x^{b}} + \frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{a'}}{\partial x^{b}} \ .
 \end{equation}
 Since $t'\left(t\right)$ is independent of $x^{a}$, the term with $\partial t'/\partial x^{b}$ vanishes in Eq.~\ref{chainrule}. Hence we obtain an important identity of foliation preserving coordinate transformation
-\begin{equation}
+\begin{equation}\label{delta}
 \frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{a'}}{\partial x^{b}} = \delta^{a}_{b}
 \end{equation}
 and equivalently
-\begin{equation}
+\begin{equation}\label{deltainverse}
 \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial x^{b'}} = \delta^{a'}_{b'} \ .
 \end{equation}
+Although they are not directly referred to, Eqs.~(\ref{delta, deltainverse}) are extensively used in the following derivations. We list them here for readers who want to repeat our works. 
 To achieve transformation rules of the spatial metric $g_{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$, we need to start with the spacetime metric $^{(4)}g_{\mu\nu}$. The spacetime metric transforms tensorially under this transformation, i.e., $^{(4)}g_{\mu' \nu'} =~^{(4)}g_{\mu\nu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}$. Plug it into Eq.~(\ref{spacetime metric 3 + 1}), we have
 \begin{equation}\label{spacetime metric}
 ^{\left(4\right)}g_{\mu'\nu'} = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}
@@ -145,45 +152,45 @@ By substituting indices $\mu'$ and $\nu'$ for $a'$ and $b'$ respectively in Eq.~
 \begin{align}
 g_{a'b'} & = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial x^{b'}}\notag\\
 &= g_{ab}\left(\frac{\partial x^{a}}{\partial x^{a'}} + \beta^{a}\frac{\partial t}{\partial x^{a'}}\right)\left(\frac{\partial x^{b}}{\partial x^{b'}} + \beta^{b}\frac{\partial t}{\partial x^{b'}}\right) - \alpha^2\frac{\partial t}{\partial x^{a'}}\frac{\partial t}{\partial x^{b'}}\notag\\
-& = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} \ .
+& = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\label{spatialmetric} \ .
 \end{align}
 According to the result above, the spatial metric $g_{ab}$ transforms as a type $0 \choose 2$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization.
 
 And its inverse transforms as
-\begin{equation}
-g^{a'b'} = g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}} \ , \label{spatial metric}
+\begin{equation}\label{spatialmetricinverse}
+g^{a'b'} = g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}} \ , 
 \end{equation}
 which is a type $2 \choose 0$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization. 
 
 Let $g$ denote the determinant of the spatial metric $g_{ab}$. It transforms as
-\begin{equation}
+\begin{equation}\label{spatialmetricdet}
 g' = \left|g_{a'b'}\right| = \left|g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right|  = g\left|\frac{\partial x}{\partial x'}\right|^{2} \ ,
 \end{equation}
 where $\left|\partial x/\partial x'\right|$ stands for the Jacobian matrix determinant of this coordinate transformation. This shows that $g$ transforms as a weight +2 density under the spatial diffeomorphism and a scalar under the time reparameterization. 
 
-Besides the spatial metric, the lapse function $\alpha$ and the shift vector $\beta^{a}$ are two significant variables in 3 + 1 splitting scheme. 
+With transformation rules of the spatial metric and its related quantities listed in Eqs.~(\ref{spatialmetric} - \ref{spatialmetricdet}), we move on to investigate transformation rules of the lapse function and shift vector. 
 
-From equations [\ref{normal covector}-\ref{spacetime metric 3 + 1}], we have that
+Equations [\ref{normal covector}-\ref{spacetime metric 3 + 1}] reveals that
 \begin{align}
 ^{\left(4\right)}g_{a0} & = \beta_{a}\label{lapse}\\
-^{\left(4\right)}g_{00} & = -\alpha^2 + g_{ab}\beta^{a}\beta^{b}\label{shift}
+^{\left(4\right)}g_{00} & = -\alpha^2 + g_{ab}\beta^{a}\beta^{b}\label{shift} \ .
 \end{align}
 According to Eq.~(\ref{lapse}) and Eq.~(\ref{spacetime metric}), we have
 \begin{align}
 \beta_{a'} & = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial t'}\notag\\
 & = g_{ab}X^{a}_{\mu}X^{b}_{\nu}\delta_{c}^{\mu}\frac{\partial x^{c}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial t'}\notag\\
 & = g_{ab}\left(\delta^{b}_{\nu} + \beta^{b}\delta^{0}_{\nu}\right)\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial t'}\notag\\
-& = \beta_{a}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial t}{\partial t'} + g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial t'}\label{shift covector transform}
+& = \beta_{a}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial t}{\partial t'} + g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial t'}\label{shiftcovectortransform}
 \end{align}
-Use the results from Eq.~(\ref{spatial metric}) and Eq.~(\ref{shift covector transform}), we can easily derive the transformation rule of the shift vector
+Use the results from Eq.~(\ref{spatialmetric}) and Eq.~(\ref{shiftcovectortransform}), we can easily derive the transformation rule of the shift vector
 \begin{align}
 \beta^{a'} & = \beta_{b'}g^{a'b'}\notag\\
 & = \left(\beta_{b}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} + g_{cd}\frac{\partial x^{d}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial t'}\right)g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}}\notag\\
-& = \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\label{shift vector transform}
+& = \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\label{shiftvectortransform}
 \end{align}
-From the calculation above we can tell that both the shift vector $\beta^{a}$ and the shift covector $\beta_{a}$ do not transform tensorially under this coordinate transformation and we will come back to this issue in the next section. 
+From the calculation above we can tell that either the shift vector $\beta^{a}$ or its covector $\beta_{a}$ transforms tensorially under this change of coordinates and this issue is revisited in the next section. 
 
-Use the result from Eq.~(\ref{shift vector transform}) along with Eq.~(\ref{lapse}) and Eq.~(\ref{spacetime metric}), we can derive the transformation rule of the lapse function. 
+Use the result from Eq.~(\ref{shiftvectortransform}) along with Eq.~(\ref{lapse}) and Eq.~(\ref{spacetime metric}), we can derive the transformation rule of the lapse function. 
 \begin{align*}
 \alpha'^{2} & = - \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial t'}\frac{\partial x^{\nu}}{\partial t'} + g_{a'b'}\beta^{a'}\beta^{b'}\notag\\ 
 & = \alpha^2\left(\frac{\partial t}{\partial t'}\right)^{2}
