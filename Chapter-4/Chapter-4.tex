@@ -217,14 +217,14 @@ In order to study how partial derivatives transform, let's review the chain rule
 \partial_{\mu'} = \frac{\partial x^{\mu}}{\partial x^{\mu'}}\partial_{\mu} \ .
 \end{equation}
 Therefore, if $\mu' = t'$, we have that
-\begin{equation}\label{time derivative}
+\begin{equation}\label{timederivative}
 \partial_{t'} = \frac{\partial x^{c}}{\partial t'}\partial_{c} + \frac{\partial t}{\partial t'}\partial_{t}
 \end{equation}
 and if $\mu' = a'$, with $\partial t/\partial x^{a'} = 0$, we have
 \begin{equation}\label{spatial derivative}
 \partial_{a'} = \frac{\partial x^{c}}{\partial x^{a'}}\partial_{c} \ .
 \end{equation}
-From Eq.~(\ref{time derivative}) and Eq.~(\ref{spatial derivative}) we can tell that the spatial derivative transforms as a type $0 \choose 1$ tensor without introducing any extra terms. On the other hand, in the time derivative transformations, there are one extra term $\left(\partial t/\partial t'\right)\partial_{t}$ involved, since $\partial t/\partial t' \ne 0$. According to this analysis, the spatial Christoffel symbols transform as its spacetime counterpart under spacetime coordinate transformation, due to the fact that it is only constructed by the spatial metric and its spatial derivatives, 
+From Eq.~(\ref{timederivative}) and Eq.~(\ref{spatial derivative}) we can tell that the spatial derivative transforms as a type $0 \choose 1$ tensor without introducing any extra terms. On the other hand, in the time derivative transformations, there are one extra term $\left(\partial t/\partial t'\right)\partial_{t}$ involved, since $\partial t/\partial t' \ne 0$. According to this analysis, the spatial Christoffel symbols transform as its spacetime counterpart under spacetime coordinate transformation, due to the fact that it is only constructed by the spatial metric and its spatial derivatives, 
 \begin{equation}
 \Gamma^{a'}_{~b'c'} = \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial^{2} x^{d}}{\partial x^{b'}\partial x^{c'}} \ .
 \end{equation}
@@ -233,34 +233,41 @@ The covariant spatial Christoffel symbols can be easily obtained as $\Delta \Gam
 	\Delta \Gamma^{a'}_{~b'c'} = \Delta \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} \ .	
 \end{equation}
 
-%%%%%%%%%%%%%%%%% I am here %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Furthermore, the spatial covariant derivative of a tensor also transforms as a tensor. Specifically, the spatial covariant derivative of the shift covector transforms as
+Transformation of shift covector's spatial covariant derivative can be derived as following, 
 \begin{align}
 D_{a'}\beta_{b'} &= D_{a'}\left(\beta^{b}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'}\right) + D_{a'}\left(g_{bc}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial t'}\right)\notag\\
 & = \frac{\partial t}{\partial t'}D_{a'}\left(\beta_{b}\frac{\partial x^{b}}{\partial x^{b'}}\right) + D_{a'}\left(g_{b'c'}\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\notag\\
-& = D_{a}\beta^{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} + g_{b'c'}D_{a'}\left(\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)
+& = D_{a}\beta^{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} + g_{b'c'}D_{a'}\left(\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right) \ .
 \end{align} 
-The spatial partial derivative of $\alpha$, which appears in the advection term of the 1 + log slicing condition, transforms as 
+It is obvious that general covariance of this transformation can be achieved by replacing $\beta_{a}$ by its covariant counterpart $\Delta \beta_{a}$. It is a type $0 \choose 2$ tensor under spatial diffeomorphism and a weight 1 scalar density under time reparameterization, 
+\begin{equation}
+	D_{a'}\Delta\beta_{b'} = D_{a}\Delta\beta_{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} \ .
+\end{equation}	
+The spatial covariant derivative of $\alpha$, which takes form of a regular spatial partial derivative, transforms as 
 \begin{align}
 \partial_{a'}\alpha' & = \partial_{a'}\left(\alpha \frac{\partial t}{\partial t'}\right)\\
 & = \frac{\partial t}{\partial t'}\partial_{a'}\alpha\\
-& = \frac{\partial t}{\partial t'}\frac{\partial x^{c}}{\partial x^{a'}}\partial_{c}\alpha
+& = \frac{\partial t}{\partial t'}\frac{\partial x^{c}}{\partial x^{a'}}\partial_{c}\alpha \ .
 \end{align}
 It is a type $0 \choose 1$ tensor under spatial diffeomorphism and a weight +1 density under time reparameterization.
 
-Due to the extra term introduced by time derivative transformation, the time derivative of $\alpha$ raises a more interesting case, 
+Due to the extra terms introduced by Eq.~(\ref{timederivative}), transformation of time derivatives of $\alpha$ posts a more interesting case. Let's first examine the time derivative of spatial metric. It transforms as following, 
+\begin{align}
+\partial_{t'}g_{a'b'} & = \left(\partial_{t'}g_{ab}\right)\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + g_{ab}\partial_{t'}\left(\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right)\notag\\
+& =  \left(\partial_{t}g_{ab}\right)\frac{\partial t}{\partial t'}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + \left(\partial_{c}g_{ab}\right)\frac{\partial x^{c}}{\partial t'}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + g_{ab}\partial_{t'}\left(\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right) \ .
+\end{align}
+Hereby we introduce the notion of {\em covariant time derivative} under foliation preserving coordinate transformation, $D_{t}$, such that $D_{t}T^{A}$ transforms tensorially, where $T^{A}$ is an arbitrary tensor density whose indices are contracted as $A$. For instance, we require covariant time derivative of the spatial metric transforms as
+\begin{equation}
+	D_{t'}g_{a'b'} = D_{t}g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} \ .
+\end{equation}
+A keen observer would notice that $D_{t}g_{ab}$ should be closely related to the extrinsic curvature $K_{ab}$. Since $K_{ab}$ is a pure spatial tensor, it transforms tensorially
 \begin{align}
 \partial_{t'}\alpha' & = \partial_{t'}\left(\alpha\frac{\partial t}{\partial t'}\right)\notag\\
 & = \frac{\partial t}{\partial t'}\partial_{t'}\alpha + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}}\notag\\
-& = \partial_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\alpha\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}}
+& = \partial_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\alpha\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}} \ .
 \end{align}
 
-Now let's examine the time derivative of the spatial metric
-\begin{align}
-\partial_{t'}g_{a'b'} & = \left(\partial_{t'}g_{ab}\right)\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + g_{ab}\partial_{t'}\left(\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right)\notag\\
-& =  \left(\partial_{t}g_{ab}\right)\frac{\partial t}{\partial t'}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + \left(\partial_{c}g_{ab}\right)\frac{\partial x^{c}}{\partial t'}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + g_{ab}\partial_{t'}\left(\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right)
-\end{align}
+
 
 The time derivative of $\beta^{a}$ transforms as
 \begin{align}
