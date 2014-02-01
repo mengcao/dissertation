@@ -150,10 +150,10 @@ To achieve transformation rules of the spatial metric $g_{ab}$, lapse function $
 ^{\left(4\right)}g_{\mu'\nu'} = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}
 \end{equation}
 By substituting indices $\mu'$ and $\nu'$ for $a'$ and $b'$ respectively in Eq.~(\ref{spacetime metric}), we can obtain the transformation rule of the spatial metric as following
-\begin{align}
+\begin{align}\label{spatialmetric}
 g_{a'b'} & = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial x^{b'}}\notag\\
 &= g_{ab}\left(\frac{\partial x^{a}}{\partial x^{a'}} + \beta^{a}\frac{\partial t}{\partial x^{a'}}\right)\left(\frac{\partial x^{b}}{\partial x^{b'}} + \beta^{b}\frac{\partial t}{\partial x^{b'}}\right) - \alpha^2\frac{\partial t}{\partial x^{a'}}\frac{\partial t}{\partial x^{b'}}\notag\\
-& = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\label{spatialmetric} \ .
+& = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} \ .
 \end{align}
 According to the result above, the spatial metric $g_{ab}$ transforms as a type $0 \choose 2$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization.
 
@@ -205,7 +205,7 @@ Use the result from Eq.~(\ref{shiftvectortransform}) along with Eq.~(\ref{lapse}
 & = \alpha^2\left(\frac{\partial t}{\partial t'}\right)^{2} \ .
 \end{align*}
 Therefore we have
-\begin{equation}\label{lapse transform}
+\begin{equation}\label{lapsetransform}
 \alpha' = \alpha\frac{\partial t}{\partial t'}
 \end{equation}
 and hence the lapse function transforms as a scalar under spatial diffeomorphism and a weight +1 density under time reparameterization. 
@@ -244,9 +244,9 @@ It is obvious that general covariance of this transformation can be achieved by 
 	D_{a'}\Delta\beta_{b'} = D_{a}\Delta\beta_{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} \ .
 \end{equation}	
 The spatial covariant derivative of $\alpha$, which takes form of a regular spatial partial derivative, transforms as 
-\begin{align}
-\partial_{a'}\alpha' & = \partial_{a'}\left(\alpha \frac{\partial t}{\partial t'}\right)\\
-& = \frac{\partial t}{\partial t'}\partial_{a'}\alpha\\
+\begin{align}\label{lapsefunctionspatialderivative}
+\partial_{a'}\alpha' & = \partial_{a'}\left(\alpha \frac{\partial t}{\partial t'}\right) \notag \\
+& = \frac{\partial t}{\partial t'}\partial_{a'}\alpha \notag \\
 & = \frac{\partial t}{\partial t'}\frac{\partial x^{c}}{\partial x^{a'}}\partial_{c}\alpha \ .
 \end{align}
 It is a type $0 \choose 1$ tensor under spatial diffeomorphism and a weight +1 density under time reparameterization.
@@ -260,14 +260,37 @@ Hereby we introduce the notion of {\em covariant time derivative} under foliatio
 \begin{equation}
 	D_{t'}g_{a'b'} = D_{t}g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} \ .
 \end{equation}
-A keen observer would notice that $D_{t}g_{ab}$ should be closely related to the extrinsic curvature $K_{ab}$. Since $K_{ab}$ is a pure spatial tensor, it transforms tensorially
-\begin{align}
+By revisiting the definition of extrinsic curvature in Eq.~(\ref{extrinsic}), a keen observer would notice that $D_{t}g_{ab}$ should be closely related to the extrinsic curvature $K_{ab}$. Since $K_{ab}$ is a pure spatial tensor, it transforms tensorially
+\begin{equation}
+	K_{a'b'} = K_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} \ .
+\end{equation}
+Hence we can define the covariant time derivative of spatial metric $D_{t}g_{ab}$ as
+\begin{equation}
+	D_{t}g_{ab} \equiv (\partial_{t} - \mathcal{L}_{\beta})g_{ab} \ .
+\end{equation}
+Furthermore, it is straightforward to verify that for any {\em spatial tensor density}, the covariant time derivative operator can be defined as
+\begin{equation}
+	D_{t} \equiv \partial_{t} - \mathcal{L}_{\beta} \ .
+\end{equation}
+Covariant time derivative for lapse function and shift vector is more complicated, since they don't reside entirely in the manifold of a single $3 + 1$ foliation. Therefore we are required to study the covariant time derivative of these two quantities more carefully. 
+
+We start by writing down transformation rule of regular time derivative of the lapse function, as following
+\begin{align}\label{lapsetimederivative}
 \partial_{t'}\alpha' & = \partial_{t'}\left(\alpha\frac{\partial t}{\partial t'}\right)\notag\\
 & = \frac{\partial t}{\partial t'}\partial_{t'}\alpha + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}}\notag\\
 & = \partial_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\alpha\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}} \ .
 \end{align}
+The leading term in Eq.~(\ref{lapsetimederivative}) reveals that covariant time derivative of $\alpha$ should transform as a scalar under spatial diffeomorphism and a weight +2 density under time reparamterization. According to transformation rules listed in Eqs.~(\ref{shiftvectortransform}, \ref{lapsetransform}, \ref{lapsefunctionspatialderivative}), we are able to construct the covariant time derivative of lapse function as
+\begin{equation}
+	D_{t}\alpha \equiv \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha - \frac{\alpha}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{c}\partial_{c}{\bar \alpha}\right) 
+\end{equation}
+and one can check that its transformation rule turns out to be exactly as expected
+\begin{equation}
+	D_{t'}\alpha' = D_{t}\alpha \frac{\partial t}{\partial t'}^{2} \ .
+\end{equation}
 
 
+%%%%%%%%%%%%%%%now I am here%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The time derivative of $\beta^{a}$ transforms as
 \begin{align}
