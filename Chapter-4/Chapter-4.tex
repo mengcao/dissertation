@@ -234,13 +234,13 @@ The covariant spatial Christoffel symbols can be easily obtained as $\Delta \Gam
 \end{equation}
 
 Transformation of shift covector's spatial covariant derivative can be derived as following, 
-\begin{align}
+\begin{align}\label{shiftvectorcovariantspatialderivativetransform}
 D_{a'}\beta_{b'} &= D_{a'}\left(\beta^{b}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'}\right) + D_{a'}\left(g_{bc}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial t'}\right)\notag\\
 & = \frac{\partial t}{\partial t'}D_{a'}\left(\beta_{b}\frac{\partial x^{b}}{\partial x^{b'}}\right) + D_{a'}\left(g_{b'c'}\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\notag\\
 & = D_{a}\beta^{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} + g_{b'c'}D_{a'}\left(\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right) \ .
 \end{align} 
 It is obvious that general covariance of this transformation can be achieved by replacing $\beta_{a}$ by its covariant counterpart $\Delta \beta_{a}$. It is a type $0 \choose 2$ tensor under spatial diffeomorphism and a weight 1 scalar density under time reparameterization, 
-\begin{equation}
+\begin{equation}\label{covariantshiftvectorcovariantspatialderivativetransform}
 	D_{a'}\Delta\beta_{b'} = D_{a}\Delta\beta_{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} \ .
 \end{equation}	
 The spatial covariant derivative of $\alpha$, which takes form of a regular spatial partial derivative, transforms as 
@@ -286,128 +286,70 @@ The leading term in Eq.~(\ref{lapsetimederivative}) reveals that covariant time 
 \end{equation}
 and one can check that its transformation rule turns out to be exactly as expected
 \begin{equation}
-	D_{t'}\alpha' = D_{t}\alpha \frac{\partial t}{\partial t'}^{2} \ .
+	D_{t'}\alpha' = D_{t}\alpha \left(\frac{\partial t}{\partial t'}\right)^{2} \ .
 \end{equation}
 
-
-%%%%%%%%%%%%%%%now I am here%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The time derivative of $\beta^{a}$ transforms as
-\begin{align}
-\partial_{t'}\beta^{a'} & = \partial_{t'}\left(\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\right)\notag\\
-& = \frac{\partial t}{\partial t'}\partial_{t}\left(\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\right) + \frac{\partial x^{c}}{\partial t'}\partial_{c}\left(\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\right)\notag\\
-& = \partial_{t}\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} + \beta^{a}\frac{\partial t}{\partial t'}\partial_{t}\left(\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}\right) + \frac{\partial t}{\partial t'}\partial_{t}\left(\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\right)\notag\\
-& + \frac{\partial x^{c}}{\partial t'}\partial_{c}\left(\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\right)
+Since $\Delta \beta^{a}$ is a covariant version of $\beta^{a}$, the covariant time derivative of shift vector is easier to be constructed from $\partial_{t}\Delta \beta^{a}$. The transformation rule of $\partial_{t}\Delta \beta^{a}$ can be written as following
+\begin{align}\label{covariantshifttimederivative} 
+\partial_{t'}\Delta \beta^{a'} & = \left(\partial_{t'}\Delta \beta^{a}\right)\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \Delta \beta^{a}\partial_{t'}\left(\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}\right)\notag\\
+& = \partial_{t}\Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\Delta \beta^{a}\frac{\partial x^{c}}{\partial t'}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}\notag\\
+& + \Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial^{2}t}{\partial t'^{2}} + \Delta \beta^{a}\frac{\partial^{2} x^{a'}}{\partial x^{c}\partial x^{a}}\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \Delta \beta^{a}\frac{\partial^{2}x^{a'}}{\partial t\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} \ .
 \end{align}
+Based on transformation rules of shift vector and its covariant spatial derivative, as listed in Eqs.~(\ref{shiftvectortransform}, \ref{shiftvectorcovariantspatialderivativetransform}, \ref{covariantshiftvectorcovariantspatialderivativetransform}), we propose an ansatz of $D_{t}\beta^{a}$ as following
+\begin{equation}
+	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + c_{1}\beta^{b}{\bar D}_{b}\beta^{a} + c_{2}\beta^{b}{\bar D}_{b}{\bar \beta}^{a} + c_{3}{\bar \beta}^{b}{\bar D}_{b}\beta^{a} + c_{4}{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a}	\ ,
+\end{equation}
+where $c_{1}$, $c_{2}$, $c_{3}$, $c_{4}$ are constants to be determined; meanwhile we require it to transform as
+\begin{equation}
+	D_{t'}\beta^{a'} = D_{t}\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} \ ,
+\end{equation}
+a type $1 \choose 0$ tensor under spatial diffeomorphism and a weight +2 density under time reparameterization. 
 
-Consider the GH gauge sources, we have
+The process of determining values of these four constants is tedious and will bore the readers if they are not bored already, so we skip directly to the conclusion here. In order to achieve the covariant time derivative of shift vector, the constraints $c_{1}$, $c_{2}$, $c_{3}$ and $c_{4}$ have to satisfy are
+\begin{align*}
+c_{1} + c_{3} & = -1\\
+c_{2} + c_{4} & = 1\\
+c_{1} + c_{2} & = 1\\
+c_{3} + c_{4} & = -1 \ .
+\end{align*}
+Define $\sigma \equiv c_{1}$, then we can write all the other constants in terms of $\sigma$ and represent $D_{t}\beta^{a}$ as
+\begin{equation}
+	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \sigma\beta^{b}{\bar D}_{b}\beta^{a} + \left(1-\sigma\right)\beta^{b}{\bar D}_{b}{\bar \beta}^{a} - \left(1 + \sigma\right){\bar \beta}^{b}{\bar D}_{b}\beta^{a} + \sigma{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a} \ .
+\end{equation}
+In both definitions of $D_{t}g_{ab}$ and $D_{t}\alpha$, the covariant time derivative operators share the same pattern as $\partial_{t} - \beta^{b}\partial_{b}$. In order to achieve the same pattern in $D_{t}\beta^{a}$, an appropriate choice for $\sigma$ is $\sigma = -1$. Therefore, in the rest of this paper, the covariant time derivative of shift vector is defined as
+\begin{equation}
+	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \beta^{b}{\bar D}_{b}\Delta \beta^{a} + \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a} \ .	
+\end{equation}
+
+Transformation rule for the gauge source term of generalized harmonic formalism needs to be examined as well, but first we need to define its 3 + 1 decomposition. The decomposition splits the spacetime gauge source term into a spatial component
+\begin{equation}\label{spatialgaugesource}
+	H_{a} \equiv H_{\mu}X^{\mu}_{a} \ ,
+\end{equation}
+and a timelike component
+\begin{equation}
+	H_{\perp} \equiv H_{\mu}n^{\mu} \ .
+\end{equation}
+According to the definition in Eq.~(\ref{spatialgaugesource}), $H_{a}$ transforms as a $0 \choose 1$ tensor under spatial diffeomorphism and a scalar under time reparameterization, 
 \begin{align}
 H_{a'} & = H_{\mu'}X^{\mu'}_{a'}\\
 & = H_{\mu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\delta^{\mu'}_{a'}\\
-& = H_{a}\frac{\partial x^{a}}{\partial x^{a'}}
+& = H_{a}\frac{\partial x^{a}}{\partial x^{a'}} \ .
 \end{align}
-Therefore, $H_{a}$ transforms as a $0 \choose 1$ tensor under spatial diffeomorphism and a scalar under time reparameterization. And we can easily conclude that $H^{a}$ transforms as a $1 \choose 0$ tensor under spatial diffeomorphism and a scalar under time reparameterization
+And we can easily conclude that $H^{a}$ transforms 
 \begin{equation}
 H^{a'} = H^{a}\frac{\partial x^{a'}}{\partial x^{a}}
 \end{equation}
 For $H_{\perp}$, we have
 \begin{align}
-H_{\perp'} & = n_{\mu'}H^{\mu'}\\
-& = - \alpha' \delta^{0'}_{\mu'}H^{\mu}\frac{\partial x^{\mu'}}{\partial x^{\mu}}\\
-& = - \alpha\frac{\partial t}{\partial t'}\delta^{0}_{\mu}H^{\mu}\frac{\partial t'}{\partial t}\\
-& = H_{\perp}
+H_{\perp'} & = H_{\mu'}n^{\mu'} \notag\\
+& = H_{\mu'}\left(\delta^{\mu'}_{0'} - \beta^{c'}\delta_{c'}^{\mu'}\right)/\alpha'\notag\\
+& = H_{\mu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\left(\delta^{\mu'}_{0'} - \beta^{c}\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial t}{\partial t'}\delta^{\mu'}_{c'} - \frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\delta^{\mu'}_{c'}\right)\frac{\partial t'}{\partial t} / \alpha \notag\\
+& = H_{\mu}\left(\delta^{\mu}_{0} - \beta^{c}\delta_{c}^{\mu}\right)/\alpha \notag\\
+& = H_{\mu}n^{\mu} \notag\\
+& = H_{\perp} \ .
 \end{align}
 Hence we have that $H_{\perp}$ acts as a scalar under both spatial diffeomorphism and time reparemeterization. 
-
-\section{Tensorial Variables}\label{tensorial}
-In Sec.~\ref{transform}, we listed the transformation rules of all the important 3 + 1 variables and as one can easily notice that some of them do not transform tensorially. In order to solve this, we introduce the backgrond metric denoted as ${\bar g}_{\mu\nu}$. The background metric was initially introduced to make the Christoffel symbols transform as a tensor and it is usually defined as a trivial metric, i.e., ${\bar g}_{\mu\nu} = diag\left(-1,1,1,1\right)$. Therefore, we have ${\bar g} = 1, $${\bar \Gamma}^{a}_{~bc} = 0$, ${\bar \alpha} = 1$ and ${\bar \beta}^{a} = 0$. 
-
-The background shift vector ${\bar \beta}^{a}$ follows the same transformation rule of $\beta^{a}$
-\[
-{\bar \beta}^{a'} = {\bar \beta}^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}
-\]
-and hence the difference between $\beta^{a}$ and ${\bar \beta}^{a}$ transform as a type $1 \choose 0$ tensor under spatial diffeomorphism and a weight +1 density under time reparameterization. 
-\begin{equation}
-\Delta \beta^{a'} = \Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}
-\end{equation}
-where $\Delta \beta^{a} \equiv \beta^{a} - {\bar \beta}^{a}$.
-
-In addition, the tensorial form of Christoffel symbols is $\Delta \Gamma^{a}_{~bc} \equiv \Gamma^{a}_{~bc} - {\bar \Gamma}^{a}_{~bc}$ and
-\begin{equation}
-\Delta \Gamma^{a'}_{~b'c'} = \Delta \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}}
-\end{equation}
-As we can tell, it transforms as a type $1 \choose 2$ tensor under spatial diffeomorphism and a scalar under time reparameterization. 
-
-The covariant time derivative of the spatial metric is defined as
-\begin{equation}
-D_{t}g_{ab} \equiv \partial_{t}g_{ab} - 2D_{(a}\beta_{b)}
-\end{equation}
-The calculation is tedious but one can always check that $D_{t}g_{ab}$ transforms as a type $0 \choose 2$ tensor under spatial diffeomorphism and a weight +1 density under time reparameterization. 
-\begin{equation}
-D_{t'}g_{a'b'} = D_{t}g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'}
-\end{equation}
-
-As a result, since the extrinsic curvature is defined as
-\begin{equation}
-K_{ab} = -\frac{1}{2\alpha}\left[\partial_{t}g_{ab} - 2D_{(a}\beta_{b)}\right] = -\frac{1}{2\alpha}D_{t}g_{ab}
-\end{equation}
-it transforms as a type $0 \choose 2$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization
-\begin{equation}
-K_{a'b'} = K_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}
-\end{equation}
-
-In order to construct an covariant form of the time derivative of the lapse function $D_{t}\alpha$ such that it transforms as a scalar under spatial diffeomorphism and a weight +2 density under time reparameterization
-\[
-D_{t'}\alpha' = D_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2}
-\]
-We define $D_{t}\alpha$ as
-\begin{equation}
-D_{t}\alpha \equiv \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha - \frac{\alpha}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{c}\partial_{c}{\bar \alpha}\right)
-\end{equation}
-and check how it transforms
-\begin{align}
-D_{t'}\alpha' & = \partial_{t'}\alpha' - \beta^{c'}\partial_{c'}\alpha' - \frac{\alpha'}{{\bar \alpha}'}\left(\partial_{t'}{\bar \alpha}' - {\bar \beta}^{c'}\partial_{c'}{\bar \alpha}'\right)\notag\\
-& = \partial_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\alpha\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}} - \left(\beta^{c}\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial t}{\partial t'} + \frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\frac{\partial t}{\partial t'}\frac{\partial x^{d}}{\partial x^{c'}}\partial_{d}\alpha\notag\\
-& - \frac{\alpha}{{\bar \alpha}}\left[\partial_{t}{\bar \alpha}\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}{\bar \alpha}\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + {\bar \alpha}\frac{\partial^{2}t}{\partial {t'}^{2}} - \left({\bar\beta}^{c}\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial t}{\partial t'} + \frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\frac{\partial t}{\partial t'}\frac{\partial x^{d}}{\partial x^{c'}}\partial_{d}{\bar\alpha}\right]\notag\\
-& = D_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2}
-\end{align}
-For formulating the covariant form of the shift vector's time derivative, $\partial_{t}\Delta \beta^{a}$ would be a suitable candidate, since $\Delta \beta^{a}$ itself behaves tensorially already. Let's try to transform $\partial_{t} \Delta \beta^{a}$
-\begin{align}\label{time derivative delta beta} 
-\partial_{t'}\Delta \beta^{a'} & = \left(\partial_{t'}\Delta \beta^{a}\right)\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \Delta \beta^{a}\partial_{t'}\left(\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}\right)\notag\\
-& = \partial_{t}\Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\Delta \beta^{a}\frac{\partial x^{c}}{\partial t'}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}\notag\\
-& + \Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial^{2}t}{\partial t'^{2}} + \Delta \beta^{a}\frac{\partial^{2} x^{a'}}{\partial x^{c}\partial x^{a}}\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \Delta \beta^{a}\frac{\partial^{2}x^{a'}}{\partial t\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2}
-\end{align}
-As we expected, there are several extra terms in Eq.~(\ref{time derivative delta beta}) prevent $\partial_{t}\Delta\beta^{a}$ from being a tensor density. 
-
-By observing the transformation rules of $\partial_{t}\Delta\beta^{a}$, $\beta^{a}$, $D_{a}\beta_{b}$ and $\partial_{a}\alpha$, we propose an ansatz of $D_{t}\beta^{a}$ such that $D_{t}\beta^{a}$ transforms as a type $1 \choose 0$ tensor under spatial diffeomorphism and a weight +2 density under time reparameterization, 
-\begin{equation}
-D_{t'}\beta^{a'} = D_{t}\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2}
-\end{equation}
-where $D_{t}\beta^{a}$ is defined as
-\begin{equation}
-D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + c_{1}\beta^{b}{\bar D}_{b}\beta^{a} + c_{2}\beta^{b}{\bar D}_{b}{\bar \beta}^{a} + c_{3}{\bar \beta}^{b}{\bar D}_{b}\beta^{a} + c_{4}{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a}
-\end{equation}
-and $c_{1}$, $c_{2}$, $c_{3}$ and $c_{4}$ are all constants. 
-
-Determining the values of these constants involves tedious calculation, so we skip to the conclusion here. The constants obey the following constraints
-\begin{align*}
-c_{1} + c_{3} & = -1\\
-c_{2} + c_{4} & = 1\\
-c_{1} + c_{2} & = 1\\
-c_{3} + c_{4} & = -1 
-\end{align*}
-so that $D_{t} \beta^{a}$ transforms as a tensor density. 
-
-Therefore, we define $\sigma \equiv c_{1}$ and write the rest of those constants in terms of $\sigma$ to get the final formulation of $D_{t}\beta^{a}$ as below
-\begin{equation}
-D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \sigma\beta^{b}{\bar D}_{b}\beta^{a} + \left(1-\sigma\right)\beta^{b}{\bar D}_{b}{\bar \beta}^{a} - \left(1 + \sigma\right){\bar \beta}^{b}{\bar D}_{b}\beta^{a} + \sigma{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a}
-\end{equation}
-In the rest of this paper, we take $\sigma = -1$ since there is one $-\beta^{c}\partial_{c}\beta^{a}$ term in the regular Gamma-driver shift condition. Hence the definition of $D_{t}\beta^{a}$ becomes
-\begin{equation}
-D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \beta^{b}{\bar D}_{b}\Delta \beta^{a} + \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a}
-\end{equation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% here I am %%%%%%%%%%%%%%%%%%%%%%
 \section{Covariant Gauge Condition}\label{gauge}
 We studied the transformation rules of all the important variables in 3 + 1 splitting mechanism under the foliation preserving coordinate transformation in Sec.~\ref{transform} and Sec.~\ref{tensorial}, now we will use these results to construct the covariant form of moving puncture gauge condition and damped-wave gauge condition. 
 \subsection{Moving puncture gauge condition}
