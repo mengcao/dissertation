@@ -22,7 +22,7 @@ of the transformation properties of the individual terms, will be referred to as
 
 In the field of numerical relativity, Einstein's theory is interpreted as an initial value problem. As Einstein field equations being written in $3 + 1$ format, rather than {\em spacetime} coordinate transformations, we focus our attention on achieving general covariance under another class of coordinate transformations. This new family of coordinate transformations breaks time and space symmetry in the same sense of $3 + 1$ decomposition and general covariance of various numerical formulations under this series of coordinate transformations is discussed in the next section. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{General Covariance under Foliation Preserving Transformations}
+\section{General Covariance under Foliation Preserving Transformations}\label{generalcovariancefoliationpreservingtransformation}
 The ADM equations used by Smarr and York \cite{Smarr:York,Smarr:1977uf} are
 \begin{subequations}\label{ADMeqns}
 \begin{eqnarray}
@@ -95,7 +95,7 @@ Each of the systems, BSSN and GH, must be supplemented with a set of equations t
 The gauge conditions in current use are not generally covariant. In particular, the ``moving puncture gauge", commonly used with BSSN, is not covariant. 
 The moving puncture gauge consists of 1+log slicing \cite{Bona:1994dr} and the
 gamma--driver shift condition \cite{Alcubierre:2002kk}.  Likewise, the gauge conditions used 
-with the GH equations \cite{Pretorius:2006tp,Szilagyi:2009qz} are not covariant.  
+with the GH equations \cite{Pretorius:2006tp,Szilagyi:2009qz, Lindblom:2009tu} are not covariant.  
 
 For a non--covariant gauge condition, the form of the condition depends on the choice of coordinate system. 
 In practice, one writes the gauge  in a form intended for use with ``Cartesian coordinates". This prescription is not  well--defined 
@@ -114,8 +114,9 @@ In Ref.~\cite{Brown:2009dd} the BSSN equations and the moving puncture gauge wer
 Likewise, in Ref.~\cite{Brown:2011qg}, the GH equations were written in 3+1 form with manifest covariance 
 under spatial coordinate transformations.  Here we write both systems, and their associated gauge conditions, in a form 
 that is manifestly covariant under the more general foliation preserving transformations. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Transformation Rules}
+\section{Transformation Rules}\label{transform}
 With foliation preserving coordinate transformation being defined in the previous section, we start to investigate transformation rules of various important physical variables under this coordinate transformation, such as $g_{ab}$, $\alpha$ and $\beta^{a}$. More specifically, we try to determine which physical variables transform tensorially under foliation preserving coordinate transformation. For an arbitrary tensor density $T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{m}}$, if it transforms as
 \begin{equation}
 	T^{a_{1}'...a_{n}'}_{~~~~~~~~b_{1}'...b_{m}'} = T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{n}}\frac{\partial x^{a_{1}'}}{\partial x^{a_{1}}}...\frac{\partial x^{a_{n}'}}{\partial x^{a_{n}}}\frac{\partial x^{b_{1}}}{\partial x^{b_{1'}}}...\frac{\partial x^{b_{m}}}{\partial x^{b_{m'}}}\left|\frac{\partial t}{\partial t'}\right|^{i}\left|\frac{\partial x}{\partial x'}\right|^{j} \ ,
@@ -348,12 +349,15 @@ H_{\perp'} & = H_{\mu'}n^{\mu'} \notag\\
 & = H_{\mu}n^{\mu} \notag\\
 & = H_{\perp} \ .
 \end{align}
-Hence we have that $H_{\perp}$ acts as a scalar under both spatial diffeomorphism and time reparemeterization. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% here I am %%%%%%%%%%%%%%%%%%%%%%
+Hence we have that $H_{\perp}$ acts as a scalar under both spatial diffeomorphism and time reparemeterization. Hereby we conclude the study of transformation rules under foliation preserving coordinate transformation. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Covariant Gauge Condition}\label{gauge}
-We studied the transformation rules of all the important variables in 3 + 1 splitting mechanism under the foliation preserving coordinate transformation in Sec.~\ref{transform} and Sec.~\ref{tensorial}, now we will use these results to construct the covariant form of moving puncture gauge condition and damped-wave gauge condition. 
-\subsection{Moving puncture gauge condition}
-The regular 1 + log slicing condition reads as
+With transformation rules of all important physical variables under the foliation preserving coordinate transformation listed in Sec.~\ref{transform}, we are now able to revisit the non-covariant gauge condition problems mentioned in Sec.~\ref{generalcovariancefoliationpreservingtransformation}. In this section, we try to recover general covariance of various gauge conditions used in different numerical relativity formulations. Sec.~\ref{movingpuncture} discusses the gauge condition used in BSSN formalism while Sec.~\ref{dampedwave} presents a general covariant representation of the damped-wave gauge condition\cite{Pretorius:2006tp, Szilagyi:2009qz, Lindblom:2009tu} employed by the generalized harmonic community. 
+\subsection{Moving puncture gauge condition}\label{movingpuncture}
+1 + log slicing condition consists of two parts, the 1 + log slicing condition governs the lapse function and Gamma-driver shift condition for the shift vector. 
+
+%%%%%%%%%%%%%%% I am wasting me time %%%%%%%%%%%%%%%%
 \begin{equation}\label{1 + log slicing}
 \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha = -2\alpha K
 \end{equation}
@@ -417,7 +421,7 @@ while the transformed background metric terms are associated with the original t
 {\bar \Gamma}^{a'}_{~b'c'} & = {\bar \Gamma}^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial x^{b'}\partial x^{c'}}
 \end{align}
 
-\subsection{Damped-wave gauge condition}
+\subsection{Damped-wave gauge condition}\label{dampedwave}
 By contrast, due to the fact that the gauge sources $H^{a}$ and $H_{\perp}$ already transform tensorially, the damped-wave gauge condition is much easier to make covariant. What we need to do is just altering the right hand side of those equations to match the transformation rule of the left hand side. 
 
 Let us begin by considering the damped-wave gauge condition for $H^{a}$
