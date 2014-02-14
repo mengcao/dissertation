@@ -353,31 +353,24 @@ Hence we have that $H_{\perp}$ acts as a scalar under both spatial diffeomorphis
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Covariant Gauge Condition}\label{gauge}
-With transformation rules of all important physical variables under the foliation preserving coordinate transformation listed in Sec.~\ref{transform}, we are now able to revisit the non-covariant gauge condition problems mentioned in Sec.~\ref{generalcovariancefoliationpreservingtransformation}. In this section, we try to recover general covariance of various gauge conditions used in different numerical relativity formulations. Sec.~\ref{movingpuncture} discusses the gauge condition used in BSSN formalism while Sec.~\ref{dampedwave} presents a general covariant representation of the damped-wave gauge condition\cite{Pretorius:2006tp, Szilagyi:2009qz, Lindblom:2009tu} employed by the generalized harmonic community. 
+With transformation rules of all important physical variables under foliation preserving coordinate transformation listed in Sec.~\ref{transform}, we are now able to revisit the non-covariant gauge condition problems mentioned in Sec.~\ref{generalcovariancefoliationpreservingtransformation}. In this section, we try to recover general covariance of various gauge conditions used in different numerical relativity formulations. The strategy for making gauge conditions covariant has two steps. First, replace non-covariant terms with their covariant counterparts. For instance, replace $\partial_{t}\alpha$ with $D_{t}\alpha$ or substitute $\partial_{t}\beta^{a}$ with $D_{t}\beta^{a}$. The second step is balancing tensor density weights on both sides of the equation. Multiplying by ${\bar \alpha}$ increases weight density by 1 under time reparameterization while multiplying by $\sqrt{{\bar g}}$ increase weight density by 1 under spatial diffeomorphism. This strategy is illustrated in Sec.~\ref{movingpuncture} and Sec.~\ref{dampedwave} while Sec.~\ref{movingpuncture} discusses the gauge condition used in BSSN formalism and Sec.~\ref{dampedwave} presents a general covariant representation of the damped-wave gauge condition\cite{Pretorius:2006tp, Szilagyi:2009qz, Lindblom:2009tu} employed by the generalized harmonic community. 
 \subsection{Moving puncture gauge condition}\label{movingpuncture}
-1 + log slicing condition consists of two parts, the 1 + log slicing condition governs the lapse function and Gamma-driver shift condition for the shift vector. 
+Moving puncture gauge condition consists of two parts, the 1 + log slicing condition governs evolution of the lapse function and Gamma-driver shift condition for the shift vector. 
 
-%%%%%%%%%%%%%%% I am wasting me time %%%%%%%%%%%%%%%%
+1 + log slicing condition reads as
 \begin{equation}\label{1 + log slicing}
-\partial_{t}\alpha - \beta^{c}\partial_{c}\alpha = -2\alpha K
+\partial_{t}\alpha - \beta^{c}\partial_{c}\alpha = -2\alpha K \ .
 \end{equation}
-Due to the analysis in Sec.~\ref{transform}, one can notice that neither the right hand side nor the left hand side transforms tensorially. We start by replacing the left hand side by $D_{t}\alpha$. Since $D_{t'}\alpha' = D_{t}\alpha\left(\partial t/\partial t'\right)^{2}$, in order to balance the right hand side, we modify it to be $-2\alpha {\bar \alpha}K$. After this modification, we have
-\begin{align*}
-D_{t'}\alpha' & = D_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2}\\
-& = -2\alpha{\bar \alpha}K\left(\frac{\partial t}{\partial t'}\right)^{2}\\
-& = -2\left(\alpha\frac{\partial t}{\partial t'}\right)\left({\bar \alpha}\frac{\partial t}{\partial t'}\right)K\\
-& = -2\alpha'{\bar \alpha}'K'
-\end{align*}
-Therefore, we have reached the covariant form of 1 + log slicing condition as below
+As we can notice that the left hand side shares several terms with $D_{t}\alpha$, it is intuitive and appropriate to replace the left hand side with $D_{t}\alpha$. However, this substitution make the left hand side transforms as a weight +2 density under time reparameterization while the right hand side transforms as a weight +1 density under such transformation. Therefore, we multiply by the background lapse function ${\bar \alpha}$, which transforms as a weight +1 density, on the right hand side to balance the equation's density weights. This leads to the general covariant 1 + log slicing condition, as following
 \begin{equation}\label{covariant 1 + log slicing}
-D_{t}\alpha = -2\alpha{\bar \alpha}K
+D_{t}\alpha = -2\alpha{\bar \alpha}K \ .
 \end{equation}
 
 The Gamma-driver shift condition is usually written as a system of two first order equations
-\begin{subequations}\label{Gamma-driver shift set}
+\begin{subequations}\label{gammadrivershiftset}
 \begin{align}
-\partial_{t}\beta^{a} & = \beta^{b}\partial_{b}\beta^{a} + \frac{3}{4}B^{a}\\
-\partial_{t}B^{a} & = \beta^{b}\partial_{b}B^{a} + \partial_{t}{\tilde \Gamma}^{a} - \beta^{b}\partial_{b}{\tilde \Gamma}^{a} - \eta B^{a}
+\partial_{t}\beta^{a} & = \beta^{b}\partial_{b}\beta^{a} + \frac{3}{4}B^{a}\label{gammadrivershiftfirst}\\
+\partial_{t}B^{a} & = \beta^{b}\partial_{b}B^{a} + \partial_{t}{\tilde \Gamma}^{a} - \beta^{b}\partial_{b}{\tilde \Gamma}^{a} - \eta B^{a}\label{gammadrivershiftsecond}
 \end{align}
 \end{subequations}
 where ${\tilde \Gamma}^{a}$ is the trace of the conformal Christoffel symbols defined as
@@ -386,43 +379,56 @@ where ${\tilde \Gamma}^{a}$ is the trace of the conformal Christoffel symbols de
 \end{equation}
 and $\eta$ is a constant parameter. 
 
-We can follow the same strategy to alter the Gamma-driver shift condition, replacing $\partial_{t}\beta^{a}$ by $D_{t}\beta^{a}$, changing every non-tensorial term to its corresponding tensorial term and balance the transformation factor on both sides. Therefore, we have
-\begin{subequations}\label{covariant Gamma-driver shift set}
+We can follow the same strategy to adjust the Gamma-driver shift condition, replacing $\partial_{t}\beta^{a}$ by $D_{t}\beta^{a}$, changing every non-tensorial term to its corresponding tensorial term and balance the density weight on both sides. 
+
+Manipulating Eq.~(\ref{gammadrivershiftfirst}) in the following way could recover its general covariance while restricting $B^{a}$ to transform as a type $1 \choose 0$ tensor under spatial diffeomorphism and a scalar under time reparameterization, 
+\begin{equation}\label{gammadrivershiftfirstcovariant}
+	D_{t}\beta^{a} = \frac{3}{4}{\bar \alpha}^{2}B^{a} \ .
+\end{equation}
+
+For Eq.~(\ref{gammadrivershiftsecond}), we first need to construct a covariant form of ${\tilde \Gamma}^{a}$, which is defined as
+\begin{equation}
+\Delta {\tilde \Gamma}^{a} \equiv \sqrt{\frac{g}{{\bar g}}}^{2/3}\left(\Delta \Gamma^{a}_{~bc}g^{bc} + \frac{1}{3}g^{ab}\Delta \Gamma^{c}_{~bc}\right) \ ,
+\end{equation}
+so that it transforms exactly the same as $B^{a}$. Then the covariant form of Eq.~(\ref{gammadrivershiftsecond}) can be written as
+\begin{equation}\label{gammadrivershiftsecondcovariant}
+	D_{t}B^{a} - D_{t}\Delta {\tilde \Gamma}^{a}  = - \eta {\bar \alpha}B^{a} \ , 
+\end{equation}
+where
+\begin{subequations}
 \begin{align}
-\partial_{t}\Delta \beta^{a} & = \beta^{b}{\bar D}_{b}\Delta\beta^{a} - \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a} + \frac{\Delta\beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) + \frac{3}{4}{\bar \alpha}B^{a}\\
-\partial_{t}B^{a} & = \partial_{t}\Delta {\tilde \Gamma}^{a} + \beta^{b}{\bar D}_{b}\left(B^{a} - \Delta{\tilde \Gamma}^{a}\right) - \left(B^{b} - \Delta{\tilde \Gamma}^{b}\right){\bar D}_{b}{\bar \beta}^{a} + \frac{B^{a} - \Delta{\tilde \Gamma}^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \eta{\bar \alpha}B^{a}
+D_{t}B^{a} & \equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right)B^{a}\\
+D_{t}{\tilde \Gamma}^{a} & \equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right){\tilde \Gamma}^{a} \ .
 \end{align}
 \end{subequations}
-where
-\begin{equation}
-\Delta {\tilde \Gamma}^{a} \equiv {\bar \alpha}\sqrt{\frac{g}{{\bar g}}}^{2/3}\left(\Delta \Gamma^{a}_{~bc}g^{bc} + \frac{1}{3}g^{ab}\Delta \Gamma^{c}_{~bc}\right)
-\end{equation}
-In some literatures \cite{vanMeter:2006vi}, the Eqs.~(\ref{Gamma-driver shift set}) can be integrated with the initial condition $\beta^{a}\left(t=0\right) = B^{a}\left(t=0\right) = {\tilde \Gamma}^{a}\left(t = 0\right) = 0$ and yields a single first order equation of Gamma-driver shift condition
-\begin{equation}\label{Gamma-driver shift}
-\partial_{t}\beta^{a} = \beta^{b}\partial_{b}\beta^{a} + \frac{3}{4}{\tilde \Gamma}^{a} - \eta \beta^{a}
-\end{equation} 
-Similarly, we can also integrate the Eqs.~(\ref{covariant Gamma-driver shift set}) with the same initial condition mentioned before to get the covariant form of Eq.~(\ref{Gamma-driver shift})
-\begin{equation}\label{covariant Gamma-driver shift}
-D_{t}\beta^{a} = \frac{3}{4}{\bar \alpha}\Delta {\tilde \Gamma}^{a} - \eta {\bar \alpha}\Delta\beta^{a}
-\end{equation}
-Due to its simplicity, we focus our discussion on Eq.~(\ref{covariant Gamma-driver shift}) instead of Eqs.~(\ref{covariant Gamma-driver shift set}) in the rest of this paper.
+In summary, Eqs.~(\ref{gammadrivershiftfirstcovariant}, \ref{gammadrivershiftsecondcovariant}) represent general covariant Gamma-driver shift condition as a system of two first order equations. 
 
-Writing down these covariant gauge conditions creates more possibilities for numerical simulation. When the need of evolving the system in a different coordinates system rises, one can just use the following equations as gauge conditions
-\begin{align*}
-D_{t'}\alpha' & = -2\alpha'{\bar \alpha}'K'\\
-D_{t'}\beta^{a'} & = \frac{3}{4}{\bar \alpha}'\Delta {\tilde \Gamma}^{a'} - \eta {\bar \alpha}'\Delta\beta^{a'}
-\end{align*}
-while the transformed background metric terms are associated with the original terms as below
-\begin{align}
-{\bar g}_{a'b'} & = {\bar g}_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\\
-{\bar g'} & = {\bar g}\left|\frac{\partial x}{\partial x'}\right|^{2}\\
-{\bar \alpha}' & = {\bar \alpha}\frac{\partial t}{\partial t'}\\
-{\bar \beta}^{a'} & = {\bar \beta}^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\label{background shift}\\
-{\bar \Gamma}^{a'}_{~b'c'} & = {\bar \Gamma}^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial x^{b'}\partial x^{c'}}
-\end{align}
+On the other side, in some literatures \cite{vanMeter:2006vi}, Eqs.~(\ref{gammadrivershiftset}) can be integrated with initial conditions $\beta^{a}\left(t=0\right) = B^{a}\left(t=0\right) = {\tilde \Gamma}^{a}\left(t = 0\right) = 0$ and yields a single-equation form of Gamma-driver shift condition
+\begin{equation}\label{gammadrivershift}
+\partial_{t}\beta^{a} = \beta^{b}\partial_{b}\beta^{a} + \frac{3}{4}{\tilde \Gamma}^{a} - \eta \beta^{a} \ .
+\end{equation} 
+Similarly, we can write the covariant form of Eq.~(\ref{gammadrivershift}) as
+\begin{equation}\label{covariant Gamma-driver shift}
+D_{t}\beta^{a} = \frac{3}{4}{\bar \alpha}^{2}\Delta {\tilde \Gamma}^{a} - \eta {\bar \alpha}\Delta\beta^{a} \ .
+\end{equation}
+%Due to its simplicity, we focus our discussion on Eq.~(\ref{covariant Gamma-driver shift}) instead of Eqs.~(\ref{covariant Gamma-driver shift set}) in the rest of this paper.
+
+%Writing down these covariant gauge conditions creates more possibilities for numerical simulation. When the need of evolving the system in a different coordinates system rises, one can just use the following equations as gauge conditions
+%\begin{align*}
+%D_{t'}\alpha' & = -2\alpha'{\bar \alpha}'K'\\
+%D_{t'}\beta^{a'} & = \frac{3}{4}{\bar \alpha}'\Delta {\tilde \Gamma}^{a'} - \eta {\bar \alpha}'\Delta\beta^{a'}
+%\end{align*}
+%while the transformed background metric terms are associated with the original terms as below
+%\begin{align}
+%{\bar g}_{a'b'} & = {\bar g}_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\\
+%{\bar g'} & = {\bar g}\left|\frac{\partial x}{\partial x'}\right|^{2}\\
+%{\bar \alpha}' & = {\bar \alpha}\frac{\partial t}{\partial t'}\\
+%{\bar \beta}^{a'} & = {\bar \beta}^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{c}}%\frac{\partial x^{c}}{\partial t'}\label{background shift}\\
+%{\bar \Gamma}^{a'}_{~b'c'} & = {\bar \Gamma}^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial x^{b'}\partial x^{c'}}
+%\end{align}
 
 \subsection{Damped-wave gauge condition}\label{dampedwave}
-By contrast, due to the fact that the gauge sources $H^{a}$ and $H_{\perp}$ already transform tensorially, the damped-wave gauge condition is much easier to make covariant. What we need to do is just altering the right hand side of those equations to match the transformation rule of the left hand side. 
+By contrast, due to the fact that the gauge source terms $H^{a}$ and $H_{\perp}$ already transform tensorially, the damped-wave gauge condition is much easier to adjust. What we need to do is merely balancing density weights on both sides of the equations. 
 
 Let us begin by considering the damped-wave gauge condition for $H^{a}$
 \begin{equation}\label{damped gauge vector}
@@ -430,19 +436,20 @@ H^{a} = -\mu_{S}\frac{\beta^{a}}{\alpha}
 \end{equation}
 where $\mu_{S}$ is a numerical damping factor. 
 
-The only non-tensor term in Eq.~(\ref{damped gauge vector}) is the shift vector $\beta^{a}$ and we can easily fix it by replacing $\beta^{a}$ with $\Delta \beta^{a}$. Since both $\Delta \beta^{a}$ and $\alpha$ act as a weight +1 tensor density under time reparameterization, $\Delta \beta^{a}/\alpha$ simply transforms as a scalar under time reparameterization, which is the same case for $H^{a}$. Therefore, we can write the covariant version of Eq.~(\ref{damped gauge vector}) as
+The only non-tensor term in Eq.~(\ref{damped gauge vector}) is the shift vector $\beta^{a}$ and we can easily fix it by replacing $\beta^{a}$ with $\Delta \beta^{a}$. Since both $\Delta \beta^{a}$ and $\alpha$ act as a weight +1 tensor density under time reparameterization, $\Delta \beta^{a}/\alpha$ simply transforms as a scalar under time reparameterization, which is the same case for $H^{a}$. Therefore, we can write the covariant form of Eq.~(\ref{damped gauge vector}) as
 \begin{equation}\label{covariant damped gauge vector}
-H^{a} = -\mu_{S}\frac{\Delta \beta^{a}}{\alpha}
+H^{a} = -\mu_{S}\frac{\Delta \beta^{a}}{\alpha} \ .
 \end{equation}
-For the other gauge source $H_{\perp}$, the gauge condition is
+For the other gauge source term $H_{\perp}$, the traditional gauge condition is
 \begin{equation}\label{damped gauge scalar}
-H_{\perp} = -\mu_{L}\log\left(\frac{\sqrt{g}}{\alpha}\right)
+H_{\perp} = -\mu_{L}\log\left(\frac{\sqrt{g}}{\alpha}\right) \ .
 \end{equation}
 Since $H_{\perp}$ transforms as a scalar under both time-dependent spatial diffeomorphism and time reparameterization, it is obvious that we can modify Eq.~(\ref{damped gauge scalar}) as following
 \begin{equation}\label{covariant damped gauge scalar}
 H_{\perp} = -\mu_{L}\log\left(\frac{\sqrt{g/{\bar g}}}{\alpha/{\bar \alpha}}\right)
 \end{equation} 
 so that it becomes covariant. 
+%%%%%%%%%%%%%%% I am marching forward %%%%%%%%%%%%%%%%%%
 \subsection{Another way to achieve covariant gauge condition}
 We can also achieve the transformed gauge conditions from the regular gauge conditions. All we need to do is using the transformation rules we derived above to write the non-transformed variables in terms of the transformed terms. And we argue as following that these two methods should yield identical transformed gauge conditions. 
 
