@@ -269,7 +269,7 @@ Hence we can define the covariant time derivative of spatial metric $D_{t}g_{ab}
 \begin{equation}
 	D_{t}g_{ab} \equiv (\partial_{t} - \mathcal{L}_{\beta})g_{ab} \ .
 \end{equation}
-Furthermore, it is straightforward to verify that for any {\em spatial tensor density}, the covariant time derivative operator can be defined as
+Furthermore, it is straightforward to verify that for any quantity that transforms as a scalar under time reparameterization, the covariant time derivative operator can be defined as
 \begin{equation}
 	D_{t} \equiv \partial_{t} - \mathcal{L}_{\beta} \ .
 \end{equation}
@@ -336,10 +336,12 @@ H_{a'} & = H_{\mu'}X^{\mu'}_{a'}\\
 & = H_{\mu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\delta^{\mu'}_{a'}\\
 & = H_{a}\frac{\partial x^{a}}{\partial x^{a'}} \ .
 \end{align}
-And we can easily conclude that $H^{a}$ transforms 
+In addition, we can easily conclude that $H^{a}$ transforms 
 \begin{equation}
-H^{a'} = H^{a}\frac{\partial x^{a'}}{\partial x^{a}}
+H^{a'} = H^{a}\frac{\partial x^{a'}}{\partial x^{a}} \ ,
 \end{equation}
+a $1 \choose 0$ tensor under spatial diffeomorphism and a scalar under time reparameterization. 
+
 For $H_{\perp}$, we have
 \begin{align}
 H_{\perp'} & = H_{\mu'}n^{\mu'} \notag\\
@@ -349,7 +351,17 @@ H_{\perp'} & = H_{\mu'}n^{\mu'} \notag\\
 & = H_{\mu}n^{\mu} \notag\\
 & = H_{\perp} \ .
 \end{align}
-Hence we have that $H_{\perp}$ acts as a scalar under both spatial diffeomorphism and time reparemeterization. Hereby we conclude the study of transformation rules under foliation preserving coordinate transformation. 
+Hence we have that $H_{\perp}$ acts as a scalar under both spatial diffeomorphism and time reparemeterization. 
+
+As it is discussed before, any quantity transforms as a scalar under time reparameterization, its covariant time derivative operator can be expressed as $D_{t} \equiv \partial_{t} - \mathcal{L}_{\beta}$. Therefore, for covariant time derivative of $H_{\perp}$ and $H_{a}$, we have that
+\begin{subequations}
+	\begin{align}
+		D_{t}H_{\perp} &\equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right)H_{\perp}\\
+		D_{t}H_{a} &\equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right)H_{a} \ .
+	\end{align}
+\end{subequations}
+
+Hereby we conclude the study of transformation rules under foliation preserving coordinate transformation. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Covariant Gauge Condition}\label{gauge}
