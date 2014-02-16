@@ -266,7 +266,7 @@ By revisiting the definition of extrinsic curvature in Eq.~(\ref{extrinsic}), a 
 	K_{a'b'} = K_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} \ .
 \end{equation}
 Hence we can define the covariant time derivative of spatial metric $D_{t}g_{ab}$ as
-\begin{equation}
+\begin{equation}\label{spatialmetriccovarianttimederivative}
 	D_{t}g_{ab} \equiv (\partial_{t} - \mathcal{L}_{\beta})g_{ab} \ .
 \end{equation}
 Furthermore, it is straightforward to verify that for any quantity that transforms as a scalar under time reparameterization, the covariant time derivative operator can be defined as
@@ -282,7 +282,7 @@ We start by writing down transformation rule of regular time derivative of the l
 & = \partial_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\alpha\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}} \ .
 \end{align}
 The leading term in Eq.~(\ref{lapsetimederivative}) reveals that covariant time derivative of $\alpha$ should transform as a scalar under spatial diffeomorphism and a weight +2 density under time reparamterization. According to transformation rules listed in Eqs.~(\ref{shiftvectortransform}, \ref{lapsetransform}, \ref{lapsefunctionspatialderivative}), we are able to construct the covariant time derivative of lapse function as
-\begin{equation}
+\begin{equation}\label{lapsecovarianttimederivative}
 	D_{t}\alpha \equiv \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha - \frac{\alpha}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{c}\partial_{c}{\bar \alpha}\right) 
 \end{equation}
 and one can check that its transformation rule turns out to be exactly as expected
@@ -318,7 +318,7 @@ Define $\sigma \equiv c_{1}$, then we can write all the other constants in terms
 	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \sigma\beta^{b}{\bar D}_{b}\beta^{a} + \left(1-\sigma\right)\beta^{b}{\bar D}_{b}{\bar \beta}^{a} - \left(1 + \sigma\right){\bar \beta}^{b}{\bar D}_{b}\beta^{a} + \sigma{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a} \ .
 \end{equation}
 In both definitions of $D_{t}g_{ab}$ and $D_{t}\alpha$, the covariant time derivative operators share the same pattern as $\partial_{t} - \beta^{b}\partial_{b}$. In order to achieve the same pattern in $D_{t}\beta^{a}$, an appropriate choice for $\sigma$ is $\sigma = -1$. Therefore, in the rest of this paper, the covariant time derivative of shift vector is defined as
-\begin{equation}
+\begin{equation}\label{shiftcovarianttimederivative}
 	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \beta^{b}{\bar D}_{b}\Delta \beta^{a} + \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a} \ .	
 \end{equation}
 

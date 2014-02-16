@@ -1,8 +1,11 @@
 \chapter{Hamiltonian Approach to Generalized Harmonic Formulation}
-\section{Action of Generalized Harmonic Formulation}
+Einstein-Hilbert action encodes complete dynamic information of general relativity system. Applying variational principle to the action yields Einstein field equations. Both Lagrangian and Hamiltonian equations can be derived from the principle of least action. In this chapter, we write down the Einstein-Hilbert action in Sec.~\ref{action}. Hamiltonian and equations of motion for GH system is spelled out in Sec.~\ref{hamiltonian}. An extension of the Hamiltonian for the purpose of general covariance is discussed in Sec.~\ref{extension}. In the end, a hyperbolicity analysis of the system is presented in Sec.~\ref{hyperbolicity}. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Action of Generalized Harmonic Formulation}\label{action}
 As presented in Ref.~\cite{Brown:2010rya}, the Lagrangian for generalized harmonic gravity is the following function of the spacetime metric $g_{\mu\nu}$ and the gauge source vector $H_{\mu}$, 
 \begin{equation}
-\mathscr{L}\left(g_{\mu\nu}, H_{\mu}\right) = \sqrt{-^{(4)}g} \left(^{(4)}R - \frac{1}{2}C_{\mu}C^{\mu}\right) \ , 
+\mathscr{L}\left(g_{\mu\nu}, H^{\mu}\right) = \sqrt{-^{(4)}g} \left(^{(4)}R - \frac{1}{2}C_{\mu}C^{\mu}\right) \ , 
 \end{equation}
 and the action is a functional of $g_{\mu\nu}$ and $H^{\mu}$
 \begin{equation}\label{action}
@@ -15,7 +18,7 @@ C_{\mu} = H_{\mu} + \Delta \Gamma^{~~~\beta}_{\mu\beta}
 where $H_{\mu}$ is the gauge source vector. 
 
 With the 3 + 1 splitting of the spacetime metric $g_{\mu\nu}$ into spatial metric $g_{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$, the gauge source vector $H_{\mu}$ into its time-like component $H_{\perp}$ and spatial component $H_{a}$, the action turns into the following 3 + 1 form
-\begin{equation}\label{action}
+\begin{equation}\label{3+1action}
 S\left[g_{ab}, \alpha, \beta^{a}, H_{\perp}, H^{a}\right] = \int d^{4}x~~\alpha \sqrt{g} \left( R + K^{ab}K_{ab} - K^{2} - \frac{1}{2}C^{a}C_{a} + \frac{1}{2}C_{\perp}^{2}\right).
 \end{equation}
 In Eq.~(\ref{action}), $R$ is the spatial Ricci scalar, $K$ is the trace of extrinsic curvature and $\mathcal{L}_{\beta}$ is the Lie derivative along the shift vector. 
@@ -42,60 +45,59 @@ C_{\perp} & = H_{\perp} + K + \frac{1}{\alpha^{2}}D_{t}\alpha\\
 C_{a} & = H_{a} + \Delta \Gamma^{b}_{cd}g^{cd}g_{ab} - \frac{\partial_{a}\alpha}{\alpha} - \frac{g_{ab}}{\alpha^2}D_{t}\beta^{b} \ .
 \end{align}
 \end{subequations}
-
-With the Einstein-Hilbert action(\ref{action}) defined explicitly above, we are now able to construct the Hamiltonian formalism of GH formulation. Hamiltonian and equations of motion for GH system is spelled out in Sec.~\ref{hamiltonian}. An extension of the Hamiltonian for the purpose of general covariance is discussed in Sec.~\ref{extension}. In the end, a hyperbolicity analysis of the system is presented in Sec.~\ref{hyperbolicity}. 
+With the action defined explicitly, we are now able to construct the Hamiltonian formalism of GH formulation in the following sections. 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hamiltonian and Equations of Motion}\label{hamiltonian}
-According to Eq.~(\ref{action}), we have that the Lagrangian in 3 + 1 form is
+According to Eq.~(\ref{3+1action}), we have that the Lagrangian in 3 + 1 form is
 \begin{equation}
-\mathscr{L} = \alpha \sqrt{g} \left( R + K^{ab}K_{ab} - K^{2} - \frac{1}{2}C^{a}C_{a} + \frac{1}{2}C_{\perp}^{2}\right).
+\mathscr{L}\left(g_{ab}, \alpha, \beta^{a}, H_{\perp}, H^{a}\right) = \alpha \sqrt{g} \left( R + K^{ab}K_{ab} - K^{2} - \frac{1}{2}C^{a}C_{a} + \frac{1}{2}C_{\perp}^{2}\right) \ .
 \end{equation}
-This allows us to compute the conjugate momenta of the dynamical variables $g_{ab}$, $\alpha$, $\beta^{a}$, $H_{\perp}$ and $H^{a}$ as following
+This allows us to define conjugate momenta of dynamical variables $g_{ab}$, $\alpha$, $\beta^{a}$, $H_{\perp}$ and $H^{a}$ as following
 \begin{subequations}\label{momenta}
 \begin{align}
 P^{ab} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot g}_{ab}} = \sqrt{g}\left(Kg^{ab} - K^{ab} - \frac{C_{\perp}}{2}g^{ab}\right)\\
 \pi & \equiv \frac{\partial \mathscr{L}}{\partial {\dot \alpha}} = \frac{\sqrt{g}}{\alpha}C_{\perp}\\
 \rho_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot \beta}^{a}} = \frac{\sqrt{g}}{\alpha}C_{a}\\
 \Omega & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}_{\perp}} = 0\\
-\Omega_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}^{a}} = 0.  
+\Omega_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}^{a}} = 0 \ .  
 \end{align}
 \end{subequations}
 By definition of Hamiltonian, we have
 \begin{equation}
 \mathscr{H} \equiv \int d^{3}x \left(P^{ab}{\dot g}_{ab} + \pi{\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega {\dot H}_{\perp} + \Omega_{a}{\dot H}^{a} - \mathscr{L} \right). 
 \end{equation}
-To obtain the explicit expression of $\mathscr{H}$, we need to invert Eqs.~(\ref{momenta}) to write the first order time derivatives of the metric in terms of the metric and their corresponding momenta as following
+To obtain the explicit expression of $\mathscr{H}$ in terms of $g_{ab}$, $\alpha$, $\beta^{a}$, $H_{\perp}$, $H^{a}$ and their conjugate momenta $P^{ab}$, $\pi$, $\rho_{a}$, $\Omega$, $\Omega_{a}$ we need to invert Eqs.~(\ref{momenta}) to eliminate $\partial_{t}g_{ab}$, $\partial_{t}\alpha$ and $\partial_{t}\beta^{a}$. The inversion can be written down as following
 \begin{subequations}
 \begin{align}
 D_{t}g_{ab} & = \frac{2\alpha P_{ab}}{\sqrt{g}} - \frac{\alpha P g_{ab}}{\sqrt{g}} - \frac{\alpha^{2}\pi g_{ab}}{2\sqrt{g}}\\
 D_{t}\alpha & = \frac{\alpha^{3}\pi}{4\sqrt{g}} - \alpha^{2}H_{\perp} - \frac{\alpha^{2}P}{2\sqrt{g}}\\
-D_{t}\beta^{a} & = \alpha^{2}H^{a} + \alpha^{2}\Delta \Gamma^{a}_{~bc}g^{bc} - \alpha g^{ab}\partial_{b}\alpha - \frac{\alpha^{3}}{\sqrt{g}}\rho^{a}.
+D_{t}\beta^{a} & = \alpha^{2}H^{a} + \alpha^{2}\Delta \Gamma^{a}_{~bc}g^{bc} - \alpha g^{ab}\partial_{b}\alpha - \frac{\alpha^{3}}{\sqrt{g}}\rho^{a} \ .
 \end{align}
 \end{subequations}
-We write the equations above in such a way that, the terms on either side of the equation are grouped to be general covariant\cite{Meng}. Note that the terms on the lefthand side are the covariant time derivative of $g_{ab}$, $\alpha$ and $\beta^{a}$, which are defined in Eq.~(\ref{covariant spatial metric}) and Eqs.~(\ref{covariant lapse and shift}). 
+It is worth noting that terms on the left hand side are covariant time derivative of $g_{ab}$, $\alpha$ and $\beta^{a}$, which are defined in Eq.~(\ref{spatialmetriccovarianttimederivative}, \ref{lapsecovarianttimederivative}, \ref{shiftcovarianttimederivative}), so that the equations are in a general covariant form. 
 
-In addition, the last two equations in Eqs.~(\ref{momenta}), $\Omega = 0$ and $\Omega^{a} = 0$, serve as the primary constraints and we write ${\dot H}_{\perp}$ and ${\dot H}_{a}$ as arbitrary multipliers of these constraints
+However, it is impossible to invert the last two equations in Eqs.~(\ref{momenta}), $\Omega = 0$ and $\Omega^{a} = 0$. They turn out to serve as primary constraints of the system and we need to write ${\dot H}_{\perp}$ and ${\dot H}_{a}$ as arbitrary multipliers of these constraints
 \begin{subequations}
 \begin{align}
 {\dot H}_{\perp} & = \Lambda\\
-{\dot H}^{a} & = \Lambda^{a}.
+{\dot H}^{a} & = \Lambda^{a} \ .
 \end{align}
 \end{subequations}
-The resulting Hamiltonian is $\mathscr{H} \equiv \int d^{3}x \left( P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega \Lambda + \Omega_{a}\Lambda^{a} - \mathscr{L} \right)$. Wirte it down explicitly, we have
+The resulting Hamiltonian is $\mathscr{H} \equiv \int d^{3}x \left( P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega \Lambda + \Omega_{a}\Lambda^{a} - \mathscr{L} \right)$. Wirte it out explicitly, we have
 \begin{align}
 \begin{split}
 \mathscr{H} &= \int d^{3}x~~ \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
 & -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + P^{ab} \mathcal{L}_{\beta}g_{ab} + \pi \mathcal{L}_{\beta}\alpha + \rho_{a}\left(\beta^{b}{\bar D}_{b}\Delta \beta^{a} - \Delta \beta^{b} {\bar D}_{b}{\bar \beta}^{a}\right)\\
 & + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha + \rho_{a}{\dot {\bar \beta}}^{a} + \frac{1}{{\bar \alpha}}\left(\rho_{a}\Delta \beta^{a} + \pi \alpha \right)\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) - \alpha\sqrt{g}R\\
-& + \Omega \Lambda + \Omega_{a}\Lambda^{a}.
+& + \Omega \Lambda + \Omega_{a}\Lambda^{a} \ .
 \end{split}
 \end{align}
-Consequently, we can write the action in Hamiltonian form as ({\color{red} implicit indices to save space, OK?})
+Consequently, we can write the action in Hamiltonian form as
 \begin{equation}\label{non covariant action}
-S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = \int d^{4}x \left(P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega{\dot H_{\perp}} + \Omega_{a}{\dot H}^{a} - \mathscr{H}\right)
+S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = \int d^{4}x \left(P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega{\dot H_{\perp}} + \Omega_{a}{\dot H}^{a} - \mathscr{H}\right) \ .
 \end{equation}
-By varying this action $\delta S = 0$, we can obtain the Hamilton's equations of motion
+By applying the least action principle, i.e., $\delta S = 0$, we can obtain the Hamilton's equations of motion as following
 \begin{subequations}\label{non covariant hamilton}
 \begin{align}
 {\dot g}_{ab} & = \frac{\partial \mathscr{H}}{\partial P^{ab}} = \mathcal{L}_{\beta}g_{ab} + \frac{2\alpha}{\sqrt{g}}P_{ab} - \frac{\alpha P}{\sqrt{g}}g_{ab} - \frac{\alpha^{2}\pi}{2\sqrt{g}}g_{ab}\\
@@ -122,7 +124,7 @@ By varying this action $\delta S = 0$, we can obtain the Hamilton's equations of
 {\dot H}_{\perp} & = \frac{\partial \mathscr{H}}{\partial \Omega } = \Lambda\\
 {\dot \Omega} & = - \frac{\partial \mathscr{H}}{\partial H_{\perp}} = \alpha^{2}\pi\\
 {\dot H}^{a} & = \frac{\partial \mathscr{H}}{\partial \Omega_{a}} = \Lambda^{a}\\
-{\dot \Omega}_{a} & = - \frac{\partial \mathscr{H}}{\partial H^{a}} = -\alpha^{2}\rho_{a}.
+{\dot \Omega}_{a} & = - \frac{\partial \mathscr{H}}{\partial H^{a}} = -\alpha^{2}\rho_{a} \ .
 \end{align}
 \end{subequations}
 
