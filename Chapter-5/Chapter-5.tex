@@ -97,7 +97,7 @@ Consequently, we can write the action in Hamiltonian form as
 \begin{equation}\label{non covariant action}
 S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = \int d^{4}x \left(P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega{\dot H_{\perp}} + \Omega_{a}{\dot H}^{a} - \mathscr{H}\right) \ .
 \end{equation}
-By applying the least action principle, i.e., $\delta S = 0$, we can obtain the Hamilton's equations of motion as following
+Hamilton's equations of motion can be derived from the action by applying the least action principle, i.e., $\delta S = 0$. Therefore, by varying the action with respect to the canonical variables, we have
 \begin{subequations}\label{non covariant hamilton}
 \begin{align}
 {\dot g}_{ab} & = \frac{\partial \mathscr{H}}{\partial P^{ab}} = \mathcal{L}_{\beta}g_{ab} + \frac{2\alpha}{\sqrt{g}}P_{ab} - \frac{\alpha P}{\sqrt{g}}g_{ab} - \frac{\alpha^{2}\pi}{2\sqrt{g}}g_{ab}\\
@@ -128,7 +128,7 @@ By applying the least action principle, i.e., $\delta S = 0$, we can obtain the 
 \end{align}
 \end{subequations}
 
-One may notice that Eqs.~(\ref{non covariant hamilton}) are not explicit covariant under foliation preserving coordinate transformation. This is a direct result from the fact that the action itself i.e., Eq.~(\ref{non covariant action}) is not covariant. It is easy to notice that the presence of non-covariant time derivative of coordinate variables, such as $P^{ab}{\dot g}_{ab}$, $\pi{\dot \alpha}$, $\rho_{a}{\dot \beta}$, $\Omega{\dot H}_{\perp}$ and $\Omega_{a}{\dot H}^{a}$, prevents the action from being general covariant. However, a more careful observation reveals that, non-coincidentally, we can extract some terms from the hamiltonian $\mathscr{H}$ to combine with the regular time derivatives and make them covariant time derivatives as presented in Eqs.~(\ref{covariant lapse and shift}) and Eq.~(\ref{covariant spatial metric}). Therefore, we start to modify the action presentation as following
+One may notice that Eqs.~(\ref{non covariant hamilton}) are not explicit covariant under foliation preserving coordinate transformation. This is a direct result from the fact that the action itself(\ref{non covariant action}) is not covariant. It is the presence of non-covariant time derivatives, such as $P^{ab}{\dot g}_{ab}$, $\pi{\dot \alpha}$, $\rho_{a}{\dot \beta}$, $\Omega{\dot H}_{\perp}$ and $\Omega_{a}{\dot H}^{a}$, that prevents the action from being general covariant. However, a more careful observation reveals that, non-coincidentally, we can extract some terms from the hamiltonian $\mathscr{H}$ to combine with the regular time derivatives and make them covariant time derivatives $D_{t}g_{ab}$, $D_{t}\alpha$, $D_{t}\beta^{a}$, as presented in Eqs.~(\ref{spatialmetriccovarianttimederivative}, \ref{lapsecovarianttimederivative}, \ref{shiftcovarianttimederivative}). Therefore, we start to modify the action presentation as following
 \begin{equation}\label{modified action}
 S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = \int d^{4}x \left( P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\beta^{a} + \Omega {\dot H}_{\perp} + \Omega_{a}{\dot H}^{a} - \tilde{\mathscr{H}}\right)
 \end{equation}
@@ -142,7 +142,7 @@ where
 \end{align}
 is the modified Hamiltonian. 
 
-Note that in the modified action (\ref{modified action}), we still have two non-covariant terms $\Omega {\dot H}_{\perp}$ and $\Omega_{a}{\dot H}^{a}$ for which we are not able to find any complement terms in $\mathscr{H}$ to combine with. This problem can be solved by extending the Hamiltonian, which will be discussed in detail in the following section. 
+Note that in the modified action (\ref{modified action}), we still have two non-covariant terms $\Omega {\dot H}_{\perp}$ and $\Omega_{a}{\dot H}^{a}$ for which we are not able to find any complement terms in $\mathscr{H}$ to combine with. This problem can be solved by extending the Hamiltonian, which is discussed in detail in the following section. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hamiltonian Extension}\label{extension}
@@ -151,48 +151,50 @@ Due to the Hamiltonian's constraints $\Omega = 0$ and $\Omega_{a} = 0$, we notic
 \begin{split}
 \tilde{\mathscr{H}} & = \int d^{3}x~~~~\frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
 & -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
-& + \Omega {\hat \Lambda} + \Omega_{a}{\hat \Lambda}^{a}.
+& + \Omega {\hat \Lambda} + \Omega_{a}{\hat \Lambda}^{a} \ .
 \end{split}
 \end{align}
-Note that here we absorb $\Lambda$ and $\Lambda^{a}$ into functions ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$, respectively. Now we can choose ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ appropriately such that they equal to the complement terms for ${\dot H}_{\perp}$ and ${\dot H}^{a}$, i.e., 
+Note that here we absorb $\Lambda$ and $\Lambda^{a}$ into functions ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$, respectively. Now we can choose ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ appropriately so that they can combine with $\partial_{t}H_{\perp}$ and $\partial_{t}H^{a}$ to form $D_{t}H_{\perp}$ and $D_{t}H^{a}$ respectively, i.e., 
 \begin{subequations}
 \begin{align}
 {\hat \Lambda} & = \mathcal{L}_{\beta}H_{\perp}\\
-{\hat \Lambda}^{a} & = \mathcal{L}_{\beta}H^{a}
+{\hat \Lambda}^{a} & = \mathcal{L}_{\beta}H^{a} \ .
 \end{align}
 \end{subequations}
-then we obtain a general covariant format of the action as
+Then we obtain a general covariant format of the action as
 \begin{equation}\label{covariant action}
 \begin{split}
 S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = & \int d^{4}x ~~~~P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta \beta^{a} + \Omega D_{t}H_{\perp} + \Omega_{a}D_{t}H^{a}\\
 & - \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
-& +\alpha^{2}\pi H_{\perp} - \alpha^{2}\rho_{a}H^{a} - \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} + \alpha \rho^{a}\partial_{a}\alpha + \alpha\sqrt{g}R.
+& +\alpha^{2}\pi H_{\perp} - \alpha^{2}\rho_{a}H^{a} - \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} + \alpha \rho^{a}\partial_{a}\alpha + \alpha\sqrt{g}R \ .
 \end{split}
 \end{equation}
 Note that this action is both implicitly and explicitly covariant, i.e., it is covariant as a whole object and each individual term in the action is covariant by itself as well. 
 
-A careful reader will also notice that, besides making the action covariant, there is one extra change from Eq.~(\ref{modified action}) to Eq.~(\ref{covariant action}) as well. The term coupling with $\rho_{a}$ is $D_{t}\Delta \beta$ instead of $D_{t}\beta^{a}$ now. A superficial justification for this operation is that from Eq.~(\ref{covariant shift}) we can tell that $D_{t}{\bar \beta}^{a} = 0$ and hence $D_{t}\Delta \beta^{a} = D_{t}\beta^{a}$. Prior to a deeper understanding of this operation, let's first take a look at our approach to vary the action to get a set of explicitly covariant Hamilton's equations. 
+A careful reader will also notice that, besides making the action covariant, there is one extra change from Eq.~(\ref{modified action}) to Eq.~(\ref{covariant action}) as well. The term coupling with $\rho_{a}$ is $D_{t}\Delta \beta$ instead of $D_{t}\beta^{a}$ now. A superficial justification for this operation is that from Eq.~(\ref{shiftcovarianttimederivative}) we can tell that $D_{t}{\bar \beta}^{a} = 0$ and hence $D_{t}\Delta \beta^{a} = D_{t}\beta^{a}$. Prior to a deeper understanding of this operation, let's first take a look at our approach to vary the action to get a set of explicitly covariant Hamilton's equations. 
 
-By explicitly covariant, what we want is that terms on the lefthand side and righthand side of equations of motion are both covariant. Therefore, instead of a regular time derivative operator on the lefthand side of the equations, we require a covariant time derivative operator. Hence, when varying the action, we want the terms with covariant time derivative have the same product rule as regular time derivatives, i.e., for any generic coordinate variable $q$ and its conjugate momentum $p$, we require that
-\begin{equation}
-D_{t}( pq ) = pD_{t}q + qD_{t}p.
+By explicitly covariant, what we want is that terms on the left hand side and right hand side of equations of motion are both covariant. Therefore, instead of a regular time derivative operator on the lefthand side of the equations, we require a covariant time derivative operator. Hence, when varying the action, we want the terms with covariant time derivative have the same product rule as regular time derivatives, i.e., for any generic coordinate variable $q$ and its conjugate momentum $p$, we require that
+\begin{equation}\label{productrule}
+D_{t}( pq ) = pD_{t}q + qD_{t}p \ .
 \end{equation}
 We also require $D_{t}(pq)$ has a format of total derivative so that it can be treated as boundary terms while varying the action. This works as long as $pq$ is a weight 1 density under spatial diffeomorphism and a scalar density under time reparameterization, in which case we have
 \begin{equation}
-D_{t}(pq) = \partial_{t}(pq) - \mathcal{L}_{\beta}(pq) = \partial_{t}(pq) - \partial_{c}\left(\beta^{c}pq\right).
+D_{t}(pq) = \partial_{t}(pq) - \mathcal{L}_{\beta}(pq) = \partial_{t}(pq) - \partial_{c}\left(\beta^{c}pq\right) \ .
 \end{equation}
-This is the reason why we want to replace $\rho_{a}D_{t}\beta^{a}$ with $\rho_{a}D_{t}\Delta \beta^{a}$, since $\rho_{a}\Delta \beta^{a}$ is a weight 1 density under spatial diffeomorphism and a scalar uner time reparameterization while $\rho_{a}\beta^{a}$ is not. 
+This is the reason why we want to replace $\rho_{a}D_{t}\beta^{a}$ with $\rho_{a}D_{t}\Delta \beta^{a}$, since $\rho_{a}\Delta \beta^{a}$ is a weight 1 density under spatial diffeomorphism and a scalar under time reparameterization while $\rho_{a}\beta^{a}$ is not. 
 
-The product rule of covariant time derivative leads to the definitions of covariant derivatives of momenta as following
+With explicit definition of $D_{t}q$, the product rule allows us to define $D_{t}p$ from Eq.~(\ref{productrule}) in the following way
 \begin{subequations}
 \begin{align}
 D_{t}P^{ab} & \equiv {\dot P}^{ab} - \mathcal{L}_{\beta}P^{ab}\\
 D_{t}\pi & \equiv {\dot \pi} - \mathcal{L}_{\beta}\pi + \frac{\pi}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right)\\
 D_{t}\rho_{a} & \equiv {\dot \rho}_{a} - \partial_{b}\left(\beta^{b}\rho_{a}\right) + \frac{\rho_{a}}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) + \rho_{c}\beta^{b}{\bar \Gamma}^{c}_{ab} - \rho_{b}{\bar D}_{a}{\bar \beta}^{b}\\
 D_{t}\Omega & \equiv {\dot \Omega} - \mathcal{L}_{\beta}\Omega\\
-D_{t}\Omega_{a} & \equiv {\dot \Omega}_{a} - \mathcal{L}_{\beta}\Omega_{a}
+D_{t}\Omega_{a} & \equiv {\dot \Omega}_{a} - \mathcal{L}_{\beta}\Omega_{a} \ .
 \end{align}
 \end{subequations}
+
+%%%%%%%%%%%%% here %%%%%%%%%%%%%%%%%
 With these two properties of covariant time derivative, we can vary the covariant action to obtain the explicitly covariant Hamilton's equations,
 \begin{subequations}\label{covariant hamilton}
 \begin{align}
