@@ -194,9 +194,8 @@ D_{t}\Omega_{a} & \equiv {\dot \Omega}_{a} - \mathcal{L}_{\beta}\Omega_{a} \ .
 \end{align}
 \end{subequations}
 
-%%%%%%%%%%%%% here %%%%%%%%%%%%%%%%%
 With these two properties of covariant time derivative, we can vary the covariant action to obtain the explicitly covariant Hamilton's equations,
-\begin{subequations}\label{covariant hamilton}
+\begin{subequations}\label{covarianthamilton}
 \begin{align}
 D_{t}g_{ab} & = \frac{2\alpha}{\sqrt{g}}P_{ab} - \frac{\alpha P}{\sqrt{g}}g_{ab} - \frac{\alpha^{2}\pi}{2\sqrt{g}}g_{ab}\\
 \begin{split}
@@ -216,14 +215,36 @@ D_{t}\rho_{a} & = - \rho_{b}{\bar D}_{a}\Delta\beta^{b} - P^{bc}\partial_{a}g_{b
 D_{t}H_{\perp} & = 0\\
 D_{t}\Omega & = \alpha^{2}\pi \label{omega}\\
 D_{t}H^{a} & = 0\\
-D_{t}\Omega_{a} & = -\alpha^{2}\rho_{a} \label{omega_a}.
+D_{t}\Omega_{a} & = -\alpha^{2}\rho_{a} \label{omega_a} \ .
 \end{align}
 \end{subequations}
+In order for the Hamiltonian formulation discussed above to be practical in numerical application, we first need to prove that Eqs.~(\ref{covarianthamilton}) is well-posed. The definition of well-posedness for quasilinear partial differential equation system is discussed in Sec.~\ref{wellposednessdefinition} in detail. A complete well-posedness analysis of Eqs.~(\ref{covarianthamilton}) is presented in Sec.~\ref{wellposednessanalysis}.
 %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%
-\section{Hyperbolicity Analysis}\label{hyperbolicity}
-In this section, we will analyze the hyperbolicity of the Eqs.~(\ref{covariant hamilton}). In order to analyze the hyperbolicity of the system, according to Ref.~\cite{Brown:2008cca}, we first need to extract the principal terms from the Hamilton's equations. The principal parts of the ${\dot q}$ equations are the terms proportional to $p$'s and first spatial derivative of $q$'s. The principal parts of the ${\dot p}$ equations are the terms proportional to first spatial derivative of $p$'s and second spatial derivative of $q$'s. Therefore we have the principal parts of Eqs.~(\ref{covariant hamilton}) are
-\begin{subequations}\label{principal hamilton}
+\section{Well-posedness}\label{wellposedness}
+\subsection{Definition}\label{wellposednessdefinition}
+The notion of ``well-posed'' is originated from Jacques Hadamard, a French mathematician. He argues that mathematical models of physical phenomena should have the properties that a unique solution exists and the solution's behavior changes continuously with the initial conditions. Wald gave his own yet similar definition of well-posedness in his book General Relativity\cite{Wald:GRbook}. Wald's definition states that in order for a numerical formulation to be well-posed, firstly small changes in initial data should produce only correspondingly small changes in the solution over any fixed compact region of spacetime; and secondly changes of initial data in a region should only be responsible for changes in the solution inside the causal future of this region. The first requirement is necessary since it is impossible to measure initial condition in infinite accuracy. The second property guarantees no signal could propagate faster than the speed of light and keep the numerical formulation under framework of relativity theory. 
+
+An algebraic criterion is introduced and widely adopted to analyze well-posedness of a quasilinear partial differential equation system, namely hyperbolicity. An initial value problem with weakly hyperbolicity is regarded as ill-posed. Strongly hyperbolicity is necessary and sufficient for an initial value problem without boundaries in space to be well-posed. For initial value systems with space boundaries being well-posed, an even stronger notion of hyperbolicity, symmetric hyperbolicity, is required. Gundlach, Mart\' \i n-Garc\' \i a\cite{Gundlach:2005ta} and Brown\cite{Brown:2008cca} have presented practical definition of various types of hyperbolicity and prescriptions to prove them. Their theories to determine the hyperbolicity of a Hamiltonian system is briefly reviewed as following. 
+
+Well-posedness guarantees small perturbation in initial data only leads to proportional deviations of the solution. Therefore in analyzing well-posedness we are primary concerned with evolutions of high wave number modes in initial value perturbations. For large wave numbers, behavior of the Hamiltonian system depends on the coefficients of the highest weight terms in the Hamiltonian, namely the principal terms. The principal symbol $A$ is a square matrix obtained by identifying the principal terms in Hamilton's equations. According to Brown's prescription\cite{Brown:2008cca}, for a Hamiltonian system with generalized coordinates $q_{\mu}$ and momenta $p_{\mu}$ \footnote{Here the subscript $\mu$ is merely a counting index rather than tensor notation.}, the principal parts of $\partial_{t}q_{\mu}$ equations are the terms proportional to $p_{\mu}$ and $\partial_{a}q_{\mu}$; principal parts of $\partial_{t}p_{\mu}$ equations are the terms proportional to $\partial_{a}p_{\mu}$ and $\partial_{a}\partial_{b}q_{\mu}$. To construct the principal symbol $A$, one only needs to carry out the following substitution
+\begin{subequations}\label{substitution}
+\begin{align}
+p & \rightarrow {\bar p}\\
+\partial_{a}q &\rightarrow n_{a}{\bar q}\\
+\partial_{a}p & \rightarrow n_{a}{\bar p}\\
+\partial_{a}\partial_{b}p & \rightarrow n_{a}n_{b}{\bar p} \ ,
+\end{align}
+\end{subequations}
+where ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$ are Fourier mode amplitudes of corresponding perturbations for $q_{\mu}$ and $p_{\mu}$. The principal symbol $A$ is formed from the coefficients of ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$. 
+
+Solving eigen problem of the principal symbol $A$ reveals hyperbolicity of the PDE system in consideration. If $A$ has real eigenvalues but its eigenvectors are not complete, the system is regarded as weakly hyperbolic. By contrast, a system whose principal symbol $A$ has real eigenvalues and a complete set of eigenvectors is said to be strongly hyperbolic. 
+
+To further prove symmetric hyperbolicity, an energy term $\epsilon$ in quadratic form of the dynamic variables $p_{\mu}$, $q_{\mu}$ needs to be determined. Gundlach and Mart\' \i n-Garc\' \i a\cite{Gundlach:2005ta} pointed out that if $\epsilon$ is positive definite\footnote{$\epsilon = 0$ if and only if $q_{\mu} = 0$ and $p_{\mu} = 0$.} and the principal part of its time derivative can be written as the gradient of a vector $\phi^{a}$, i.e., $\partial_{t}\epsilon \cong \partial_{a}\phi^{a}$, the Hamiltonian system is considered to be symmetric hyperbolic. 
+
+\subsection{Analysis}\label{wellposednessanalysis}
+Following the recipe given above, we first extract the principal part of Eqs.~(\ref{covarianthamilton}) as
+\begin{subequations}\label{principalhamilton}
 \begin{align}
 \partial_{\perp}g_{ab} &\cong 2g_{c(a}\partial_{b)}\beta^{c} + \frac{2\alpha}{\sqrt{g}}P_{ab} - \frac{\alpha P}{\sqrt{g}}g_{ab} - \frac{\alpha^{2}\pi}{2\sqrt{g}}g_{ab}\\
 \begin{split}
@@ -239,24 +260,12 @@ In this section, we will analyze the hyperbolicity of the Eqs.~(\ref{covariant h
 \partial_{\perp}H_{\perp} & \cong 0\\
 \partial_{\perp}\Omega & \cong 0\\
 \partial_{\perp}H^{a} & \cong 0\\
-\partial_{\perp}\Omega_{a} & \cong 0.
+\partial_{\perp}\Omega_{a} & \cong 0 \ .
 \end{align}
 \end{subequations}
 The $\cong$ symbol denotes equality up to non principal terms. These equations are expressed in terms of the operator $\partial_{\perp} \equiv \partial_{t} - \beta^{a}\partial_{a}$ so that the characteristic speeds are defined with respect to observers who are at rest in the spacelike slices. 
 
-Then we start to construct the eigenvalue problem $\mu v = A v$, where $\mu$ is the eigenvalue and $v$ is the eigenvector. $A$ is the principal symbol and it is found from the coefficients on the right-hand sides of Eqs.~(\ref{principal hamilton}). We also divide these coefficients by a factor of $\alpha$ so that the characteristic speeds will be expressed in terms of proper time rather that coordinate time. While constructing the eigensystem, we make the following replacement of the principal terms
-\begin{subequations}
-\begin{align}
-p & \rightarrow {\bar p}\\
-\partial_{a}q &\rightarrow n_{a}{\bar q}\\
-\partial_{a}p & \rightarrow n_{a}{\bar p}\\
-\partial_{a}\partial_{b}p & \rightarrow n_{a}n_{b}{\bar p}
-\end{align}
-\end{subequations}
-where $n_{a}$ is the normalized normal to each spacelike foliation and $n_{a}g^{ab}n_{b} = 1$.
-
-{\color{red}Do we need to explain this much about how to construct the eigenvalue problem system or we just need to refer to the paper?}
-The resulting eigenvalue problem is
+The next step is to construct the principal symbol $A$ by making the replacement described in Eqs.~(\ref{substitution}) and identifying coefficients on the right-hand sides of Eqs.~(\ref{principalhamilton}). We also divide these coefficients by a factor of $\alpha$ so that the characteristic speeds can be expressed in terms of proper time rather that coordinate time. The resulting eigenvalue problem is
 \begin{subequations}\label{eigensystem}
 \begin{align}
 \mu {\bar g}_{ab} & = \frac{2}{\alpha}n_{(a}{\bar \beta}_{b)} + \frac{2}{\sqrt{g}}{\bar P}_{ab} - \frac{g_{ab}}{\sqrt{g}}\left({\bar P}_{nn} + {\bar P}_{AB}\delta^{AB}\right) - \frac{\alpha g_{ab}}{2\sqrt{g}}{\bar \pi}\\
@@ -270,12 +279,16 @@ The resulting eigenvalue problem is
 \mu {\bar H}_{\perp} & = 0\\
 \mu {\bar \Omega} & = 0\\
 \mu {\bar H}_{a} & = 0\\
-\mu {\bar \Omega}_{a} & = 0
+\mu {\bar \Omega}_{a} & = 0 \ .
 \end{align}
 \end{subequations}
-For the system above, the eigenvector $v = [{\bar g}_{ab}, {\bar P}_{ab}, {\bar \alpha}, {\bar \pi}, {\bar \beta}_{a}, {\bar \rho}_{a}, {\bar H}_{\perp}, {\bar \Omega}, {\bar H}_{a}, {\bar \Omega}_{a}]^{T}$. In these equations, a subscript $n$ denotes contraction with $n^{a}$. We have also introduced an orthonormal diad $e^{a}_{A}$ with $A = 1, 2$ in the subspace orthogonal to $n_{a}$, which means $n_{a}e^{a}_{A} = 0$ and $e^{a}_{A}g^{ab}e^{b}_{B} = \delta^{AB}$. A subscript A denotes contraction with $e^{a}_{A}$.
+Eqs.~(\ref{eigensystem}) can be interpreted as an eigensystem $\mu v = A v$ with eigenvalue $\mu$, where the eigenvector $v = [{\bar g}_{ab}, {\bar P}_{ab}, {\bar \alpha}, {\bar \pi}, {\bar \beta}_{a}, {\bar \rho}_{a}, {\bar H}_{\perp}, {\bar \Omega}, {\bar H}_{a}, {\bar \Omega}_{a}]^{T}$ and $A$ is the principal symbol we need. 
 
-We can further split the eigensystem (\ref{eigensystem}) into scalar, vector and trace-free tensor blocks by contracting the equations with $n^{a}$ and $e^{a}_{A}$. The scalar block is
+In Eqs.~(\ref{eigensystem}), a subscript $n$ denotes contraction with $n^{a}$. We introduce an orthonormal diad $e^{a}_{A}$ with $A = 1, 2$ in the subspace orthogonal to $n_{a}$, which means $n_{a}e^{a}_{A} = 0$ and $e^{a}_{A}g^{ab}e^{b}_{B} = \delta^{AB}$. A subscript A denotes contraction with $e^{a}_{A}$.
+
+We can further split the eigensystem (\ref{eigensystem}) into scalar, vector and trace-free tensor blocks by contracting the equations with $n^{a}$ and/or $e^{a}_{A}$. Since these sectors can be interpreted as diagonal blocks of the principal symbol $A$, each block can be studied individually to gain some insight of the system's hyperbolicity. 
+
+First of all, the scalar block is
 \begin{subequations}
 \begin{align}
 \mu {\bar g}_{nn} & = \frac{2}{\alpha}{\bar \beta}_{n} + \frac{1}{\sqrt{g}}{\bar P}_{nn} - \frac{1}{\sqrt{g}}{\bar P}_{AB}\delta^{AB} - \frac{\alpha}{2\sqrt{g}}{\bar \pi}\\
@@ -289,7 +302,7 @@ We can further split the eigensystem (\ref{eigensystem}) into scalar, vector and
 \mu {\bar H}_{\perp} & = 0\\
 \mu {\bar \Omega} & = 0\\
 \mu {\bar H}_{n} & = 0\\
-\mu {\bar \Omega}_{n} & = 0.
+\mu {\bar \Omega}_{n} & = 0 \ .
 \end{align}
 \end{subequations}
 The vector sector is
@@ -300,17 +313,17 @@ The vector sector is
 \mu {\bar \beta}_{A} & = \alpha {\bar g}_{nA} - \frac{\alpha^{2}}{\sqrt{g}}{\bar \rho}_{A}\\
 \mu {\bar \rho}_{A} & = \frac{2}{\alpha}{\bar P}_{nA} - \frac{\left(H \cdot n \right)}{\alpha}{\bar \Omega}_{A}\\
 \mu {\bar H}_{A} & = 0\\
-\mu {\bar \Omega}_{A} & = 0.
+\mu {\bar \Omega}_{A} & = 0 \ .
 \end{align}
 \end{subequations}
 At last, the trace-free tensor sector is
 \begin{subequations}
 \begin{align}
 \mu {\bar g}^{tf}_{AB} & = \frac{2}{\sqrt{g}}{\bar P}^{tf}_{AB}\\
-\mu {\bar P}^{tf}_{AB} & = \frac{\sqrt{g}}{2}{\bar g}^{tf}_{AB}.
+\mu {\bar P}^{tf}_{AB} & = \frac{\sqrt{g}}{2}{\bar g}^{tf}_{AB} \ .
 \end{align}
 \end{subequations}
-The eigenvalues for the scalar sector are $\pm 1$ and 0, each with multiplicity four. The eigenvalues for the vector sector are $\pm 1$ with multiplicity two and 0 with multiplicity two as well. The eigenvalues for the trace-free tensor sector are $\pm 1$. The eigenvectors for all the three sectors are complete, which yields to the conclusion that the system is strongly hyperbolic. 
+Solving the three sub-eigenproblems reveals that the eigenvalues for the scalar sector are $\pm 1$ and 0, each with multiplicity four. The eigenvalues for the vector sector are $\pm 1$ with multiplicity two and 0 with multiplicity two as well; the eigenvalues for the trace-free tensor sector are $\pm 1$; the eigenvectors for all the three sectors are complete, which draws the conclusion that the system is strongly hyperbolic. 
 
 To further prove this system is symmetric hyperbolic, we apply Gundlach and Matrtin-Garcia\cite{Gundlach:2005ta}'s definition of symmetric hyperbolicity that applies to quasilinear systems of partial differential equations with first-order time and second-order space derivatives and follow the analysis described in Ref.~\cite{Brown:2011qg}. To begin with, we introduce the spatial derivates of the 3 + 1 coordinate variables $g_{ab}, \alpha, \beta^{a}, H_{\perp}$ and $H^{a}$ as a new set of variables
 \begin{subequations}
@@ -319,10 +332,10 @@ g_{cab} & \equiv \partial_{c}g_{ab}\\
 \alpha_{a} & \equiv \partial_{a}\alpha\\
 \beta_{ab} & \equiv g_{ac}\partial_{b}\beta^{c}\\
 H_{\perp a} & \equiv \partial_{a}H_{\perp}\\
-H_{ab} & \equiv g_{ac}\partial_{b}H^{c}.
+H_{ab} & \equiv g_{ac}\partial_{b}H^{c} \ .
 \end{align}
 \end{subequations}
-Then we compute the equations of motion for this new set of variables by differentiating Eqs.~(\ref{covariant hamilton}). Combine the resulting equations of motion with the equations of motion for the momenta, we obtain a new set of equations of montion as following(up to the principal terms)
+Then we compute the equations of motion for this new set of variables by differentiating Eqs.~(\ref{covarianthamilton}). Combine the resulting equations of motion with the equations of motion for the momenta, we obtain a new set of equations of motion as following(up to the principal terms)
 \begin{subequations}\label{symmetric hamilton}
 \begin{align}
 \partial_{\perp}g_{cab} & \cong 2\partial_{c}\beta_{(ab)} + \frac{2\alpha}{\sqrt{g}}\partial_{c}P_{ab} - \frac{\alpha}{\sqrt{g}}g_{ab}g^{de}\partial_{c}P_{de} - \frac{\alpha^{2}}{2\sqrt{g}}g_{ab}\partial_{c}\pi\\
@@ -342,7 +355,7 @@ Then we compute the equations of motion for this new set of variables by differe
 \end{align}
 \end{subequations}
 Then we define the quadratic form
-\small
+\tiny
 \begin{align}
 \begin{split}
 \epsilon = & M^{abef}\left[g^{cd}\left(\frac{g_{cab}}{2} - \frac{\alpha_{c}}{\alpha}g_{ab}\right)\left(\frac{g_{def}}{2} - \frac{\alpha_{d}}{\alpha}g_{ef}\right) + \left(\frac{P_{ab}}{\sqrt{g}} + \frac{\beta_{(ab)}}{\alpha} - \frac{\alpha \pi g_{ab}}{2\sqrt{g}}\right)\left(\frac{P_{ef}}{\sqrt{g}} + \frac{\beta_{(ef)}}{\alpha} - \frac{\alpha \pi g_{ef}}{2\sqrt{g}}\right) + H_{ab}H_{ef}\right]\\
@@ -351,8 +364,8 @@ Then we define the quadratic form
 \end{split}
 \end{align}
 \normalsize
-where the tensors $M^{abef}$, $M^{ab}$ and $M$ being positive definite. Using Eqs.~(\ref{symmetric hamilton}) shows that the time derivative of $\epsilon$ has a principal part that can be written as the gradient of a vector $\phi^{a}$; that is, ${\dot \epsilon} \cong \partial_{a}\phi^{a}$. This shows that $\epsilon$ is a quadratic, positive-definite energy density with flux $\phi^{a}$. According to Gundlach and Martin-Garcia\cite{Gundlach:2005ta} that the system (\ref{non covariant hamilton})  and (\ref{covariant hamilton}) are symmetric hyperbolic. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Summary}\label{summary}
-The Hamiltonian formulation of Generalized Harmonic general relativity is presented explicitly in this paper. The Hamilton's equations are derived and its symmetric hyperbolicity is verified. We also present the general covariant form of the Hamiltonian and the Hamilton's equations. Furthermore, the Hamiltonian is extended in the purpose of giving some guidance in constructing the gauge condition for gauge source vectors $H_{\perp}$ and $H^{a}$. The symmetric hyperbolicity of this extended formulation is further verified. 
+where the tensors $M^{abef}$, $M^{ab}$ and $M$ are positive definite. Using Eqs.~(\ref{symmetric hamilton}) shows that the time derivative of $\epsilon$ has a principal part that can be written as the gradient of a vector $\phi^{a}$; that is, ${\dot \epsilon} \cong \partial_{a}\phi^{a}$. This leads to the conclusion that $\epsilon$ is a quadratic, positive-definite energy density with flux $\phi^{a}$ and hence the PDE system (\ref{covarianthamilton}) is symmetric hyperbolic. 
+
+Since the generalized harmonic formulation is well known to be symmetric hyperbolic, we hereby conclude that the Hamiltonian approach to GH formulation developed in this paper conserves this merit and is practical to numerical applications. 
+
+
