@@ -1,79 +1,608 @@
-\chapter{Numerical Relativity}\label{nr}
-As mentioned before, the rise of numerical relativity answered for the desire of a wide class of general solution to Einstein's equations for various physical phenomena, such as perturbed black holes, coalescence of black holes and neutron stars, which general relativity must explain. As Wald pointed out,``If a corresponding large class of solutions of Einstein's equation failed to exist, we would be forced to reject general relativity as a correct theory of nature''\cite{Wald}. Inevitably, in order to employ computers to tackle dynamical evolution problems, we have to separate time and space dimensions Einstein united in his theory, i.e. convert Einstein's equations into an initial value problem. The 3 + 1 decomposition scheme to split time and space was initially proposed by Arnowitt, Deser and Misner\cite{ADM:Witten} and a detailed discussion of it is presented in Sec.~\ref{3+1}. Another important aspect of numerical formulation, stability and accuracy, is addressed in Sec.~\ref{wellposedness} in the context of well-posedness. Main stream numerical formulations of general relativity are presented in Sec.~\ref{numericalformulation} and their limitations are discussed. 
-%\section{Initial Value Problem}\label{initial}
-\section{3 + 1 Decomposition}\label{3+1}
-For initial value problems of ordinary particle mechanics, the evolution of a system is dependent on the initial conditions and equations of motion for the system. It is easy to feed computers with initial value data and integrate the partial differential equations of motion along time axis numerically to obtain dynamic evolution of the system. During the past several decades, various types of numerical algorithms are developed to solve initial value problems and they are proved to be successful. However, since Einstein united time and space dimensions in his theory of gravity, initial value data is not native in Einstein's equations. Therefore, an important prerequisite for developing any numerical formulation is to decompose the four dimensional spacetime into a one-parameter family of nonintersecting spacelike hypersurfaces, namely foliations, ``one for each instant of time''. The operation of constructing a rigid structure of such series of foliations is referred as ``3 + 1 decomposition''. 
-
-In order to  construct a rigid structure of the decomposition, several physical quantities need to be specified. First and foremost is the three dimensional spatial metric $g_{ab}$ on each foliation, which defines the proper distance between two points reside on the foliation. Second of all, the proper distance between each foliation is specified by the lapse function $\alpha$. Although it is not necessary to keep coordinate system on each foliation related to each other, due to practical consideration, a shift vector $\beta^{a}$ is defined to weld coordinate systems between each two consecutive hypersurfaces. The spacetime metric $^{(4)}g_{\mu\nu}$ is split in terms of spatial metric $g_{ab}$, lapse function $\alpha$, shift vector $\beta^{a}$ as following
+\chapter{General Covariance}\label{generalcovariance}
+\section{Overview}
+The Einstein field equations take the same 
+form in any spacetime coordinate system. We refer to this property as {\em general covariance}.\footnote{The definition of 
+general covariance is not entirely uniform throughout the literature \cite{Weinberg:GRbook,Misner:1974qy,Wald:GRbook,Lambourne:GRbook}. Most authors 
+define general covariance, as we do, to include the concept of form invariance under changes of coordinates.} 
+With the Einstein equations written as $G_{\mu\nu} = 8\pi T_{\mu\nu}$, and given the transformation properties 
+of the individual terms $G_{\mu\nu}$ and $T_{\mu\nu}$, general covariance is easy to show. To do so, we first observe that 
+the Einstein tensor $G_{\mu\nu}$ and the stress--energy tensor $T_{\mu\nu}$ transform as type $0\choose 2$ tensors under changes 
+of spacetime coordinates. Thus, under the  
+transformation $x^{\mu'} = x^{\mu'}(x^\mu)$, we have
 \begin{equation}
-	{}^{\left(4\right)}g_{\mu\nu} = \left(-\alpha^2 + \beta^{a}\beta_{a}\right)\delta_\mu^0\delta_\nu^0 
-	+ 2\beta_{a}\delta_{(\mu}^a\delta_{\nu)}^0 + g_{ab} \delta^a_\mu \delta^b_\nu \ ,
+	G_{\mu\nu} = \frac{\partial x^{\mu'}}{\partial x^{\mu}} \frac{\partial x^{\nu'}}{\partial x^{\nu}} G_{\mu'\nu'} 
 \end{equation}
-where $\delta^{\mu}_{\nu}$ is regular delta tensor. 
+with a corresponding expression for $T_{\mu\nu}$. By applying the coordinate transformation 
+to the Einstein equations we find that the factors 
+$(\partial x^{\mu'}/\partial x^{\mu}) (\partial x^{\nu'}/\partial x^{\nu})$
+cancel, leaving $G_{\mu'\nu'} = 8\pi T_{\mu'\nu'}$. 
 
-The covariant normal to each foliation is denoted as
-\begin{equation}\label{normal covector}
-n_{\mu} = -\alpha\delta^{0}_{\mu}
-\end{equation}
- And its dual is
-\begin{equation}\label{normal vector}
-n^{\mu} = \left(\delta^{\mu}_{0} - \beta^{c}\delta^{\mu}_{c}\right)/\alpha
-\end{equation}
-so that we have $n_{\mu}n^{\mu} = -1$. 
+Equations like $G_{\mu\nu} = 8\pi T_{\mu\nu}$, whose general covariance is trivial to confirm by virtue 
+of the transformation properties of the individual terms, will be referred to as {\em manifestly covariant}. 
 
-There is also the projection operator
-\begin{equation}\label{projection 1}
-X^{\mu}_{a} = \delta^{\mu}_{a}
-\end{equation}
-that projects a spacetime covector into a spacelike covector. Its covariant form is
-\begin{equation}\label{projection 2}
-X^{a}_{\mu} = \delta^{a}_{\mu} + \beta^{a}\delta^{0}_{\mu}
-\end{equation}
-so that we have $X^{\mu}_{a}X^{b}_{\mu} = \delta^{b}_{a}$ and $X^{\mu}_{a}n_{\mu} = 0$. 
+In the field of numerical relativity, Einstein's theory is interpreted as an initial value problem. As Einstein field equations being written in $3 + 1$ format, rather than {\em spacetime} coordinate transformations, we focus our attention on achieving general covariance under another class of coordinate transformations. This new family of coordinate transformations breaks time and space symmetry in the same sense of $3 + 1$ decomposition and general covariance of various numerical formulations under this series of coordinate transformations is discussed in the next section. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{General Covariance under Foliation Preserving Transformations}\label{generalcovariancefoliationpreservingtransformation}
+The ADM equations used by Smarr and York \cite{Smarr:York,Smarr:1977uf} are
+\begin{subequations}\label{ADMeqns}
+\begin{eqnarray}
+	\partial_t g_{ab} - {\cal L}_\beta g_{ab} & = & -2\alpha K_{ab} \ , \\
+	\partial_t K_{ab} - {\cal L}_\beta K_{ab} & = & \alpha K K_{ab} - 2\alpha K_{ac}K^c_b 
+		+ \alpha R_{ab} - D_a D_b\alpha \ .
+\end{eqnarray}
+\end{subequations}
+Matter fields have been set to zero for simplicity.  These equations are expressed in terms of the 
+spatial metric $g_{ab}$, extrinsic curvature $K_{ab}$, lapse function $\alpha$ and shift vector $\beta^a$. 
+Since the ADM equations hold in any spacetime coordinate system, they are generally covariant. They are not, however, 
+manifestly covariant. This is because the ADM equations are written in terms  
+fields $g_{ab}$,  $K_{ab}$, $\alpha$ and $\beta^a$, that do not transform as tensors under 
+spacetime coordinate transformations. 
 
-With these definitions, the spacetime metric can be written in terms of the spatial metric, the normal and the projection operator as
-\begin{equation}\label{spacetime metric 3 + 1}
-^{\left(4\right)}g_{\mu\nu} = g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}
-\end{equation}
-Spacetime indices $\mu$, $\nu$, ... are always raised and lowered with the spacetime metric $^{\left(4\right)}g_{\mu\nu}$ and its inverse $^{\left(4\right)}g^{\mu\nu}$, while spatial indices $a$, $b$, ... are always raised and lowered with the spatial metric $g_{ab}$ and its inverse $g^{ab}$. 
+Although the ADM equations are not manifestly covariant under changes of {\em spacetime} coordinates, they are 
+manifestly covariant under changes of {\em spatial} coordinates. This is because each term in Eqs.~(\ref{ADMeqns})
+transforms as a type $0\choose 2$ tensor under spatial coordinate transformations. In fact, we will show that the ADM  
+equations are manifestly covariant under a wider class of transformations that preserve the foliation of spacetime 
+into spacelike hypersurfaces. These transformations are defined by
+\begin{subequations}\label{foliationpreservingtransf}
+\begin{eqnarray}
+t' & = & t'(t) \ ,\\
+x^{a'} & = & x^{a'}(t,x^{a}) \ .
+\end{eqnarray}
+\end{subequations}
+They consist of time reparametrizations (\ref{foliationpreservingtransf}a) and {\em time--dependent} spatial coordinate transformations 
+(\ref{foliationpreservingtransf}b). We will often refer to Eqs.~(\ref{foliationpreservingtransf}) as ``foliation preserving" transformations. 
 
-The notion of extrinsic curvature in 3 + 1 decomposition context represents a well-defined time derivative of the spatial metric on the spacelike hypersurface. It is defined as
-\begin{equation}\label{extrinsic}
-K_{ab} = - \frac{1}{2\alpha}(\partial_{t} - \mathcal{L}_{\beta})g_{ab} \ ,
-\end{equation}
-and it is easy to show that $K_{ab}$ is a symmetric tensor, i.e., $K_{ab} = K_{ba}$. Physically, the extrinsic curvature, as an abstract coordinate-independent geometric object, defines curvature of a three dimensional foliation relative to the four dimensional spacetime manifold it is embedded in. Imagine parallel transporting the normal covector $n_{a}$ of foliation $\Sigma$ from point $p$ to point $q$. This parallel transported covector will fail to coincide with the normal covector $n_{a}$ on $q$. This failure reflects the bending of foliation $\Sigma$ in spacetime and extrinsic curvature directly measures the deviation between the parallel transported covector and $n_{a}$ at $q$. 
+The ADM equations provide the foundation for interpreting Einstein's theory as an initial value problem, 
+and for solving the Einstein equations numerically. 
+The lack of manifest spacetime covariance is not a problem in this context. In fact, in writing the Einstein equations in 3+1 
+form, our point of view shifts away from 
+spacetime fields to time--dependent fields on space. The manifest covariance of the ADM equations under foliation preserving 
+transformations both supports and motivates this point of view. 
 
-With the help of 3 + 1 decomposition, one is able to specify a set of dynamic variables ( $g_{ab}$, $K_{ab}$, etc. ) on one foliation and utilize it as the initial condition. Different variations of Einstein field equations were developed by various classes of numerical relativity formulations to integrate the initial condition along time and obtain a uniquely determined dynamic evolution of the spacetime geometry in interest. Several important types of  numerical formulations are discussed in Sec.~\ref{numericalformulation}.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let us consider more carefully the concept of general covariance in the $3+1$ context. 
+In general relativity, coordinate systems themselves have little meaning apart from certain 
+global or topological restrictions that they might impose. For example, if a coordinate $x^3$ ranges from $0$ to $2\pi$ 
+and we impose periodic boundary conditions on the fields, then the $x^3$ coordinate lines are topologically circles. 
+Although we often use names like ``Cartesian coordinates" or ``spherical coordinates", these names do not tell us anything 
+about the geometry. They 
+are merely a shorthand way of communicating information about the ranges of the coordinates and the topology of the underlying manifold. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Numerical Formulation of General Relativity}\label{numericalformulation}
-This section briefly reviews the development of numerical formulations for solving Einstein's equations. Two widely adopted modern numerical formalisms are discussed in detail. Our motivation for this work is summarized at the end of this section. 
+What does have a definite meaning is the comparison of fields using two different coordinate systems. For example, let 
+$t,x^{a}$ and $t',x^{a'}$ denote  
+two different coordinate systems, related as in Eq.~(\ref{foliationpreservingtransf}). We can carry out two separate numerical simulations, 
+evolving the fields in the unprimed and primed coordinate systems, and compare the results to one another.  
 
-\subsection{ADM and BSSN formalisms}
-The foundation of solving Einstein field equations numerically is laid down by Arnowitt, Deser and Minser via their famous ADM formalism\cite{ADM:Witten} in 1959. In the original ADM paper, a Hamiltonian approach is taken toward rewriting Einstein's equations. The Hilbert-Palatini gravitational action is written in terms the spatial metric $g_{ab}$, its conjugate momentum $\pi^{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$. The dynamic variables are chosen to be $g_{ab}$ and $\pi^{ab}$. Variation of the action with respect to spatial metric and its momentum yields evolution equations of $g_{ab}$ and $\pi^{ab}$, while varying the action with respect to the lapse function and shift vector provides constraint equations for choosing initial conditions of the dynamic variables. These equations from varying the action determine how a system evolves along with time. 
+How is this comparison done? 
+First we prepare initial data with coordinates labeled $x^a$, letting $t_i$ denote the initial time. This is the unprimed initial data. We evolve this data to a final 
+time $t_f$ using some set of partial differential equations. Next, we use 
+the spatial transformation $x^{a'} = x^{a'}(t_i,x^a)$ and the transformation rules for the fields to transform the unprimed initial data to the primed 
+system. This transformed data is the initial data for the evolution in primed coordinates, starting at the initial time $t'_i = t'(t_i)$. 
+The differential equations used to evolve the primed data are obtained from the ``unprimed differential equations" using the transformations (\ref{foliationpreservingtransf}) and 
+the transformation rules for the fields. If the equations are generally covariant under these transformations, then the primed equations have the same form 
+as the unprimed equations. Using the primed evolution equations, we then evolve the primed data to the final 
+time $t'_f = t'(t_f)$. The final data in primed coordinates will be related to the final data in unprimed coordinates by the coordinate transformation 
+$x^{a'} = x^{a'}(t_f,x^a)$. 
 
-In the numerical system now commonly referred as ADM formalism, the extrinsic curvature $K_{ab}$ replaces $\pi^{ab}$ as one of the dynamic variables and they are closely related as $\pi^{ab} = -\sqrt{g}(K^{ab} - g^{ab}K)$. The evolution equations of $g_{ab}$ and $K_{ab}$ drive the system dynamically. Two sets of constraint equations known as Hamiltonian constraint and momentum constraint govern the choice of initial conditions for the spatial metric and extrinsic curvature. These equations together are equivalent to the Einstein field equations. 
+The ADM equations are covariant, so they take the same form in the primed coordinates as in the unprimed coordinates. However, it is now 
+well recognized that the ADM equations 
+are not suited for numerical applications. Current numerical codes use one of several alterative systems, such as the 
+Baumgarte--Shapiro--Shibata--Nakamura (BSSN) equations \cite{Shibata:1995we,Baumgarte:1998te} or the generalized harmonic (GH) 
+equations \cite{Friedrich:1985,Garfinkle:2001ni}.
+The BSSN and GH equations are generally covariant under foliation preserving transformations but, as they are usually written, 
+they not manifestly covariant. The lack of manifest covariance stems from the use of non--tensorial fields as independent variables. 
 
-Unfortunately, ADM formalism was later proved to be impractical to construct stable and long-term numerical simulations due to its incompetence to satisfy any know hyperbolic conditions. During the years between 1987 to 1999 Baumgarte, Shapiro, Shibata and Nakamura\cite{Shibata:1995we, Baumgarte:1998te} developed a modification of ADM formalism by introducing auxiliary variables. This modified system is known as BSSN formalism and is one of the most commonly used numerical formulation for relativity applications. 
+Each of the systems, BSSN and GH, must be supplemented with a set of equations that fix the gauge freedom. 
+The gauge conditions in current use are not generally covariant. In particular, the ``moving puncture gauge", commonly used with BSSN, is not covariant. 
+The moving puncture gauge consists of 1+log slicing \cite{Bona:1994dr} and the
+gamma--driver shift condition \cite{Alcubierre:2002kk}.  Likewise, the gauge conditions used 
+with the GH equations \cite{Pretorius:2006tp,Szilagyi:2009qz, Lindblom:2009tu} are not covariant as well.  
 
-Instead of evolving the spatial metric and extrinsic curvature, the BSSN formalism chooses a conformal factor $\phi$, the trace of extrinsic curvature $K \equiv K_{ab}g^{ab}$ and a set of conformal variables, namely the conformal spatial metric ${\tilde g}_{ab} \equiv e^{-4\phi}g_{ab}$, conformal trace-free extrinsic curvature ${\tilde A}_{ab} \equiv e^{-4\phi}(K_{ab} - \frac{1}{3}g_{ab}K)$ and conformal connection functions ${\tilde \Gamma}^{a} \equiv {\tilde g}^{bc}{\tilde \Gamma}^{a}_{~bc}$, as the fundamental variables to evolve along with time. This choice of dynamic variables is considered more appealing than ADM formalism, from both a theoretical and computational point of view. Supplemented with the moving puncture gauge conditions which govern evolution of the lapse function and shift vector, BSSN formalism is widely used in the numerical relativity society to analyze a diversity of gravitational problems. 
+For a non--covariant gauge condition, the form of the condition depends on the choice of coordinate system. 
+In practice, one writes the gauge  in a form intended for use with ``Cartesian coordinates". This prescription is not  well--defined 
+since Cartesian coordinates are not unique. Nevertheless, one chooses some set of initial data expressed in coordinates that are ``topologically Cartesian"  
+and then writes the gauge equations in these coordinates.  One can then use the transformation rules for the fields to write the gauge conditions in terms of 
+other coordinate systems. As we will show, these calculations can be tedious. 
 
-\subsection{Generalized Harmonic Formulation}
-Another well recognized numerical formulation of Einstein's equations is the generalized harmonic(GH) equations\cite{Friedrich:1985, Garfinkle:2001ni, Pretorius:2006tp}. As many numerical algorithms are recognized as stable and efficient when dealing with wave equations, GH formulation interprets Einstein field equations in a form which is similar to curved spacetime wave equations by utilizing harmonic coordinates. The generalized harmonic coordinates used by GH formulation satisfy the wave equations as following
+The alternative discussed in this paper is to rewrite the gauge conditions in a form that is generally covariant under foliation preserving 
+transformations (\ref{foliationpreservingtransf}). The gauge equations then take the same form in any coordinate system, and there is no need derive a new form 
+for each coordinate system that one might consider. To carry out the analysis, we first derive the transformation rules for the ADM variables $\alpha$, $\beta^a$, 
+$g_{ab}$, $K_{ab}$, and their time derivatives, under the foliation preserving transformations (\ref{foliationpreservingtransf}). Next, we introduce a 
+set of background fields that allows us to group terms into combinations that transform as tensors. The gauge conditions for the BSSN and GH systems are 
+then written in manifestly covariant form using these tensor combinations. 
+
+In Ref.~\cite{Brown:2009dd} the BSSN equations and the moving puncture gauge were written in a form that is manifestly covariant under spatial coordinate transformations. 
+Likewise, in Ref.~\cite{Brown:2011qg}, the GH equations were written in 3+1 form with manifest covariance 
+under spatial coordinate transformations.  Here we write both systems, and their associated gauge conditions, in a form 
+that is manifestly covariant under the more general foliation preserving transformations. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Transformation Rules}\label{transform}
+With foliation preserving coordinate transformation being defined in the previous section, we start to investigate transformation rules of various important $3 + 1$ variables under this coordinate transformation, such as $g_{ab}$, $\alpha$ and $\beta^{a}$. More specifically, we try to determine which physical variables transform tensorially under foliation preserving coordinate transformation. For an arbitrary tensor density $T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{m}}$, if it transforms as
 \begin{equation}
-	\nabla^{\alpha}\nabla_{\alpha}x^{\mu} = H^{\mu} \ ,
+	T^{a_{1}'...a_{n}'}_{~~~~~~~~b_{1}'...b_{m}'} = T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{n}}\frac{\partial x^{a_{1}'}}{\partial x^{a_{1}}}...\frac{\partial x^{a_{n}'}}{\partial x^{a_{n}}}\frac{\partial x^{b_{1}}}{\partial x^{b_{1'}}}...\frac{\partial x^{b_{m}}}{\partial x^{b_{m'}}}\left|\frac{\partial t}{\partial t'}\right|^{i}\left|\frac{\partial x}{\partial x'}\right|^{j} \ ,
 \end{equation}
-where $H^{\mu}$ is an undetermined source vector for the wave equation. 
+it is regarded as ``transform tensorially" in this context. $\left|\frac{\partial t}{\partial t'}\right|$ and $\left|\frac{\partial x}{\partial x'}\right|$ are the Jacobian matrix determinant of time reparemeterization and spatial diffeomorphism, respectively. We refer this class of variables as a weight $i$ density under time reparameterization and a weight $j$ type $n \choose m$ tensor density under time dependent spatial diffeomorphism. Further more, if one quantity turns out to be a non-tensor, it will be ``tensorized" by combining with background metric terms, other physical variables and their derivatives. 
 
-The GH version of Einstein field equations can be expressed in an abstract form as
-\begin{equation}\label{ghequations}
-	g^{\alpha\beta}\partial_{\alpha}\partial_{\beta}g_{\mu\nu} + \partial_{(\mu}H_{\nu)} = Q_{\mu\nu}(H, g, \partial g) \ , 
+As discussed in Ref.~\cite{Brown:2010rya, Brown:2011qg}, background metric is introduced to achieve general covariance of non-tensorial physical variables. An analogy of this tensorize action is the use of background connection in spacetime coordinate transformations. It is well recognized that the four dimensional physical connection $\Gamma^{\alpha}_{~\mu\nu}$ is a non-tensorial variable. However, the difference between the physical connection and background connection, $\Delta \Gamma^{\alpha}_{~\mu\nu} \equiv \Gamma^{\alpha}_{~\mu\nu} - {\bar \Gamma}^{\alpha}_{~\mu\nu}$, is a type $1 \choose 2$ tensor. The fact that background metric terms are often neglected from practical numerical equations can be justified by choosing the background metric to be flat. 
+
+We start by listing several important identities revealed by the transformation rule of delta symbol. The inverse transformation of Eqs.~(\ref{foliationpreservingtransf}) is  
+\begin{subequations}
+\begin{eqnarray}
+t & = & t(t')\\
+x^{a} & = & x^{a}(t',x^{a'}) \ .
+\end{eqnarray}
+\end{subequations}
+Use the chain rule of partial differentiation to inspect the delta function for this transformation, we have
+\begin{equation}\label{chainrule}
+\delta^{a}_{b} = \frac{\partial x^{a}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial x^{\mu'}}\frac{\partial x^{\mu'}}{\partial x^{b}} = \frac{\partial x^{a}}{\partial t'}\frac{\partial t'}{\partial x^{b}} + \frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{a'}}{\partial x^{b}} \ .
 \end{equation}
-where $Q_{\mu\nu}$ are functions depend on the source vector, spacetime metric and its first-order derivatives. Gauge conditions for the source terms $H^{\mu}$ are evolved along with Eqs.~\ref{ghequations} to solve Einstein's equations numerically. Improved gauge drivers are developed to evolve with Eqs.~\ref{ghequations} and they are proved to be stable, efficient and effective while maintaining symmetric hyperbolicity of the system\cite{Lindblom:2007xw, Lindblom:2009tu}. 
+Since $t'\left(t\right)$ is independent of $x^{a}$, the term with $\partial t'/\partial x^{b}$ vanishes in Eq.~\ref{chainrule}. Hence we obtain an important identity of foliation preserving coordinate transformation
+\begin{equation}\label{delta}
+\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{a'}}{\partial x^{b}} = \delta^{a}_{b}
+\end{equation}
+and equivalently
+\begin{equation}\label{deltainverse}
+\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial x^{b'}} = \delta^{a'}_{b'} \ .
+\end{equation}
+Although they are not directly referred to, Eqs.~(\ref{delta}, \ref{deltainverse}) are extensively used in the following derivations. We list them here for readers who want to reiterate our work. 
 
-The development of GH formulation doesn't stop from there. In recent years, 3 + 1 form of GH equations\cite{Brown:2011qg} is developed
-to reveal the relationships between GH formulation and ADM/BSSN formulations. Furthermore, the action principle of GH formulation\cite{Brown:2010rya} is presented to provide an alternative perspective to understand this formalism. The foundation laid down by these two pieces of work and the significant role Hamiltonian perspective played in history of physics as stated in Sec.~\ref{ham} directly motivate us to develop the Hamiltonian system of GH equations. 
+To achieve transformation rules of the spatial metric $g_{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$, we need to start with the spacetime metric $^{(4)}g_{\mu\nu}$. The spacetime metric transforms tensorially under this transformation, i.e., $^{(4)}g_{\mu' \nu'} =~^{(4)}g_{\mu\nu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}$. Plug it into Eq.~(\ref{spacetime metric 3 + 1}), we have
+\begin{equation}\label{spacetime metric}
+^{\left(4\right)}g_{\mu'\nu'} = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}
+\end{equation}
+By substituting indices $\mu'$ and $\nu'$ for $a'$ and $b'$ respectively in Eq.~(\ref{spacetime metric}), we can obtain the transformation rule of spatial metric as following
+\begin{align}\label{spatialmetric}
+g_{a'b'} & = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial x^{b'}}\notag\\
+&= g_{ab}\left(\frac{\partial x^{a}}{\partial x^{a'}} + \beta^{a}\frac{\partial t}{\partial x^{a'}}\right)\left(\frac{\partial x^{b}}{\partial x^{b'}} + \beta^{b}\frac{\partial t}{\partial x^{b'}}\right) - \alpha^2\frac{\partial t}{\partial x^{a'}}\frac{\partial t}{\partial x^{b'}}\notag\\
+& = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} \ .
+\end{align}
+According to the result above, the spatial metric $g_{ab}$ transforms as a type $0 \choose 2$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization.
 
-During our research on Hamiltonian approach to GH formalism, we discovered that despite of their supremacy in practical applications, both BSSN and GH formulation have some drawbacks regarding general covariance. This issue is addressed in Chap.~\ref{generalcovariance} before we move on to the Hamiltonian formulation. 
+And its inverse transforms as
+\begin{equation}\label{spatialmetricinverse}
+g^{a'b'} = g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}} \ , 
+\end{equation}
+which is a type $2 \choose 0$ tensor under the spatial diffeomorphism and a scalar under the time reparameterization. 
+
+Let $g$ denote the determinant of the spatial metric $g_{ab}$. It transforms as
+\begin{equation}\label{spatialmetricdet}
+g' = \left|g_{a'b'}\right| = \left|g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right|  = g\left|\frac{\partial x}{\partial x'}\right|^{2} \ ,
+\end{equation}
+which is a weight 2 density under the spatial diffeomorphism and a scalar under the time reparameterization. 
+
+With the transformation rules of spatial metric and its related quantities listed in Eqs.~(\ref{spatialmetric} - \ref{spatialmetricdet}), we move on to investigate transformation rules of the lapse function and shift vector. 
+
+With the help of Eqs.~(\ref{normal covector} - \ref{spacetime metric 3 + 1}), we are able to express $\alpha$ and $\beta^{a}$ in terms of the spacetime metric $^{\left(4\right)}g_{\mu\nu}$ by choosing its indices to certain values
+\begin{align}
+^{\left(4\right)}g_{a0} & = \beta_{a}\label{shift}\\
+^{\left(4\right)}g_{00} & = -\alpha^2 + g_{ab}\beta^{a}\beta^{b}\label{lapse} \ .
+\end{align}
+According to Eq.~(\ref{lapse}) and Eq.~(\ref{spacetime metric}), we have
+\begin{align}\label{shiftcovectortransform}
+\beta_{a'} & = \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial t'}\notag\\
+& = g_{ab}X^{a}_{\mu}X^{b}_{\nu}\delta_{c}^{\mu}\frac{\partial x^{c}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial t'}\notag\\
+& = g_{ab}\left(\delta^{b}_{\nu} + \beta^{b}\delta^{0}_{\nu}\right)\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{\nu}}{\partial t'}\notag\\
+& = \beta_{a}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial t}{\partial t'} + g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial t'} \ .
+\end{align}
+Use the results from Eq.~(\ref{spatialmetric}) and Eq.~(\ref{shiftcovectortransform}), we can easily derive the transformation rule of the shift vector
+\begin{align}\label{shiftvectortransform}
+\beta^{a'} & = \beta_{b'}g^{a'b'}\notag\\
+& = \left(\beta_{b}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} + g_{cd}\frac{\partial x^{d}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial t'}\right)g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}}\notag\\
+& = \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'} \ .
+\end{align}
+From the calculation above we can tell that either the shift vector $\beta^{a}$ or its covector $\beta_{a}$ transforms tensorially under this change of coordinates. This issue can be addressed by subtracting the background shift vector from physical shift vector. The background shift vector transforms similarly as physical shift vector, i.e., 
+\begin{equation}\label{backgroundshiftvector}
+{\bar \beta}^{a'} = {\bar \beta}^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'} \ .
+\end{equation}
+Eq.~(\ref{backgroundshiftvector}) leads to the fact that the difference between physical and background shift vector, $\Delta \beta^{a} \equiv \beta^{a} - {\bar \beta}^{a}$, transforms as a type $1 \choose 0$ tensor under spatial diffeomorphism and a weight 1 density under time reparameterization, 
+\begin{equation}\label{covariantshiftvector}
+	\Delta \beta^{a'} = \Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} \ ,
+\end{equation}
+and it serves as the covariant version of $\beta^{a}$. 
+
+Use the result from Eq.~(\ref{shiftvectortransform}) along with Eq.~(\ref{lapse}) and Eq.~(\ref{spacetime metric}), we can derive the transformation rule of the lapse function. 
+\begin{align*}
+\alpha'^{2} & = - \left(g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}\right)\frac{\partial x^{\mu}}{\partial t'}\frac{\partial x^{\nu}}{\partial t'} + g_{a'b'}\beta^{a'}\beta^{b'}\notag\\ 
+& = \alpha^2\left(\frac{\partial t}{\partial t'}\right)^{2} \ .
+\end{align*}
+Therefore we have
+\begin{equation}\label{lapsetransform}
+\alpha' = \alpha\frac{\partial t}{\partial t'}
+\end{equation}
+and hence the lapse function transforms as a scalar under spatial diffeomorphism and a weight 1 density under time reparameterization. 
+
+Now transformation rules of significant $3 + 1$ terms with zero-order time or spatial derivatives are written down above. However, since partial differential equations play an important role in all numerical recipes for solving Einstein's equations, we still seek to understand how partial derivative terms transform under the foliation preserving coordinate transformation. 
+
+In order to study how partial derivatives transform, let's review the chain rule for this transformation briefly. The chain rule in spacetime domain states as below
+\begin{equation}
+\partial_{\mu'} = \frac{\partial x^{\mu}}{\partial x^{\mu'}}\partial_{\mu} \ .
+\end{equation}
+Therefore, if $\mu' = t'$, we have that
+\begin{equation}\label{timederivative}
+\partial_{t'} = \frac{\partial x^{c}}{\partial t'}\partial_{c} + \frac{\partial t}{\partial t'}\partial_{t}
+\end{equation}
+and if $\mu' = a'$, with $\partial t/\partial x^{a'} = 0$, we have
+\begin{equation}\label{spatial derivative}
+\partial_{a'} = \frac{\partial x^{c}}{\partial x^{a'}}\partial_{c} \ .
+\end{equation}
+From Eq.~(\ref{timederivative}) and Eq.~(\ref{spatial derivative}) we can tell that the spatial derivative transforms as a type $0 \choose 1$ tensor without introducing any extra terms. On the other hand, in time derivative transformations, there is one extra term $\left(\partial t/\partial t'\right)\partial_{t}$ involved, since $\partial t/\partial t' \ne 0$. 
+
+According to this analysis, the spatial Christoffel symbols transform as its spacetime counterpart under spacetime coordinate transformation, due to the fact that it is only constructed by the spatial metric and its spatial derivatives, 
+\begin{equation}
+\Gamma^{a'}_{~b'c'} = \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial^{2} x^{d}}{\partial x^{b'}\partial x^{c'}} \ .
+\end{equation}
+The covariant spatial Christoffel symbols can be easily obtained by subtracting the background connection from itself, $\Delta \Gamma^{a}_{~bc} \equiv \Gamma^{a}_{~bc} - {\bar \Gamma}^{a}_{~bc}$. It is easy to confirm that it transforms as a type $1 \choose 2$ tensor under spatial diffeomorphism and a scalar under time reparameterization, i.e.,  
+\begin{equation}
+	\Delta \Gamma^{a'}_{~b'c'} = \Delta \Gamma^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} \ .	
+\end{equation}
+
+Transformation of shift covector's spatial covariant derivative can be derived as following, 
+\begin{align}\label{shiftvectorcovariantspatialderivativetransform}
+D_{a'}\beta_{b'} &= D_{a'}\left(\beta^{b}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'}\right) + D_{a'}\left(g_{bc}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial t'}\right)\notag\\
+& = \frac{\partial t}{\partial t'}D_{a'}\left(\beta_{b}\frac{\partial x^{b}}{\partial x^{b'}}\right) + D_{a'}\left(g_{b'c'}\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\notag\\
+& = D_{a}\beta^{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} + g_{b'c'}D_{a'}\left(\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right) \ .
+\end{align} 
+It is obvious that general covariance of this transformation can be achieved by replacing $\beta_{a}$ by its covariant counterpart $\Delta \beta_{a}$. It is a type $0 \choose 2$ tensor under spatial diffeomorphism and a weight 1 scalar density under time reparameterization, 
+\begin{equation}\label{covariantshiftvectorcovariantspatialderivativetransform}
+	D_{a'}\Delta\beta_{b'} = D_{a}\Delta\beta_{b}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} \ .
+\end{equation}	
+The spatial covariant derivative of $\alpha$, which takes form of a regular spatial partial derivative, transforms as 
+\begin{align}\label{lapsefunctionspatialderivative}
+\partial_{a'}\alpha' & = \partial_{a'}\left(\alpha \frac{\partial t}{\partial t'}\right) \notag \\
+& = \frac{\partial t}{\partial t'}\partial_{a'}\alpha \notag \\
+& = \partial_{c}\alpha\frac{\partial x^{c}}{\partial x^{a'}}\frac{\partial t}{\partial t'} \ .
+\end{align}
+It is a type $0 \choose 1$ tensor under spatial diffeomorphism and a weight 1 density under time reparameterization.
+
+Due to the extra terms introduced by Eq.~(\ref{timederivative}), transformation of time derivatives posts a more interesting case. Let's first examine the time derivative of spatial metric. It transforms as following, 
+\begin{align}
+\partial_{t'}g_{a'b'} & = \left(\partial_{t'}g_{ab}\right)\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + g_{ab}\partial_{t'}\left(\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right)\notag\\
+& =  \left(\partial_{t}g_{ab}\right)\frac{\partial t}{\partial t'}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + \left(\partial_{c}g_{ab}\right)\frac{\partial x^{c}}{\partial t'}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} + g_{ab}\partial_{t'}\left(\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\right) \ .
+\end{align}
+Hereby we introduce the notion of {\em covariant time derivative} under foliation preserving coordinate transformation, $D_{t}$, such that $D_{t}T^{A}$ transforms tensorially, where $T^{A}$ is an arbitrary tensor density whose indices are contracted as $A$. For instance, we require covariant time derivative of the spatial metric transforms as
+\begin{equation}
+	D_{t'}g_{a'b'} = D_{t}g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial t}{\partial t'} \ .
+\end{equation}
+By revisiting the definition of extrinsic curvature in Eq.~(\ref{extrinsic}), a keen observer would notice that $D_{t}g_{ab}$ should be closely related to the extrinsic curvature $K_{ab}$. Since $K_{ab}$ is a pure spatial tensor, it transforms tensorially as
+\begin{equation}
+	K_{a'b'} = K_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}} \ .
+\end{equation}
+Hence we can define the covariant time derivative of spatial metric $D_{t}g_{ab}$ as
+\begin{equation}\label{spatialmetriccovarianttimederivative}
+	D_{t}g_{ab} \equiv (\partial_{t} - \mathcal{L}_{\beta})g_{ab} = -2\alpha K_{ab} \ .
+\end{equation}
+Furthermore, it is straightforward to verify that for any field transforms as a scalar under time reparameterization, the covariant time derivative operator can be defined as
+\begin{equation}
+	D_{t} \equiv \partial_{t} - \mathcal{L}_{\beta} \ .
+\end{equation}
+Covariant time derivative for lapse function and shift vector is more complicated, since they don't reside entirely in the manifold of a single $3 + 1$ foliation. Therefore we are required to study the covariant time derivative of these two variables more carefully. 
+
+We start by writing down transformation rule of regular time derivative of the lapse function, as following
+\begin{align}\label{lapsetimederivative}
+\partial_{t'}\alpha' & = \partial_{t'}\left(\alpha\frac{\partial t}{\partial t'}\right)\notag\\
+& = \frac{\partial t}{\partial t'}\partial_{t'}\alpha + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}}\notag\\
+& = \partial_{t}\alpha\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\alpha\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \alpha\frac{\partial^{2}t}{\partial {t'}^{2}} \ .
+\end{align}
+The leading term in Eq.~(\ref{lapsetimederivative}) reveals that covariant time derivative of $\alpha$ should transform as a scalar under spatial diffeomorphism and a weight 2 density under time reparamterization. According to transformation rules listed in Eqs.~(\ref{shiftvectortransform}, \ref{lapsetransform}, \ref{lapsefunctionspatialderivative}), we are able to construct the covariant time derivative of lapse function as
+\begin{equation}\label{lapsecovarianttimederivative}
+	D_{t}\alpha \equiv \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha - \frac{\alpha}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{c}\partial_{c}{\bar \alpha}\right) 
+\end{equation}
+and one can check that its transformation rule turns out to be exactly as expected
+\begin{equation}
+	D_{t'}\alpha' = D_{t}\alpha \left(\frac{\partial t}{\partial t'}\right)^{2} \ .
+\end{equation}
+
+Since $\Delta \beta^{a}$ is the tensorial version of $\beta^{a}$, the covariant time derivative of shift vector is easier to be constructed from $\partial_{t}\Delta \beta^{a}$. The transformation rule of $\partial_{t}\Delta \beta^{a}$ can be written as following
+\begin{align}\label{covariantshifttimederivative} 
+\partial_{t'}\Delta \beta^{a'} & = \left(\partial_{t'}\Delta \beta^{a}\right)\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \Delta \beta^{a}\partial_{t'}\left(\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}\right)\notag\\
+& = \partial_{t}\Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} + \partial_{c}\Delta \beta^{a}\frac{\partial x^{c}}{\partial t'}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'}\notag\\
+& + \Delta \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial^{2}t}{\partial t'^{2}} + \Delta \beta^{a}\frac{\partial^{2} x^{a'}}{\partial x^{c}\partial x^{a}}\frac{\partial x^{c}}{\partial t'}\frac{\partial t}{\partial t'} + \Delta \beta^{a}\frac{\partial^{2}x^{a'}}{\partial t\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} \ .
+\end{align}
+Based on transformation rules of shift vector and its covariant spatial derivative, as listed in Eqs.~(\ref{shiftvectortransform}, \ref{shiftvectorcovariantspatialderivativetransform}, \ref{covariantshiftvectorcovariantspatialderivativetransform}), we propose an ansatz of $D_{t}\beta^{a}$ as following
+\begin{equation}
+	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + c_{1}\beta^{b}{\bar D}_{b}\beta^{a} + c_{2}\beta^{b}{\bar D}_{b}{\bar \beta}^{a} + c_{3}{\bar \beta}^{b}{\bar D}_{b}\beta^{a} + c_{4}{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a}	\ ,
+\end{equation}
+where $c_{1}$, $c_{2}$, $c_{3}$, $c_{4}$ are constants to be determined; meanwhile we require it to transform as
+\begin{equation}
+	D_{t'}\beta^{a'} = D_{t}\beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\left(\frac{\partial t}{\partial t'}\right)^{2} \ ,
+\end{equation}
+a type $1 \choose 0$ tensor under spatial diffeomorphism and a weight 2 density under time reparameterization. 
+
+The process of determining values of these four constants is tedious and will bore the readers if they are not bored already, so we skip directly to the conclusion here. In order to achieve the covariant time derivative of shift vector, the constraints $c_{1}$, $c_{2}$, $c_{3}$ and $c_{4}$ have to satisfy are
+\begin{align*}
+c_{1} + c_{3} & = -1\\
+c_{2} + c_{4} & = 1\\
+c_{1} + c_{2} & = 1\\
+c_{3} + c_{4} & = -1 \ .
+\end{align*}
+Define $\sigma \equiv c_{1}$, then we can write all the other constants in terms of $\sigma$ and represent $D_{t}\beta^{a}$ as
+\begin{equation}
+	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \sigma\beta^{b}{\bar D}_{b}\beta^{a} + \left(1-\sigma\right)\beta^{b}{\bar D}_{b}{\bar \beta}^{a} - \left(1 + \sigma\right){\bar \beta}^{b}{\bar D}_{b}\beta^{a} + \sigma{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a} \ .
+\end{equation}
+In both definitions of $D_{t}g_{ab}$ and $D_{t}\alpha$, the covariant time derivative operators share the same pattern as $\partial_{t} - \beta^{b}\partial_{b}$. In order to achieve the same pattern in $D_{t}\beta^{a}$, an appropriate choice for $\sigma$ is $\sigma = -1$. Therefore, in the rest of this paper, the covariant time derivative of shift vector is defined as
+\begin{equation}\label{shiftcovarianttimederivative}
+	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \beta^{b}{\bar D}_{b}\Delta \beta^{a} + \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a} \ .	
+\end{equation}
+
+Transformation rule for the gauge source term of generalized harmonic formalism needs to be examined as well, but first we need to define its 3 + 1 decomposition. The decomposition splits the spacetime gauge source term into a spatial component
+\begin{equation}\label{spatialgaugesource}
+	H_{a} \equiv H_{\mu}X^{\mu}_{a} \ ,
+\end{equation}
+and a timelike component
+\begin{equation}
+	H_{\perp} \equiv H_{\mu}n^{\mu} \ .
+\end{equation}
+According to the definition in Eq.~(\ref{spatialgaugesource}), $H_{a}$ transforms as a $0 \choose 1$ tensor under spatial diffeomorphism and a scalar under time reparameterization, 
+\begin{align}
+H_{a'} & = H_{\mu'}X^{\mu'}_{a'}\\
+& = H_{\mu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\delta^{\mu'}_{a'}\\
+& = H_{a}\frac{\partial x^{a}}{\partial x^{a'}} \ .
+\end{align}
+In addition, we can easily conclude that $H^{a}$ transforms 
+\begin{equation}
+H^{a'} = H^{a}\frac{\partial x^{a'}}{\partial x^{a}} \ ,
+\end{equation}
+a $1 \choose 0$ tensor under spatial diffeomorphism and a scalar under time reparameterization. 
+
+For $H_{\perp}$, we have
+\begin{align}
+H_{\perp'} & = H_{\mu'}n^{\mu'} \notag\\
+& = H_{\mu'}\left(\delta^{\mu'}_{0'} - \beta^{c'}\delta_{c'}^{\mu'}\right)/\alpha'\notag\\
+& = H_{\mu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\left(\delta^{\mu'}_{0'} - \beta^{c}\frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial t}{\partial t'}\delta^{\mu'}_{c'} - \frac{\partial x^{c'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\delta^{\mu'}_{c'}\right)\frac{\partial t'}{\partial t} / \alpha \notag\\
+& = H_{\mu}\left(\delta^{\mu}_{0} - \beta^{c}\delta_{c}^{\mu}\right)/\alpha \notag\\
+& = H_{\mu}n^{\mu} \notag\\
+& = H_{\perp} \ .
+\end{align}
+Hence we conclude that $H_{\perp}$ acts as a scalar under both spatial diffeomorphism and time reparemeterization. 
+
+As mentioned before, any field transforms as a scalar under time reparameterization, its covariant time derivative operator can be expressed as $D_{t} \equiv \partial_{t} - \mathcal{L}_{\beta}$. Therefore, for covariant time derivative of $H_{\perp}$ and $H_{a}$, we have that
+\begin{subequations}
+	\begin{align}
+		D_{t}H_{\perp} &\equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right)H_{\perp}\\
+		D_{t}H_{a} &\equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right)H_{a} \ ,
+	\end{align}
+\end{subequations}
+and this conclude our study of transformation rules under foliation preserving coordinate transformation. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Covariant Gauge Condition}\label{gauge}
+With transformation rules of all important field variables under foliation preserving coordinate transformation listed in Sec.~\ref{transform}, we are now able to revisit the non-covariant gauge condition problems mentioned in Sec.~\ref{generalcovariancefoliationpreservingtransformation}. In this section, we try to recover general covariance of various gauge conditions used in different numerical relativity formulations. The strategy for making gauge conditions covariant includes two steps. First, replace non-tensorial terms with their tensorial counterparts. For instance, replace $\partial_{t}\alpha$ with $D_{t}\alpha$ or substitute $\partial_{t}\beta^{a}$ with $D_{t}\beta^{a}$. The second step is balancing tensor density weights on both sides of the equation. Multiplying by ${\bar \alpha}$ increases weight density by 1 under time reparameterization while multiplying by $\sqrt{{\bar g}}$ increase weight density by 1 under spatial diffeomorphism. This strategy is illustrated in Sec.~\ref{movingpuncture} and Sec.~\ref{dampedwave} while Sec.~\ref{movingpuncture} discusses the gauge condition used in BSSN formalism and Sec.~\ref{dampedwave} presents a general covariant representation of the damped-wave gauge condition\cite{Pretorius:2006tp, Szilagyi:2009qz, Lindblom:2009tu} employed by the generalized harmonic community. 
+\subsection{Moving puncture gauge condition}\label{movingpuncture}
+Moving puncture gauge condition consists of two parts, the 1 + log slicing condition governs evolution of the lapse function and Gamma-driver shift condition for the shift vector. 
+
+1 + log slicing condition reads as
+\begin{equation}\label{1 + log slicing}
+\partial_{t}\alpha - \beta^{c}\partial_{c}\alpha = -2\alpha K \ .
+\end{equation}
+As we can notice that the left hand side shares several terms with $D_{t}\alpha$, it is intuitive and appropriate to replace the left hand side with $D_{t}\alpha$. However, this substitution make the left hand side transforms as a weight 2 density under time reparameterization while the right hand side transforms as a weight 1 density under such transformation. Therefore, we multiply by the background lapse function ${\bar \alpha}$, which transforms as a weight 1 density, on the right hand side to balance the equation's density weights. This leads to the general covariant 1 + log slicing condition, as following
+\begin{equation}\label{covariant 1 + log slicing}
+D_{t}\alpha = -2\alpha{\bar \alpha}K \ .
+\end{equation}
+
+The Gamma-driver shift condition is usually written as a system of two equations
+\begin{subequations}\label{gammadrivershiftset}
+\begin{align}
+\partial_{t}\beta^{a} & = \beta^{b}\partial_{b}\beta^{a} + \frac{3}{4}B^{a}\label{gammadrivershiftfirst}\\
+\partial_{t}B^{a} & = \beta^{b}\partial_{b}B^{a} + \partial_{t}{\tilde \Gamma}^{a} - \beta^{b}\partial_{b}{\tilde \Gamma}^{a} - \eta B^{a}\label{gammadrivershiftsecond}
+\end{align}
+\end{subequations}
+where ${\tilde \Gamma}^{a}$ is the trace of the conformal Christoffel symbols defined as
+\begin{equation}
+{\tilde \Gamma}^{a} \equiv \sqrt{g}^{2/3}\left(\Gamma^{a}_{~bc}g^{bc} + \frac{1}{3}g^{ab}\Gamma^{c}_{~bc}\right)
+\end{equation}
+and $\eta$ is a constant parameter. 
+
+We can follow the same strategy to adjust the Gamma-driver shift condition, replacing $\partial_{t}\beta^{a}$ with $D_{t}\beta^{a}$, changing every non-tensorial term to its corresponding tensorial term and balance the density weight on both sides. 
+
+Manipulating Eq.~(\ref{gammadrivershiftfirst}) in the following way could recover its general covariance while restricting $B^{a}$ to transform as a type $1 \choose 0$ tensor under spatial diffeomorphism and a scalar under time reparameterization, 
+\begin{equation}\label{gammadrivershiftfirstcovariant}
+	D_{t}\beta^{a} = \frac{3}{4}{\bar \alpha}^{2}B^{a} \ .
+\end{equation}
+
+For Eq.~(\ref{gammadrivershiftsecond}), we first need to construct a covariant form of ${\tilde \Gamma}^{a}$, which is defined as
+\begin{equation}
+\Delta {\tilde \Gamma}^{a} \equiv \sqrt{\frac{g}{{\bar g}}}^{2/3}\left(\Delta \Gamma^{a}_{~bc}g^{bc} + \frac{1}{3}g^{ab}\Delta \Gamma^{c}_{~bc}\right) \ ,
+\end{equation}
+so that it transforms exactly the same as $B^{a}$. Then the covariant form of Eq.~(\ref{gammadrivershiftsecond}) can be written as
+\begin{equation}\label{gammadrivershiftsecondcovariant}
+	D_{t}B^{a} - D_{t}\Delta {\tilde \Gamma}^{a}  = - \eta {\bar \alpha}B^{a} \ , 
+\end{equation}
+where
+\begin{subequations}
+\begin{align}
+D_{t}B^{a} & \equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right)B^{a}\\
+D_{t}{\tilde \Gamma}^{a} & \equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right){\tilde \Gamma}^{a} \ .
+\end{align}
+\end{subequations}
+In summary, Eqs.~(\ref{gammadrivershiftfirstcovariant}, \ref{gammadrivershiftsecondcovariant}) represent general covariant Gamma-driver shift condition as a system of two equations. 
+
+In some other literatures\cite{vanMeter:2006vi}, Eqs.~(\ref{gammadrivershiftset}) can be integrated with initial conditions $\beta^{a}\left(t=0\right) = B^{a}\left(t=0\right) = {\tilde \Gamma}^{a}\left(t = 0\right) = 0$ and yields a single-equation form of Gamma-driver shift condition
+\begin{equation}\label{gammadrivershift}
+\partial_{t}\beta^{a} = \beta^{b}\partial_{b}\beta^{a} + \frac{3}{4}{\tilde \Gamma}^{a} - \eta \beta^{a} \ .
+\end{equation} 
+Similarly, we can write the covariant form of Eq.~(\ref{gammadrivershift}) as
+\begin{equation}\label{covariant Gamma-driver shift}
+D_{t}\beta^{a} = \frac{3}{4}{\bar \alpha}^{2}\Delta {\tilde \Gamma}^{a} - \eta {\bar \alpha}\Delta\beta^{a} \ .
+\end{equation}
+Due to its simplicity, we focus our discussion of covariant Gamma-driver shift gauge on Eq.~(\ref{covariant Gamma-driver shift}) instead of Eqs.~(\ref{gammadrivershiftfirstcovariant}, \ref{gammadrivershiftsecondcovariant}) in the rest of this paper.
+
+%Writing down these covariant gauge conditions creates more possibilities for numerical simulation. When the need of evolving the system in a different coordinates system rises, one can just use the following equations as gauge conditions
+%\begin{align*}
+%D_{t'}\alpha' & = -2\alpha'{\bar \alpha}'K'\\
+%D_{t'}\beta^{a'} & = \frac{3}{4}{\bar \alpha}'\Delta {\tilde \Gamma}^{a'} - \eta {\bar \alpha}'\Delta\beta^{a'}
+%\end{align*}
+%while the transformed background metric terms are associated with the original terms as below
+%\begin{align}
+%{\bar g}_{a'b'} & = {\bar g}_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\\
+%{\bar g'} & = {\bar g}\left|\frac{\partial x}{\partial x'}\right|^{2}\\
+%{\bar \alpha}' & = {\bar \alpha}\frac{\partial t}{\partial t'}\\
+%{\bar \beta}^{a'} & = {\bar \beta}^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{c}}%\frac{\partial x^{c}}{\partial t'}\label{background shift}\\
+%{\bar \Gamma}^{a'}_{~b'c'} & = {\bar \Gamma}^{a}_{~bc}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b}}{\partial x^{b'}}\frac{\partial x^{c}}{\partial x^{c'}} + \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial x^{b'}\partial x^{c'}}
+%\end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Damped-wave gauge condition}\label{dampedwave}
+By contrast, due to the fact that the gauge source terms $H^{a}$ and $H_{\perp}$ already transform tensorially, the damped-wave gauge condition is much easier to adjust. What we need to do is merely balancing density weights on both sides of the equations. 
+
+Let us begin by considering the damped-wave gauge condition for $H^{a}$
+\begin{equation}\label{damped gauge vector}
+H^{a} = -\mu_{S}\frac{\beta^{a}}{\alpha}
+\end{equation}
+where $\mu_{S}$ is a numerical damping factor. 
+
+The only non-tensorial term in Eq.~(\ref{damped gauge vector}) is the shift vector $\beta^{a}$ and we can easily fix it by replacing $\beta^{a}$ with $\Delta \beta^{a}$. Since both $\Delta \beta^{a}$ and $\alpha$ act as a weight 1 tensor density under time reparameterization, $\Delta \beta^{a}/\alpha$ simply transforms as a scalar under time reparameterization, which is the same case for $H^{a}$. Therefore, we can write the covariant form of Eq.~(\ref{damped gauge vector}) as
+\begin{equation}\label{covariant damped gauge vector}
+H^{a} = -\mu_{S}\frac{\Delta \beta^{a}}{\alpha} \ .
+\end{equation}
+For the other gauge source term $H_{\perp}$, the traditional gauge condition is
+\begin{equation}\label{damped gauge scalar}
+H_{\perp} = -\mu_{L}\log\left(\frac{\sqrt{g}}{\alpha}\right) \ .
+\end{equation}
+Since $H_{\perp}$ transforms as a scalar under both time-dependent spatial diffeomorphism and time reparameterization, it is obvious that we can modify Eq.~(\ref{damped gauge scalar}) as following
+\begin{equation}\label{covariant damped gauge scalar}
+H_{\perp} = -\mu_{L}\log\left(\frac{\sqrt{g/{\bar g}}}{\alpha/{\bar \alpha}}\right)
+\end{equation} 
+so that it is manifestly covariant. 
+
+As mentioned in the beginning of this chapter, general covariant gauge conditions enjoy superior preference in numerical simulation when change of coordinates is necessary, since the equations are invariant under coordinate transformation. Another way to obtain correct gauge condition under coordinate transformation is to transform the non-covariant gauge condition explicitly. We briefly discuss equivalence of these two methods in Sec.~\ref{transformgauge} and in Sec.~\ref{example} we demonstrate these two methods in action under a specific kind of coordinate transformation. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Another Way to Achieve Transformed Gauge Condition}\label{transformgauge}
+Assume we have some variables $v$. Under a change of coordinates, they transform to $v' = T\left(v\right)$ where $T$ is some function. We also introduce a 
+set of background fields that transform in the same way; thus $\bar v' = T\left(\bar v\right)$. The gauge conditions in covariant form are $F^A\left(v,\bar v\right) = 0$, 
+where the index $A$ ranges over the number of conditions. Since the gauge conditions are covariant, we have 
+\begin{equation}
+	F^A\left(v',\bar v'\right) = \xi^A_B F^B\left(v,\bar v\right)
+\end{equation}
+where $\xi^A_B$ is an invertible matrix. That is, 
+\begin{equation}\label{covariant equivalence}
+	 F^A\left(v,\bar v\right) = 0 \Longleftrightarrow F^A\left(v',\bar v'\right) = 0
+\end{equation}
+In the original coordinate system, the gauge condition is $F^A\left(v,\bar v\right) = 0$ and in the transformed coordinate system, the 
+gauge condition is $F^A\left(v',\bar v'\right) = 0$.
+
+Now we want to consider a particular background. Assume in the original coordinate system, the background fields take the values $\bar v = \bar c$. The gauge 
+conditions in original coordinates are $F^A\left(v,\bar c\right) = 0$. (This is the non--covariant version of the gauge conditions.) As we discussed above, we have two ways to achieve the transformed gauge conditions. One way: 
+\begin{itemize}
+	\item Start with the gauge written in covariant form, $F^A\left(v,\bar v\right) = 0$.
+	\item Change to transformed coordinates, where the gauge is $F^A\left(v',\bar v'\right) = 0$.
+	\item Set the background to $\bar v = \bar c$. But $\bar v' = T\left(\bar v\right)$ so that $\bar v' = T\left(\bar c\right)$. 
+	\item Then the gauge conditions in transformed coordinates read $F^A\left(v',T\left(\bar c\right)\right) = 0$. 
+\end{itemize}
+Another way: 
+\begin{itemize}
+	\item Start with the gauge written in covariant form, $F^A\left(v,\bar v\right) = 0$.
+	\item Set the background to $\bar v = \bar c$, so the gauge takes the non--covariant form $F^A\left(v,\bar c\right) = 0$. 
+	\item Now use the transformation rules to replace the original fields with transformed fields; that is, use $v = T^{-1}\left(v'\right)$. 
+	The gauge becomes $F^A\left(T^{-1}\left(v'\right),\bar c\right) = 0$. 
+\end{itemize}
+These two results are equivalent. That is, 
+\begin{equation}
+	F^A\left(T^{-1}\left(v'\right),\bar c\right) = 0 \Longleftrightarrow F^A\left(v',T\left(\bar c\right)\right) = 0 \ .
+\end{equation}
+This is guaranteed by the Eq.~(\ref{covariant equivalence}) above. In Eq.~(\ref{covariant equivalence}), just let $v = T^{-1}\left(v'\right)$ and $\bar v = \bar c$, which implies $\bar v' = T\left(\bar c\right)$. Later in this paper, we refer the first method as {\em covariant method} and the second method as {\em transformed method}. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Time Dependent Spatial Rotation Coordinate Transformation}\label{example}
+A dual coordinate frame system\cite{Scheel:2006gg} is extensively employed in various binary black hole coalescence simulations\cite{Scheel:2008rj, Szilagyi:2009qz} by the CalTech/Cornell numerical relativity collaboration and it is this dual-frame technique that motivates us to study general covariant gauge conditions in the first place. In the dual-frame system, a comoving frame is rotating with respect to a asymtotically Minkowski inertial frame and the numerical simulation is build upon these two coordinate systems. In this section, a simple time dependent spatial rotation coordinate transformation is defined to demonstrate how to obtain correct gauge conditions under change of coordinates. 
+
+In this coordinate transformation, we keep the $t$ coordinate intact while let the spatial coordinate rotates around the $z$ axis at a constant angular velocity $\omega$. Hence the transformed coordinates can be expressed in terms of the original coordinates as below
+\begin{subequations}
+\begin{align}
+t' & = t\notag\\
+x' & = x \cos\left(\omega t\right) + y\sin\left(\omega t\right)\notag\\
+y' & = -x\sin\left(\omega t\right) + y\cos\left(\omega t\right)\notag\\
+z' & = z
+\end{align}
+\end{subequations}
+and equivalently, 
+\begin{subequations}
+\begin{align}
+t & = t'\notag\\
+x & = x'\cos\left(\omega t'\right) - y'\sin\left(\omega t'\right)\notag\\
+y & = x'\sin\left(\omega t'\right) + y'\cos\left(\omega t'\right)\notag\\
+z & = z' \ .
+\end{align}
+\end{subequations}
+We also assume that the background metric is trivial
+\begin{align}
+{\bar g}_{ab} & = diag\left(1,1,1\right)\notag\\
+{\bar \alpha} & = 1\notag\\
+{\bar \beta}^{a} & = 0 \ . 
+\end{align}
+Under this transformation, let us first review the moving puncture gauge condition. Since $\partial t/\partial t' = 1$, ${\bar \alpha}' = {\bar \alpha} = 1$, the covariant time derivative of $\alpha$ collapses to
+\begin{equation}
+D_{t}\alpha = \partial_{t}\alpha - \beta^{a}\partial_{a}\alpha \ .
+\end{equation}
+Then the covariant 1 + log slicing condition under this transformation becomes
+\begin{equation}\label{transformed1+logslicing}
+\partial_{t'}\alpha' - \beta^{a'}\partial_{a'}\alpha' = -2\alpha'K' \ .
+\end{equation}
+One would argue that this equation is identical to the regular 1 + log slicing equation. This is only true under this specific coordinate transformation, especially when we have $\partial t/\partial t' = 1$. The difference is easier to notice in the Gamma-driver shift condition discussed below. 
+
+According to Eq.~(\ref{backgroundshiftvector}) and the choice that ${\bar \beta}^{a} = 0$, we have that
+\[
+{\bar \beta}^{a'} = \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'} \ .
+\]
+Therefore, for each component, we have
+\begin{align*}
+{\bar \beta}^{1'} & = -\omega y'\\
+{\bar \beta}^{2'} & = \omega x'\\
+{\bar \beta}^{3'} & = 0 \ .
+\end{align*}
+Similarly, for the background Christoffel symbols, we have
+\[
+{\bar \Gamma}^{a'}_{~b'c'} = \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial x^{b'}\partial x^{c'}} \ ;
+\]
+however, since in this coordinate transformation, $x^{a}$ is a first order function of $x^{a'}$, ${\bar \Gamma}^{a'}_{b'c'}$ vanishes. 
+
+Also, it is easy to check that $\left|\partial x/\partial x'\right| = 1$, this result yields that ${\bar g}' = {\bar g} = 1$. According to these results above, the transformed Gamma-driver shift condition becomes
+\begin{equation}
+\partial_{t'}\beta^{a'} - \beta^{b'}\partial_{b'}\beta^{a'} + 2\beta^{b'}\partial_{b'}{\bar \beta}^{a'} - {\bar \beta}^{b'}\partial_{b'}{\bar \beta}^{a'} = \frac{3}{4}{\tilde \Gamma}^{a'} - \eta \Delta \beta^{a'}
+\end{equation}
+and for each component, we have
+\begin{subequations}\label{transformedgammadrivershift}
+\begin{align}
+\partial_{t'}\beta^{1'} - \beta^{b'}\partial_{b'}\beta^{1'} - 2\omega\beta^{2'} + \omega^{2}x' &= \frac{3}{4}{\tilde \Gamma}^{1'} - \eta \left(\beta^{1'} + \omega y'\right)\\
+\partial_{t'}\beta^{2'} - \beta^{b'}\partial_{b'}\beta^{2'} + 2\omega\beta^{1'} + \omega^{2}y' &= \frac{3}{4}{\tilde \Gamma}^{2'} - \eta \left(\beta^{2'} - \omega x'\right)\\
+\partial_{t'}\beta^{3'} - \beta^{b'}\partial_{b'}\beta^{3'} & = \frac{3}{4}{\tilde \Gamma}^{3'} - \eta \beta^{3'} \ .
+\end{align}
+\end{subequations}
+Eqs.~(\ref{transformed1+logslicing}, \ref{transformedgammadrivershift}) are gauge conditions obtained by the covariant method. To verify their correctness, we try to achieve identical gauge conditions by carrying out the transformed method in the rest of this section. 
+
+According to the transformation rules we obtained in Sec.~\ref{transform}, let's write the unprimed variables in terms of the primed variables as following
+\begin{subequations}\label{unprimedtoprimed}
+\begin{align}
+\alpha & = \alpha'\frac{\partial t'}{\partial t} = \alpha'\\
+\beta^{a} & = \left(\beta^{a'} - \frac{\partial x^{a'}}{\partial x^{b}}\frac{\partial x^{b}}{\partial t'}\right)\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial t'}{\partial t} =   \left(\beta^{a'} - \frac{\partial x^{a'}}{\partial x^{b}}\frac{\partial x^{b}}{\partial t'}\right)\frac{\partial x^{a}}{\partial x^{a'}}\\
+g_{ab} & = g_{a'b'}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}}\\
+g & = g'\left(\frac{\partial x'}{\partial x}\right)^{2} = g'\\
+\Gamma^{a}_{~bc} & = \left(\Gamma^{a'}_{~b'c'} - \frac{\partial x^{a'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial x^{b'}\partial x^{c'}}\right)\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b'}}{\partial x^{b}}\frac{\partial x^{c'}}{\partial x^{c}} = \Gamma^{a'}_{~b'c'}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b'}}{\partial x^{b}}\frac{\partial x^{c'}}{\partial x^{c}}\\
+K & = K' \ .
+\end{align}
+\end{subequations}
+Plug Eqs.~(\ref{unprimedtoprimed}) into Eq.~(\ref{1 + log slicing}) and we show that it can be reduced to the same equation as Eq.~(\ref{transformed1+logslicing}), the transformed 1 + log slicing gauge from covariant method. 
+\begin{align}
+\partial_{t}\alpha' - \left(\beta^{c'} - \frac{\partial x^{c'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial t'}\right)\frac{\partial x^{c}}{\partial x^{c'}}\partial_{c}\alpha' & = -2\alpha' K'\notag\\
+\partial_{t'}\alpha' + \frac{\partial x^{c'}}{\partial t}\partial_{c'}\alpha' - \beta^{c'}\partial_{c'}\alpha' + \frac{\partial x^{c'}}{\partial x^{d}}\frac{\partial x^{d}}{\partial t'}\partial_{c'}\alpha' & = -2\alpha' K'\notag\\
+\partial_{t'}\alpha' + \frac{\partial x^{c'}}{\partial t}\partial_{c'}\alpha' - \beta^{c'}\partial_{c'}\alpha' - \frac{\partial x^{c'}}{\partial t}\frac{\partial t}{\partial t'}\partial_{c'}\alpha' & = -2\alpha' K'\notag\\
+\partial_{t'}\alpha'  - \beta^{c'}\partial_{c'}\alpha' & = -2\alpha' K' \ .
+\end{align}
+To obtain Gamma-driver shift gauge under this change of coordinates via transformed method, we use Eqs.~(\ref{unprimedtoprimed}) to rewrite Eq.~(\ref{gammadrivershift}) in terms of the primed variables. Since this is a long equation, let's first examine the left hand side, 
+\begin{align}
+& \partial_{t}\left[\left(\beta^{a'} - \frac{\partial x^{a'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\frac{\partial x^{a}}{\partial x^{a'}}\right] - \left[\left(\beta^{b'} - \frac{\partial x^{b'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\frac{\partial x^{b}}{\partial x^{b'}}\right]\partial_{b}\left[\left(\beta^{a'} - \frac{\partial x^{a'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\frac{\partial x^{a}}{\partial x^{a'}}\right]\notag\\
+= & \partial_{t}\left(\beta^{a'}\frac{\partial x^{a}}{\partial x^{a'}} - \frac{\partial x^{a}}{\partial t'}\right) - \left(\beta^{b'} - \frac{\partial x^{b'}}{\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\partial_{b'}\left(\beta^{a'}\frac{\partial x^{a}}{\partial x^{a'}} - \frac{\partial x^{a}}{\partial t'}\right)\notag\\
+= & \left(\partial_{t'}\beta^{a'}\right)\frac{\partial x^{a}}{\partial x^{a'}} - \left(\beta^{b'}\partial_{b'}\beta^{a'}\right)\frac{\partial x^{a}}{\partial x^{a'}} + 2\beta^{a'}\left(\partial_{t'}\frac{\partial x^{a}}{\partial x^{a'}}\right) - \frac{\partial^{2}x^{a}}{\partial t'^{2}}\notag\\
+= & \left(\partial_{t'}\beta^{a'} - \beta^{b'}\partial_{b'}\beta^{a'} - 2\beta^{b'}\frac{\partial x^{c}}{\partial x^{b'}}\frac{\partial^{2}x^{a'}}{\partial x^{c}\partial t} + \frac{\partial^{2} x^{a'}}{\partial t^{2}} + 2\frac{\partial^{2} x^{a'}}{\partial t\partial x^{c}}\frac{\partial x^{c}}{\partial t'}\right)\frac{\partial x^{a}}{\partial x^{a'}} \ ;
+\end{align}
+and the right hand side is
+\begin{equation}
+\frac{3}{4}{\tilde \Gamma}^{a'}\frac{\partial x^{a}}{\partial x^{a'}} - \eta\left(\beta^{a'} - \frac{\partial x^{a'}}{\partial x^{b}}\frac{\partial x^{b}}{\partial t'}\right)\frac{\partial x^{a}}{\partial x^{a'}} \ .
+\end{equation}
+Eliminate the overall factor $\partial x^{a'}/\partial x^{a}$ on both sides of the equation, we have
+\begin{equation}\label{invertedgammadrivershift} 
+\partial_{t'}\beta^{a'} - \beta^{b'}\partial_{b'}\beta^{a'} - 2\beta^{b'}\frac{\partial x^{c}}{\partial x^{b'}}\frac{\partial^{2}x^{a'}}{\partial x^{c}\partial t} + \frac{\partial^{2} x^{a'}}{\partial t^{2}} +  2\frac{\partial^{2} x^{a'}}{\partial t\partial x^{c}}\frac{\partial x^{c}}{\partial t'} = \frac{3}{4}{\tilde \Gamma}^{a'} - \eta\left(\beta^{a'} - \frac{\partial x^{a'}}{\partial x^{b}}\frac{\partial x^{b}}{\partial t'}\right) \ .
+\end{equation}
+One can easily check that, component-wisely, Eq.~(\ref{invertedgammadrivershift}) is equivalent to Eqs.~(\ref{transformedgammadrivershift}).
+
+Hereby it is proved that covariant method and transformed method lead to identical moving puncture gauge conditions under a change of coordinates and hence we can claim that our derivation of covariant gauge conditions is valid. 
+
+Although the content of this chapter seems irrelevant to the purpose of this paper, it lays down the foundation for developing Hamiltonian formulation of GH equations. Achieve general covariance is one of the most important aspects for deriving the action and Hamiltonian for GH system. It illustrates later in this paper that with the knowledge of covariant time derivative, we are able to extend the Hamiltonian and rewrite non-covariant Hamilton's equations in a general covariant format.  
 

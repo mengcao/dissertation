@@ -1,1 +1,55 @@
-\chapter{Introduction}\label{introduction}
+\chapter{Background Information} \label{background}
+As the chapter title suggests, this chapter provides information that is necessary for a decent understanding of this paper. Sec.~\ref{gr} presents a brief review of Einstein's general relativity theory and its development. Sec.~\ref{ham} constructs a comparison of Lagrangian and Hamiltonian formulation in the context of classical mechanics, which further reveals origin of our interests in approaching general relativity via Hamiltonian methods. In the end of this chapter, we present the notation and convention we are going to use and follow through out this paper. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{General Relativity}\label{gr}
+During the years between 1911 and 1916, Einstein developed an elegant geometric approach to generalize Newtonian mechanics and his own special relativity. The new theory formulated an innovative interpretation toward gravitation and was named general relativity. Other than most of natural forces, whose existence is represented by the field defined on spacetime, Einstein proposed in his generalized theory of relativity that gravitation is inherent in spacetime itself and it is the direct result of the curvature of spacetime\cite{carroll2003spacetime}.
+
+When his first paper on this field of study, {\it The Foundation of the General Theory of Relativity}, was published in 1916, it was regarded as a heterodox theory packed with controversial and bold predictions that challenged people's knowledge. Its seemingly incompetence in applications was another obstacle for its adoption by the majority. In 1919, Sir Arthur Stanley Eddington, an astrophysicist from British Royal Society, observed and measured the bending angle of light by the sun to a very small vicinity of Einstein's estimate, which served as the first experimental evidence supported general relativity. Two of his other predictions, gravitational red shift and the precession of the perihelion of Mercury around the sun, were also confirmed by experiments consecutively. From then on, various consequences of general relativity, from the big bang, expanding universe to black holes, were accepted by the mainstream physics society and hence inspired huge amount of young people's interests in physics. After being studied and elaborated for several decades, now it is the standard description of gravitation in modern physics. 
+
+Lying in the core of general relativity is a set of 10 partial differential equations, namely Einstein field equations or Einstein's equations, which governs properties of our spacetime geometry. Although there are several famous analytical solution of Einstein's equations, such as the Schwarzschild solution, it is unarguably a challenge to solve those equations manually for a wide variety of physical phenomena for which general relativity must account. Due to the prosperity of computer science, a new branch of general relativity, numerical relativity, emerged above the horizon. It employs numerical methods and algorithms, leverages power of high performance computers to solve Einstein's equations and hence to study black holes, gravitational waves, neutron stars and other phenomena governed by general relativity. It is also used as a tune-up tool to maximize performance of experimental instruments for general relativity, especially the ones to detect gravitational waves. Nearly 100 years ago, Sir Eddington used optical telescope and photographic plates to observe and measure light bent by the sun, thanks to the blooming technology, now we have multiple cutting-edge facilities stretching in miles listening to gravitational waves in the space. Those sophisticated gravitational wave telescopes will yield more accurate results but are also more sensitive to noise. Therefore, numerical simulation serves as a guideline to study and analyze readings from those gravitational wave telescopes. A detailed discussion of numerical relativity is presented in Chap.~\ref{nr}. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hamiltonian Formulation}\label{ham}
+Our study toward solving Einstein's equations takes the Hamiltonian viewpoint, rather than Lagrangian approach. Lagrangian mechanics and Hamiltonian mechanics are two mathematically equivalent branches of classical mechanics. In Lagrangian formulation a system with $n$ degrees of freedom is described by $n$ second order partial differential equations of motion with $2n$ initial conditions. The $2n$ initial conditions are usually specified by values of $n$ generalized coordinates $q_{i}$ and $n$ of $q_{i}$'s time derivative, ${\dot q}_{i}$ at time $t_{0}$. From Hamiltonian perspective, the same system with $n$ degrees of freedom is interpreted in $2n$ first order partial differential equations of motion of $2n$ independent variables and their initial values at time $t_{0}$ serve as $2n$ initial conditions. Those $2n$ independent variables are regarded as canonical variables and are usually constructed by $n$ generalized coordinates $q_{i}$ and their conjugate momentums $p_{i}$.
+
+Comparing to Lagrangian procedure, Hamiltonian method doesn't particularly provide a superior solution to mechanics problems. Mathematically, the transition from Lagrangian to Hamiltonian formulation is merely an operation of changing the set of variables $(q_{i}, {\dot q}_{i}, t)$ to $(q_{i}, p_{i}, t)$, namely Legendre transformation. Furthermore, a system's equations of motion from Hamiltonian perspective are practically the same partial differential equations provided by Lagrangian formulation. The power and advantages of Hamiltonian formulation lies in providing a framework for theoretical extensions in many area of physics. With a deeper insight into mechanics, Hamiltonian formulation treats coordinates and momenta equally as independent variables, which entitles physicists to choose any arbitrary yet appropriate physical quantities as coordinates and momenta. A broader selection of dynamic variables leads to a more abstract way of presenting applications to mechanical problems, which plays an essential role in constructing more modern theories. It is Hamiltonian formulation who served as an embarking point from classical mechanics to both statistical mechanics and quantum theory in the past century and it is why it still attracts attentions from the physics society\cite{goldstein}. More details of generalizing Hamiltonian formulation to a field theory as general relativity will be discussed in Chap.~\ref{introduction}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Notation and Convention}\label{notation}
+Inevitably, we need to work with tensors while studying general relativity. For tensor representation, we use Greek letter indices $\mu$, $\nu$, ... to denote spacetime indices from 0 to 3 and Latin letters $a$, $b$, ... for spatial indices from 1 to 3. In places where ambiguity might arise, we use a prefix $^{(4)}$ to denote a spacetime tensor and hence to distinguish it from its spatial counterpart, as in $^{(4)}g_{\mu\nu}$ or $^{(4)}R_{\mu\nu}$. In addition, we employ geometrized  units system throughout this paper, in which $G = c = 1$.
+
+Ordinary partial derivative is denoted as $
+\partial_{\mu} \equiv \frac{\partial}{\partial x^{\mu}}$. $\nabla_{\mu}$ stands for the spacetime covariant derivative while $D_{a}$ is the spatial covariant derivative. And $D_{t}$ represents the covariant time derivative which will be discussed later in this paper. Lie derivative operator is denoted as $\mathcal{L}$. 
+
+We follow the convention used by Minser, Thorne and Wheeler\cite{Misner:1974qy}, namely the ``Landau-Lifshitz Spacelike Convertion'' (LLSC). Specifically, signature of spacetime metric $g_{\mu\nu}$ is ( --, +, +, + ), Riemann tensor is defined as 
+\begin{equation}
+	R^{\alpha}_{~\beta \mu \nu} \equiv 
+	\partial_{\mu}\Gamma^{\alpha}_{~\beta \nu} - 
+	\partial_{\nu}\Gamma^{\alpha}_{~\beta \mu} + \Gamma^{\alpha}_{~\sigma \mu}\Gamma^{\sigma}_{~\beta \nu} - \Gamma^{\alpha}_{~\sigma \nu}\Gamma^{\sigma}_{~\beta\mu} \ , 
+\end{equation}
+while the Ricci tensor 
+\begin{equation}
+	R_{\mu\nu} \equiv R^{\sigma}_{~\mu\sigma\nu} \ . 
+\end{equation}
+Finally, the Einstein field equations are stated as 
+\begin{equation}
+	G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu} 
+\end{equation}
+where $R$ is the Ricci scalar $R^{\mu}_{~\mu}$ and $T_{\mu\nu}$ is the stree-energy tensor. 
+
+%We also introduce a set of background fields that allows us to group non-tensor terms so that they transform tensorially as a whole under spacetime coordinates transformation. The background fields are denoted with a bar on top. We also use a prefix $\Delta$ to denote the difference bewteen the physical field and its corresponding background field. For example, we use ${\bar \Gamma}^{\alpha}_{~\mu\nu}$ to denote the torsion-free background connection and we define
+%\begin{equation}
+%\Delta \Gamma^{\alpha}_{~\mu\nu} \equiv \Gamma^{\alpha}_{~\mu\nu} - {\bar \Gamma}^{\alpha}_{~\mu\nu}.
+%\end{equation}
+%Note that by subtracting ${\bar \Gamma}^{\alpha}_{~\mu\nu}$ from $\Gamma^{\alpha}_{~\mu\nu}$, we manage to compensate the inhomogeneity in the transformation rule for $\Gamma^{\alpha}_{~\mu\nu}$, the resulting $\Delta \Gamma^{\alpha}_{~\mu\nu}$ is a type ${1}\choose{2}$ tensor. 
+%We'd also like to introduce the foliation preserving coordinate transformation\cite{Meng} here. It is defined by
+%\begin{subequations}
+%\begin{align}
+%t' & = t'(t)\label{time reparameterization}\\
+%x^{a'} & = x^{a'}(t, x^{a})\label{spatial diff}
+%\end{align}
+%and consists both time reparameterization (\ref{time reparameterization}) and time--dependent spatial diffeomorphism (\ref{spatial diff}). This class of coordinate transformations preserve the foliation of spacetime into spacelike hypersurfaces and we want to make our Hamiltonian formulation covariant under such kind of transformations. For example, a generic covariant tensor density $T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{m}}$ under such transformations is
+%\begin{equation}
+%T^{a_{1}'...a_{n}'}_{~~~~~~~~b_{1}'...b_{m}'} = T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{n}}\frac{\partial x^{a_{1}'}}{\partial x^{a_{1}}}...\frac{\partial x^{a_{n}'}}{\partial x^{a_{n}}}\frac{\partial x^{b_{1}}}{\partial x^{b_{1'}}}...\frac{\partial x^{b_{m}}}{\partial x^{b_{m'}}}\left|\frac{\partial t}{\partial t'}\right|^{i}\left|\frac{\partial x}{\partial x'}\right|^{j}
+%\end{equation}
+%\end{subequations}
+%where $\left|\frac{\partial t}{\partial t'}\right|$ and $\left|\frac{\partial x}{\partial x'}\right|$ are the Jacobian matrix determinant of time reparemeterization and spatial diffeomorphism, respectively. We may refer this kind of tensor as a weight j type $n \choose m$ tensor density under spatial diffeomorphism and weight i density under time reparameterization. And our discussion about general covariance\cite{Meng} throughout the paper is based on this class of coordinate transformations.

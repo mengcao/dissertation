@@ -1,54 +1,79 @@
-\chapter{Background Information} \label{background} As the chapter title suggests, this chapter provides information that is necessary for a decent understanding of this paper. Sec.~\ref{gr} presents a brief review of Einstein's general relativity theory and its development. Sec.~\ref{ham} constructs a comparison of Lagrangian and Hamiltonian formulation in the context of classical mechanics, which further reveals origin of our interests in approaching general relativity via Hamiltonian methods. In the end of this chapter, we present the notation and convention we are going to use and follow through out this paper. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{General Relativity}\label{gr}
-During the years between 1911 and 1916, Einstein developed an elegant geometric approach to generalize Newtonian mechanics and his own special relativity. The new theory formulated an innovative interpretation toward gravitation and was named general relativity. Other than most of natural forces, whose existence is represented by the field defined on spacetime, Einstein proposed in his generalized theory of relativity that gravitation is inherent in spacetime itself and it is the direct result of the curvature of spacetime\cite{carroll2003spacetime}.
+\chapter{Numerical Relativity}\label{nr}
+As mentioned before, the rise of numerical relativity answered for the desire of a wide class of general solution to Einstein's equations for various physical phenomena, such as perturbed black holes, coalescence of black holes and neutron stars, which general relativity must explain. As Wald pointed out,``If a corresponding large class of solutions of Einstein's equation failed to exist, we would be forced to reject general relativity as a correct theory of nature''\cite{Wald}. Inevitably, in order to employ computers to tackle dynamical evolution problems, we have to separate time and space dimensions Einstein united in his theory, i.e. convert Einstein's equations into an initial value problem. The 3 + 1 decomposition scheme to split time and space was initially proposed by Arnowitt, Deser and Misner\cite{ADM:Witten} and a detailed discussion of it is presented in Sec.~\ref{3+1}. Another important aspect of numerical formulation, stability and accuracy, is addressed in Sec.~\ref{wellposedness} in the context of well-posedness. Main stream numerical formulations of general relativity are presented in Sec.~\ref{numericalformulation} and their limitations are discussed. 
+%\section{Initial Value Problem}\label{initial}
+\section{3 + 1 Decomposition}\label{3+1}
+For initial value problems of ordinary particle mechanics, the evolution of a system is dependent on the initial conditions and equations of motion for the system. It is easy to feed computers with initial value data and integrate the partial differential equations of motion along time axis numerically to obtain dynamic evolution of the system. During the past several decades, various types of numerical algorithms are developed to solve initial value problems and they are proved to be successful. However, since Einstein united time and space dimensions in his theory of gravity, initial value data is not native in Einstein's equations. Therefore, an important prerequisite for developing any numerical formulation is to decompose the four dimensional spacetime into a one-parameter family of nonintersecting spacelike hypersurfaces, namely foliations, ``one for each instant of time''. The operation of constructing a rigid structure of such series of foliations is referred as ``3 + 1 decomposition''. 
 
-When his first paper on this field of study, {\it The Foundation of the General Theory of Relativity}, was published in 1916, it was regarded as a heterodox theory packed with controversial and bold predictions that challenged people's knowledge. Its seemingly incompetence in applications was another obstacle for its adoption by the majority. In 1919, Sir Arthur Stanley Eddington, an astrophysicist from British Royal Society, observed and measured the bending angle of light by the sun to a very small vicinity of Einstein's estimate, which served as the first experimental evidence supported general relativity. Two of his other predictions, gravitational red shift and the precession of the perihelion of Mercury around the sun, were also confirmed by experiments consecutively. From then on, various consequences of general relativity, from the big bang, expanding universe to black holes, were accepted by the mainstream physics society and hence inspired huge amount of young people's interests in physics. After being studied and elaborated for several decades, now it is the standard description of gravitation in modern physics. 
-
-Lying in the core of general relativity is a set of 10 partial differential equations, namely Einstein field equations or Einstein's equations, which governs properties of our spacetime geometry. Although there are several famous analytical solution of Einstein's equations, such as the Schwarzschild solution, it is unarguably a challenge to solve those equations manually for a wide variety of physical phenomena for which general relativity must account. Due to the prosperity of computer science, a new branch of general relativity, numerical relativity, emerged above the horizon. It employs numerical methods and algorithms, leverages power of high performance computers to solve Einstein's equations and hence to study black holes, gravitational waves, neutron stars and other phenomena governed by general relativity. It is also used as a tune-up tool to maximize performance of experimental instruments for general relativity, especially the ones to detect gravitational waves. Nearly 100 years ago, Sir Eddington used optical telescope and photographic plates to observe and measure light bent by the sun, thanks to the blooming technology, now we have multiple cutting-edge facilities stretching in miles listening to gravitational waves in the space. Those sophisticated gravitational wave telescopes will yield more accurate results but are also more sensitive to noise. Therefore, numerical simulation serves as a guideline to study and analyze readings from those gravitational wave telescopes. A detailed discussion of numerical relativity is presented in Chap.~\ref{nr}. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hamiltonian Formulation}\label{ham}
-Our study toward solving Einstein's equations takes the Hamiltonian viewpoint, rather than Lagrangian approach. Lagrangian mechanics and Hamiltonian mechanics are two mathematically equivalent branches of classical mechanics. In Lagrangian formulation a system with $n$ degrees of freedom is described by $n$ second order partial differential equations of motion with $2n$ initial conditions. The $2n$ initial conditions are usually specified by values of $n$ generalized coordinates $q_{i}$ and $n$ of $q_{i}$'s time derivative, ${\dot q}_{i}$ at time $t_{0}$. From Hamiltonian perspective, the same system with $n$ degrees of freedom is interpreted in $2n$ first order partial differential equations of motion of $2n$ independent variables and their initial values at time $t_{0}$ serve as $2n$ initial conditions. Those $2n$ independent variables are regarded as canonical variables and are usually constructed by $n$ generalized coordinates $q_{i}$ and their conjugate momentums $p_{i}$.
-
-Comparing to Lagrangian procedure, Hamiltonian method doesn't particularly provide a superior solution to mechanics problems. Mathematically, the transition from Lagrangian to Hamiltonian formulation is merely an operation of changing the set of variables $(q_{i}, {\dot q}_{i}, t)$ to $(q_{i}, p_{i}, t)$, namely Legendre transformation. Furthermore, a system's equations of motion from Hamiltonian perspective are practically the same partial differential equations provided by Lagrangian formulation. The power and advantages of Hamiltonian formulation lies in providing a framework for theoretical extensions in many area of physics. With a deeper insight into mechanics, Hamiltonian formulation treats coordinates and momenta equally as independent variables, which entitles physicists to choose any arbitrary yet appropriate physical quantities as coordinates and momenta. A broader selection of dynamic variables leads to a more abstract way of presenting applications to mechanical problems, which plays an essential role in constructing more modern theories. It is Hamiltonian formulation who served as an embarking point from classical mechanics to both statistical mechanics and quantum theory in the past century and it is why it still attracts attentions from the physics society\cite{goldstein}. More details of generalizing Hamiltonian formulation to a field theory as general relativity will be discussed in Chap.~\ref{introduction}. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Notation and Convention}\label{notation}
-Inevitably, we need to work with tensors while studying general relativity. For tensor representation, we use Greek letter indices $\mu$, $\nu$, ... to denote spacetime indices from 0 to 3 and Latin letters $a$, $b$, ... for spatial indices from 1 to 3. In places where ambiguity might arise, we use a prefix $^{(4)}$ to denote a spacetime tensor and hence to distinguish it from its spatial counterpart, as in $^{(4)}g_{\mu\nu}$ or $^{(4)}R_{\mu\nu}$. In addition, we employ geometrized  units system throughout this paper, in which $G = c = 1$.
-
-Ordinary partial derivative is denoted as $
-\partial_{\mu} \equiv \frac{\partial}{\partial x^{\mu}}$. $\nabla_{\mu}$ stands for the spacetime covariant derivative while $D_{a}$ is the spatial covariant derivative. And $D_{t}$ represents the covariant time derivative which will be discussed later in this paper. Lie derivative operator is denoted as $\mathcal{L}$. 
-
-We follow the convention used by Minser, Thorne and Wheeler\cite{Misner:1974qy}, namely the ``Landau-Lifshitz Spacelike Convertion'' (LLSC). Specifically, signature of spacetime metric $g_{\mu\nu}$ is ( --, +, +, + ), Riemann tensor is defined as 
+In order to  construct a rigid structure of the decomposition, several physical quantities need to be specified. First and foremost is the three dimensional spatial metric $g_{ab}$ on each foliation, which defines the proper distance between two points reside on the foliation. Second of all, the proper distance between each foliation is specified by the lapse function $\alpha$. Although it is not necessary to keep coordinate system on each foliation related to each other, due to practical consideration, a shift vector $\beta^{a}$ is defined to weld coordinate systems between each two consecutive hypersurfaces. The spacetime metric $^{(4)}g_{\mu\nu}$ is split in terms of spatial metric $g_{ab}$, lapse function $\alpha$, shift vector $\beta^{a}$ as following
 \begin{equation}
-	R^{\alpha}_{~\beta \mu \nu} \equiv 
-	\partial_{\mu}\Gamma^{\alpha}_{~\beta \nu} - 
-	\partial_{\nu}\Gamma^{\alpha}_{~\beta \mu} + \Gamma^{\alpha}_{~\sigma \mu}\Gamma^{\sigma}_{~\beta \nu} - \Gamma^{\alpha}_{~\sigma \nu}\Gamma^{\sigma}_{~\beta\mu} \ , 
+	{}^{\left(4\right)}g_{\mu\nu} = \left(-\alpha^2 + \beta^{a}\beta_{a}\right)\delta_\mu^0\delta_\nu^0 
+	+ 2\beta_{a}\delta_{(\mu}^a\delta_{\nu)}^0 + g_{ab} \delta^a_\mu \delta^b_\nu \ ,
 \end{equation}
-while the Ricci tensor 
-\begin{equation}
-	R_{\mu\nu} \equiv R^{\sigma}_{~\mu\sigma\nu} \ . 
-\end{equation}
-Finally, the Einstein field equations are stated as 
-\begin{equation}
-	G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu} 
-\end{equation}
-where $R$ is the Ricci scalar $R^{\mu}_{~\mu}$ and $T_{\mu\nu}$ is the stree-energy tensor. 
+where $\delta^{\mu}_{\nu}$ is regular delta tensor. 
 
-%We also introduce a set of background fields that allows us to group non-tensor terms so that they transform tensorially as a whole under spacetime coordinates transformation. The background fields are denoted with a bar on top. We also use a prefix $\Delta$ to denote the difference bewteen the physical field and its corresponding background field. For example, we use ${\bar \Gamma}^{\alpha}_{~\mu\nu}$ to denote the torsion-free background connection and we define
-%\begin{equation}
-%\Delta \Gamma^{\alpha}_{~\mu\nu} \equiv \Gamma^{\alpha}_{~\mu\nu} - {\bar \Gamma}^{\alpha}_{~\mu\nu}.
-%\end{equation}
-%Note that by subtracting ${\bar \Gamma}^{\alpha}_{~\mu\nu}$ from $\Gamma^{\alpha}_{~\mu\nu}$, we manage to compensate the inhomogeneity in the transformation rule for $\Gamma^{\alpha}_{~\mu\nu}$, the resulting $\Delta \Gamma^{\alpha}_{~\mu\nu}$ is a type ${1}\choose{2}$ tensor. 
-%We'd also like to introduce the foliation preserving coordinate transformation\cite{Meng} here. It is defined by
-%\begin{subequations}
-%\begin{align}
-%t' & = t'(t)\label{time reparameterization}\\
-%x^{a'} & = x^{a'}(t, x^{a})\label{spatial diff}
-%\end{align}
-%and consists both time reparameterization (\ref{time reparameterization}) and time--dependent spatial diffeomorphism (\ref{spatial diff}). This class of coordinate transformations preserve the foliation of spacetime into spacelike hypersurfaces and we want to make our Hamiltonian formulation covariant under such kind of transformations. For example, a generic covariant tensor density $T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{m}}$ under such transformations is
-%\begin{equation}
-%T^{a_{1}'...a_{n}'}_{~~~~~~~~b_{1}'...b_{m}'} = T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{n}}\frac{\partial x^{a_{1}'}}{\partial x^{a_{1}}}...\frac{\partial x^{a_{n}'}}{\partial x^{a_{n}}}\frac{\partial x^{b_{1}}}{\partial x^{b_{1'}}}...\frac{\partial x^{b_{m}}}{\partial x^{b_{m'}}}\left|\frac{\partial t}{\partial t'}\right|^{i}\left|\frac{\partial x}{\partial x'}\right|^{j}
-%\end{equation}
-%\end{subequations}
-%where $\left|\frac{\partial t}{\partial t'}\right|$ and $\left|\frac{\partial x}{\partial x'}\right|$ are the Jacobian matrix determinant of time reparemeterization and spatial diffeomorphism, respectively. We may refer this kind of tensor as a weight j type $n \choose m$ tensor density under spatial diffeomorphism and weight i density under time reparameterization. And our discussion about general covariance\cite{Meng} throughout the paper is based on this class of coordinate transformations.
+The covariant normal to each foliation is denoted as
+\begin{equation}\label{normal covector}
+n_{\mu} = -\alpha\delta^{0}_{\mu}
+\end{equation}
+ And its dual is
+\begin{equation}\label{normal vector}
+n^{\mu} = \left(\delta^{\mu}_{0} - \beta^{c}\delta^{\mu}_{c}\right)/\alpha
+\end{equation}
+so that we have $n_{\mu}n^{\mu} = -1$. 
+
+There is also the projection operator
+\begin{equation}\label{projection 1}
+X^{\mu}_{a} = \delta^{\mu}_{a}
+\end{equation}
+that projects a spacetime covector into a spacelike covector. Its covariant form is
+\begin{equation}\label{projection 2}
+X^{a}_{\mu} = \delta^{a}_{\mu} + \beta^{a}\delta^{0}_{\mu}
+\end{equation}
+so that we have $X^{\mu}_{a}X^{b}_{\mu} = \delta^{b}_{a}$ and $X^{\mu}_{a}n_{\mu} = 0$. 
+
+With these definitions, the spacetime metric can be written in terms of the spatial metric, the normal and the projection operator as
+\begin{equation}\label{spacetime metric 3 + 1}
+^{\left(4\right)}g_{\mu\nu} = g_{ab}X^{a}_{\mu}X^{b}_{\nu} - n_{\mu}n_{\nu}
+\end{equation}
+Spacetime indices $\mu$, $\nu$, ... are always raised and lowered with the spacetime metric $^{\left(4\right)}g_{\mu\nu}$ and its inverse $^{\left(4\right)}g^{\mu\nu}$, while spatial indices $a$, $b$, ... are always raised and lowered with the spatial metric $g_{ab}$ and its inverse $g^{ab}$. 
+
+The notion of extrinsic curvature in 3 + 1 decomposition context represents a well-defined time derivative of the spatial metric on the spacelike hypersurface. It is defined as
+\begin{equation}\label{extrinsic}
+K_{ab} = - \frac{1}{2\alpha}(\partial_{t} - \mathcal{L}_{\beta})g_{ab} \ ,
+\end{equation}
+and it is easy to show that $K_{ab}$ is a symmetric tensor, i.e., $K_{ab} = K_{ba}$. Physically, the extrinsic curvature, as an abstract coordinate-independent geometric object, defines curvature of a three dimensional foliation relative to the four dimensional spacetime manifold it is embedded in. Imagine parallel transporting the normal covector $n_{a}$ of foliation $\Sigma$ from point $p$ to point $q$. This parallel transported covector will fail to coincide with the normal covector $n_{a}$ on $q$. This failure reflects the bending of foliation $\Sigma$ in spacetime and extrinsic curvature directly measures the deviation between the parallel transported covector and $n_{a}$ at $q$. 
+
+With the help of 3 + 1 decomposition, one is able to specify a set of dynamic variables ( $g_{ab}$, $K_{ab}$, etc. ) on one foliation and utilize it as the initial condition. Different variations of Einstein field equations were developed by various classes of numerical relativity formulations to integrate the initial condition along time and obtain a uniquely determined dynamic evolution of the spacetime geometry in interest. Several important types of  numerical formulations are discussed in Sec.~\ref{numericalformulation}.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Numerical Formulation of General Relativity}\label{numericalformulation}
+This section briefly reviews the development of numerical formulations for solving Einstein's equations. Two widely adopted modern numerical formalisms are discussed in detail. Our motivation for this work is summarized at the end of this section. 
+
+\subsection{ADM and BSSN formalisms}
+The foundation of solving Einstein field equations numerically is laid down by Arnowitt, Deser and Minser via their famous ADM formalism\cite{ADM:Witten} in 1959. In the original ADM paper, a Hamiltonian approach is taken toward rewriting Einstein's equations. The Hilbert-Palatini gravitational action is written in terms the spatial metric $g_{ab}$, its conjugate momentum $\pi^{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$. The dynamic variables are chosen to be $g_{ab}$ and $\pi^{ab}$. Variation of the action with respect to spatial metric and its momentum yields evolution equations of $g_{ab}$ and $\pi^{ab}$, while varying the action with respect to the lapse function and shift vector provides constraint equations for choosing initial conditions of the dynamic variables. These equations from varying the action determine how a system evolves along with time. 
+
+In the numerical system now commonly referred as ADM formalism, the extrinsic curvature $K_{ab}$ replaces $\pi^{ab}$ as one of the dynamic variables and they are closely related as $\pi^{ab} = -\sqrt{g}(K^{ab} - g^{ab}K)$. The evolution equations of $g_{ab}$ and $K_{ab}$ drive the system dynamically. Two sets of constraint equations known as Hamiltonian constraint and momentum constraint govern the choice of initial conditions for the spatial metric and extrinsic curvature. These equations together are equivalent to the Einstein field equations. 
+
+Unfortunately, ADM formalism was later proved to be impractical to construct stable and long-term numerical simulations due to its incompetence to satisfy any know hyperbolic conditions. During the years between 1987 to 1999 Baumgarte, Shapiro, Shibata and Nakamura\cite{Shibata:1995we, Baumgarte:1998te} developed a modification of ADM formalism by introducing auxiliary variables. This modified system is known as BSSN formalism and is one of the most commonly used numerical formulation for relativity applications. 
+
+Instead of evolving the spatial metric and extrinsic curvature, the BSSN formalism chooses a conformal factor $\phi$, the trace of extrinsic curvature $K \equiv K_{ab}g^{ab}$ and a set of conformal variables, namely the conformal spatial metric ${\tilde g}_{ab} \equiv e^{-4\phi}g_{ab}$, conformal trace-free extrinsic curvature ${\tilde A}_{ab} \equiv e^{-4\phi}(K_{ab} - \frac{1}{3}g_{ab}K)$ and conformal connection functions ${\tilde \Gamma}^{a} \equiv {\tilde g}^{bc}{\tilde \Gamma}^{a}_{~bc}$, as the fundamental variables to evolve along with time. This choice of dynamic variables is considered more appealing than ADM formalism, from both a theoretical and computational point of view. Supplemented with the moving puncture gauge conditions which govern evolution of the lapse function and shift vector, BSSN formalism is widely used in the numerical relativity society to analyze a diversity of gravitational problems. 
+
+\subsection{Generalized Harmonic Formulation}
+Another well recognized numerical formulation of Einstein's equations is the generalized harmonic(GH) equations\cite{Friedrich:1985, Garfinkle:2001ni, Pretorius:2006tp}. As many numerical algorithms are recognized as stable and efficient when dealing with wave equations, GH formulation interprets Einstein field equations in a form which is similar to curved spacetime wave equations by utilizing harmonic coordinates. The generalized harmonic coordinates used by GH formulation satisfy the wave equations as following
+\begin{equation}
+	\nabla^{\alpha}\nabla_{\alpha}x^{\mu} = H^{\mu} \ ,
+\end{equation}
+where $H^{\mu}$ is an undetermined source vector for the wave equation. 
+
+The GH version of Einstein field equations can be expressed in an abstract form as
+\begin{equation}\label{ghequations}
+	g^{\alpha\beta}\partial_{\alpha}\partial_{\beta}g_{\mu\nu} + \partial_{(\mu}H_{\nu)} = Q_{\mu\nu}(H, g, \partial g) \ , 
+\end{equation}
+where $Q_{\mu\nu}$ are functions depend on the source vector, spacetime metric and its first-order derivatives. Gauge conditions for the source terms $H^{\mu}$ are evolved along with Eqs.~\ref{ghequations} to solve Einstein's equations numerically. Improved gauge drivers are developed to evolve with Eqs.~\ref{ghequations} and they are proved to be stable, efficient and effective while maintaining symmetric hyperbolicity of the system\cite{Lindblom:2007xw, Lindblom:2009tu}. 
+
+The development of GH formulation doesn't stop from there. In recent years, 3 + 1 form of GH equations\cite{Brown:2011qg} is developed
+to reveal the relationships between GH formulation and ADM/BSSN formulations. Furthermore, the action principle of GH formulation\cite{Brown:2010rya} is presented to provide an alternative perspective to understand this formalism. The foundation laid down by these two pieces of work and the significant role Hamiltonian perspective played in history of physics as stated in Sec.~\ref{ham} directly motivate us to develop the Hamiltonian system of GH equations. 
+
+During our research on Hamiltonian approach to GH formalism, we discovered that despite of their supremacy in practical applications, both BSSN and GH formulation have some drawbacks regarding general covariance. This issue is addressed in Chap.~\ref{generalcovariance} before we move on to the Hamiltonian formulation. 
+
