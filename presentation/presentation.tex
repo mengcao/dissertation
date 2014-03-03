@@ -5,12 +5,13 @@
 \usepackage{graphicx}
 \usepackage{bm}
 \usepackage{multimedia}
+\usepackage{colortbl}
 
 \usefonttheme{serif}
 \usecolortheme[named=BrickRed]{structure}
 \usetheme[height=7mm]{Rochester}
 %\usetheme{default}
-\title{\small General Covariant Hamiltonian Approach\\to\\Generalized Harmonic Formulation of General Relativity}
+\title{\small{General Covariant Hamiltonian Approach\\to\\Generalized Harmonic Formulation of General Relativity}}
 \author[M. Cao]{Meng Cao\\Advisor: Dr. John David Brown}
 \institute[NCSU]{Department of Physics\\North Carolina State University\\Raleigh, NC 27695\\
 \texttt{mcao2@ncsu.edu}}
@@ -37,5 +38,71 @@
 	\end{frame}
 	\begin{frame}{Introduction}
 		General Relativity
+		\begin{columns}[c]
+			\column{2in}
+			\begin{center}
+				\includegraphics[scale=0.07]{einstein.jpg}\\
+				\tiny{Colleen Trillow}
+			\end{center}
+			\column{2in}
+			\begin{center}
+				\includegraphics[scale=0.23]{grpaper.pdf}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	\begin{frame}{Introduction}
+		General Relativity
+		\begin{center}
+			\includegraphics[scale=0.4]{curvature.jpg}
+		\end{center}
+	\end{frame}
+	\begin{frame}{Introduction}
+		Classical Tests of General Relativity
+		\begin{itemize}
+			\item{Light Deflection[Eddington, 1919]}
+			\item{Perihelion Precession of Mercury[Urbain Le Verrier, 1859]}
+			\item{Gravitational Redshift[Pound-Rebka, 1959]}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Introduction}
+		Einstein Field Equations
+		\Huge
+		\begin{center}
+			\[
+			G_{\mu\nu} = 8\pi T_{\mu\nu}
+			\]
+		\end{center}
+	\end{frame}
+	\begin{frame}{Introduction}
+		Exact Solutions to Einstein Field Equations
+		\begin{center}
+			\Large
+			\begin{tabular}{|c c c|}
+				\hline
+				\cellcolor[gray]{0.7}~ & \cellcolor[gray]{0.9}$J=0$ & $J \ne 0$ \\
+				\rowcolor[gray]{0.9}$Q=0$ & \cellcolor[gray]{1.0}Schwarzschild & \cellcolor[gray]{0.7}Kerr \\
+				\cellcolor[gray]{1.0}$Q\ne 0$ & \cellcolor[gray]{0.7}Reissner-Nordstr\"{o}m & \cellcolor[gray]{0.9}Kerr-Newman\\ \hline
+			\end{tabular}
+		\end{center}
+	\end{frame}
+	\begin{frame}
+		Numerical Relativity
+		\begin{columns}[c]
+			\column{2in}
+			\begin{center}
+				\includegraphics[scale=0.07]{nr-baker.jpg}\\
+				\tiny{simulation: John Baker(NASA)}\\
+				\tiny{visualization: Henze(NASA)}
+			\end{center}
+			\column{2in}
+			\begin{center}
+				\includegraphics[scale=0.5]{nr-mpg.jpg}\\
+				\tiny{simulation: C. Reisswig, L. Rezzolla(Albert Einstein Institute)}\\
+				\tiny{visualization: M. Koppitz (Albert Einstein Institute/Zuse Institute Berlin)}
+			\end{center}
+		\end{columns}		
+	\end{frame}
+	\begin{frame}{Introduction}
+		Hamiltonian Formulation
 	\end{frame}
 \end{document}
