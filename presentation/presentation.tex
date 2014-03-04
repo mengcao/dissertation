@@ -66,7 +66,7 @@
 	\end{frame}
 	\begin{frame}{Introduction}
 		Einstein Field Equations
-		\Huge
+		\huge
 		\begin{center}
 			\[
 			G_{\mu\nu} = 8\pi T_{\mu\nu}
@@ -85,7 +85,7 @@
 			\end{tabular}
 		\end{center}
 	\end{frame}
-	\begin{frame}
+	\begin{frame}{Introduction}
 		Numerical Relativity
 		\begin{columns}[c]
 			\column{2in}
@@ -104,5 +104,29 @@
 	\end{frame}
 	\begin{frame}{Introduction}
 		Hamiltonian Formulation
+		\begin{center}
+			\includegraphics[scale=1.0]{hamilton.jpg}\\
+			\tiny{Sir William Rown Hamilton(1805 - 1865)}
+		\end{center}
+	\end{frame}
+	\begin{frame}{Introduction}
+		Lagrangian vs Hamiltonian
+		\begin{columns}[c]
+			\column{2in}
+			\begin{center}
+				$\mathcal{L}(q_{i}, {\dot q}_{i}, t)$
+				\begin{equation*}
+					\frac{\partial}{\partial t}\frac{\partial \mathcal{L}}{\partial {\dot q_{i}}} - \frac{\partial \mathcal{L}}{\partial q_{i}} = 0
+				\end{equation*}	
+			\end{center}
+			\column{2in}
+			\begin{center}
+				$\mathcal{H}(q_{i}, p_{i}, t)$	
+				\begin{align*}
+					{\dot p}_{i} + \frac{\partial \mathcal{H}}{\partial q_{i}} &= 0	\\
+					{\dot q}_{i} - \frac{\partial \mathcal{H}}{\partial p_{i}} &= 0
+				\end{align*}
+			\end{center}
+		\end{columns}
 	\end{frame}
 \end{document}
