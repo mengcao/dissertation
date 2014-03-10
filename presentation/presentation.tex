@@ -216,4 +216,49 @@
 		G_{\mu'\nu'}\frac{\partial x^{\mu'}}{\partial x^{\mu}}\frac{\partial x^{\nu'}}{\partial x^{\nu}} = 8 \pi T_{\mu'\nu'}\frac{\partial x^{\mu'}}{\partial x^{\mu}}\frac{\partial x^{\nu'}}{\partial x^{\nu}}
 		\]
 	\end{frame}
+	\begin{frame}{General Covariance}
+		3 + 1 Coordinate Transformation
+		\begin{itemize}
+			\item{General Class}
+			\item{Preserve 3 + 1 Structure}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{General Covariance}
+		Foliation Preserving Transformation
+		\pause
+		\begin{align*}
+		t' &= t'(t)\text{  : time reparameterization}\\
+		x^{a'} &= x^{a'}(t, x^{a})\text{  : time-dependent spatial transformation}
+	\end{align*}
+	\end{frame}
+	\begin{frame}{General Covariance}
+		Tensorial Transformation
+		\[
+		T^{a_{1}'...a_{n}'}_{~~~~~~~~b_{1}'...b_{m}'} = T^{a_{1}...a_{n}}_{~~~~~~~~b_{1}...b_{n}}\frac{\partial x^{a_{1}'}}{\partial x^{a_{1}}}...\frac{\partial x^{a_{n}'}}{\partial x^{a_{n}}}\frac{\partial x^{b_{1}}}{\partial x^{b_{1'}}}...\frac{\partial x^{b_{m}}}{\partial x^{b_{m'}}}\left|\frac{\partial t}{\partial t'}\right|^{i}\left|\frac{\partial x}{\partial x'}\right|^{j} 
+		\]
+		\pause
+		\begin{itemize}
+			\item{weight i tensor density under time reparameterization}
+			\item{type $n\choose m$ weight j tensor density under time-dependent spatial transformation}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{General Covariance}
+		Transformation Rules
+		\begin{align*}
+		g_{a'b'} & = g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial x^{b'}}\\
+		g^{a'b'} & = g^{ab}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{b'}}{\partial x^{b}}\\
+		g' & = g\left|\frac{\partial x}{\partial x'}\right|^{2}
+	\end{align*}
+	\end{frame}
+	\begin{frame}{General Covariance}
+		Transformation Rules
+			\[
+				\alpha' = \alpha \left|\frac{\partial t}{\partial t'}\right|
+			\]
+			\pause
+			\begin{align*}
+				\beta^{a'} &= \beta^{a}\frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial t}{\partial t'} + \frac{\partial x^{a'}}{\partial x^{a}}\frac{\partial x^{a}}{\partial t'}\\
+				\beta_{a'} &= \beta_{a}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial t}{\partial t'} + g_{ab}\frac{\partial x^{a}}{\partial x^{a'}}\frac{\partial x^{b}}{\partial t'}				
+			\end{align*}
+	\end{frame}
 \end{document}
