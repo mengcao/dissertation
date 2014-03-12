@@ -2,6 +2,7 @@
 \usepackage{calligra}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{mathrsfs}
 \usepackage{graphicx}
 \usepackage{bm}
 \usepackage{multimedia}
@@ -355,6 +356,48 @@
 			\left[\Delta {\tilde \Gamma}^{a} \equiv \sqrt{\frac{g}{{\bar g}}}^{2/3}\left(\Delta \Gamma^{a}_{~bc}g^{bc} + \frac{1}{3}g^{ab}\Delta \Gamma^{c}_{~bc}\right)\right]
 		\]
 	\end{frame}
-	\begin{frame}{Hamiltonian Formulation}
+	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+		Einstein-Hilbert Action
+		\begin{align*}
+			\begin{split}
+				&S\left[g_{ab}, \alpha, \beta^{a}, H_{\perp}, H^{a}\right] =\\&\int d^{4}x~~\alpha \sqrt{g} \left( R + K^{ab}K_{ab} - K^{2} - \frac{1}{2}C^{a}C_{a} + \frac{1}{2}C_{\perp}^{2}\right)
+			\end{split}
+		\end{align*}
+		\tiny
+		\[		
+		\left[ C_{\perp} = H_{\perp} + K + \frac{1}{\alpha^{2}}D_{t}\alpha, C_{a} = H_{a} + \Delta \Gamma^{b}_{cd}g^{cd}g_{ab} - \frac{\partial_{a}\alpha}{\alpha} - \frac{g_{ab}}{\alpha^2}D_{t}\beta^{b} \right]
+		\]
+		\pause
+		\normalsize
+		\[
+		S = \int\mathscr{L}d^{4}x
+		\]
+	\end{frame}
+	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+		Conjugate Momenta
+		\[
+		p = \frac{\partial \mathscr{L}}{\partial {\dot q}}
+		\]
+		\pause
+		\begin{align*}
+			P^{ab} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot g}_{ab}} = \sqrt{g}\left(Kg^{ab} - K^{ab} - \frac{C_{\perp}}{2}g^{ab}\right)\\
+				\pi & \equiv \frac{\partial \mathscr{L}}{\partial {\dot \alpha}} = \frac{\sqrt{g}}{\alpha}C_{\perp}\\
+				\rho_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot \beta}^{a}} = \frac{\sqrt{g}}{\alpha}C_{a}\\
+				\Omega & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}_{\perp}} = 0\\
+				\Omega_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}^{a}} = 0	
+		\end{align*}
+	\end{frame}
+	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+		Hamiltonian
+		\[
+		\mathscr{H} \equiv P^{ab}{\dot g}_{ab} + \pi{\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega {\dot H}_{\perp} + \Omega_{a}{\dot H}^{a} - \mathscr{L}
+		\]
+	\end{frame}
+	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+		Constraint Multiplier
+		\begin{align*}
+		{\dot H}_{\perp} & = \Lambda\\
+		{\dot H}^{a} & = \Lambda^{a}
+	\end{align*}
 	\end{frame}
 \end{document}
