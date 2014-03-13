@@ -356,7 +356,7 @@
 			\left[\Delta {\tilde \Gamma}^{a} \equiv \sqrt{\frac{g}{{\bar g}}}^{2/3}\left(\Delta \Gamma^{a}_{~bc}g^{bc} + \frac{1}{3}g^{ab}\Delta \Gamma^{c}_{~bc}\right)\right]
 		\]
 	\end{frame}
-	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+	\begin{frame}{Hamiltonian Approach}
 		Einstein-Hilbert Action
 		\begin{align*}
 			\begin{split}
@@ -373,7 +373,7 @@
 		S = \int\mathscr{L}d^{4}x
 		\]
 	\end{frame}
-	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+	\begin{frame}{Hamiltonian Approach}
 		Conjugate Momenta
 		\[
 		p = \frac{\partial \mathscr{L}}{\partial {\dot q}}
@@ -387,17 +387,177 @@
 				\Omega_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}^{a}} = 0	
 		\end{align*}
 	\end{frame}
-	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+	\begin{frame}{Hamiltonian Approach}
 		Hamiltonian
 		\[
 		\mathscr{H} \equiv P^{ab}{\dot g}_{ab} + \pi{\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega {\dot H}_{\perp} + \Omega_{a}{\dot H}^{a} - \mathscr{L}
 		\]
 	\end{frame}
-	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+	\begin{frame}{Hamiltonian Approach}
 		Constraint Multiplier
 		\begin{align*}
 		{\dot H}_{\perp} & = \Lambda\\
 		{\dot H}^{a} & = \Lambda^{a}
 	\end{align*}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Hamiltonian
+		\begin{align*}
+			\mathscr{H} &= \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
+			& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
+			& + P^{ab} \mathcal{L}_{\beta}g_{ab} + \pi \left[\beta^{c}\partial_{c}\alpha + \frac{\alpha}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right)\right]\\
+			& + \rho_{a}\left[{\dot {\bar \beta}}^{a} + \frac{\Delta \beta^{a}}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \beta^{b}{\bar D}_{b}\Delta \beta^{a} - \Delta \beta^{b} {\bar D}_{b}{\bar \beta}^{a}\right]\\
+			& + \Omega \Lambda + \Omega_{a}\Lambda^{a}
+			\end{align*}
+		\pause
+		\Large
+		\begin{center}
+		non-covariant
+		\end{center}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Hamiltonian
+		\begin{align*}
+		\mathscr{H} &= \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
+		& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
+		& + P^{ab} \mathcal{L}_{\beta}g_{ab} + \pi \left[\beta^{c}\partial_{c}\alpha + \frac{\alpha}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right)\right]\\
+		& + \rho_{a}\left[{\dot {\bar \beta}}^{a} + \frac{\Delta \beta^{a}}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \beta^{b}{\bar D}_{b}\Delta \beta^{a} - \Delta \beta^{b} {\bar D}_{b}{\bar \beta}^{a}\right]\\
+		& + \Omega \Lambda + \Omega_{a}\Lambda^{a}
+		\end{align*}
+		\[
+			S =\int d^{4}x \left(P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega{\dot H_{\perp}} + \Omega_{a}{\dot H}^{a} - \mathscr{H}\right)
+		\]
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Covariant Hamiltonian
+		\begin{align*}
+		\tilde{\mathscr{H}} & = \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
+		& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R
+		\end{align*}
+		\begin{align*}
+		S &= \int d^{4}x \left[ P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta\beta^{a}\right. \\
+		& \left. + \Omega \left({\dot H}_{\perp} - \Lambda\right) + \Omega_{a}\left({\dot H}^{a} - \Lambda^{a}\right) - \tilde{\mathscr{H}}\right]
+		\end{align*}
+	\end{frame}
+	\begin{frame}{Hamiltonian Formalism of GH Formulation}
+		Hamiltonian Extension
+		\begin{align*}
+			\Lambda &\rightarrow \Lambda + {\hat \Lambda}\\
+			\Lambda^{a} &\rightarrow \Lambda^{a} + {\hat \Lambda}^{a}
+		\end{align*}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Hamiltonian Extension
+		\begin{align*}
+				\tilde{\mathscr{H}} & = \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
+				& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R
+		\end{align*}
+		\begin{align*}
+			S &= \int d^{4}x \left[ P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta\beta^{a}\right. \\
+			& \left. + \Omega \left({\dot H}_{\perp} - {\hat \Lambda}\right) + \Omega_{a}\left({\dot H}^{a} - {\hat \Lambda}^{a}\right) - \tilde{\mathscr{H}}\right]
+		\end{align*}	
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Hamiltonian Extension
+		\begin{align*}
+			D_{t}H_{\perp} &= \left(\partial_{t} - \mathcal{L}_{\beta}\right)H_{\perp}\\
+			D_{t}H^{a} &= \left(\partial_{t} - \mathcal{L}_{\beta}\right)H^{a}
+		\end{align*}
+		\pause
+		\begin{align*}
+			{\hat \Lambda} &= \mathcal{L}_{\beta}H_{\perp}\\
+			{\hat \Lambda}^{a} &= \mathcal{L}_{\beta}H^{a}
+		\end{align*}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Hamiltonian Extension
+		\begin{align*}
+				\tilde{\mathscr{H}} & = \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
+				& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R
+		\end{align*}
+		\begin{align*}
+			S &= \int d^{4}x \left[ P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta\beta^{a}\right. \\
+			& \left. + \Omega D_{t}H_{\perp} + \Omega_{a}D_{t}H^{a} - \tilde{\mathscr{H}}\right]
+		\end{align*}	
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Covariant Hamilton's Equations
+		\small
+		\begin{align*}
+		D_{t}g_{ab} & = \frac{2\alpha}{\sqrt{g}}P_{ab} - \frac{\alpha P}{\sqrt{g}}g_{ab} - \frac{\alpha^{2}\pi}{2\sqrt{g}}g_{ab}\\
+		\begin{split}
+		D_{t} P^{ab} & = - \frac{2\alpha}{\sqrt{g}}P^{ac}P^{bd}g_{cd} + \frac{\alpha}{\sqrt{g}}PP^{ab} + \frac{\alpha^{2}\pi}{2\sqrt{g}
+		}P^{ab} - \frac{\alpha^{3}}{2\sqrt{g}}\rho^{a}\rho^{b}\\
+		& + \frac{\alpha}{2\sqrt{g}}P^{cd}P_{cd}g^{ab} - \frac{\alpha P^{2}}{4\sqrt{g}}g^{ab} - \frac{\alpha^{2}P\pi}{4\sqrt{g}}g^{ab} + \frac{\alpha^{2}\pi^{3}}{16\sqrt{g}}g^{ab} - \frac{\alpha^{3}}{4\sqrt{g}}\rho^{c}\rho_{c}g^{ab}\\
+		& + \alpha^{2}\rho_{e}\Delta \Gamma^{e}_{~cd}g^{ac}g^{bd} - \frac{1}{2}D_{c}\left(\rho^{c}\alpha^{2}\right)g^{ab} + D^{(a}\left(\rho^{b)}\alpha^{2}\right) - \frac{1}{2}\rho^{(a}D^{b)}\alpha^{2}\\
+		& - \alpha \sqrt{g}G^{ab} + \sqrt{g}D^{a}D^{b}\alpha - \sqrt{g}g^{ab}D_{c}D^{c}\alpha
+		\end{split}\\
+		D_{t}\alpha & = - \frac{\alpha^{2}}{2\sqrt{g}}P + \frac{\alpha^{3}\pi}{4\sqrt{g}} - \alpha^{2}H_{\perp}\\
+		\begin{split}
+		D_{t}\pi & = 2\alpha\pi H_{\perp} - 2\alpha \rho_{a}H^{a} - 2\alpha\Delta \Gamma^{a}_{~bc}g^{bc}\rho_{a} - \frac{1}{\sqrt{g}}P^{ab}P_{ab} + \frac{P^{2}}{2\sqrt{g}} + \frac{\alpha P \pi}{\sqrt{g}}\\
+		& - \frac{3\alpha^{2}\pi^{2}}{8\sqrt{g}} + \frac{3\alpha^{2}}{2\sqrt{g}}\rho_{a}\rho^{a} - \alpha \partial_{a}\rho^{a} + \sqrt{g}R
+		\end{split}
+	\end{align*}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Covariant Hamilton's Equations \tiny{Continued}
+		\small
+		\begin{align*}
+		D_{t}\Delta \beta^{a} & = - \frac{\alpha^{3}}{\sqrt{g}}\rho^{a} + \alpha^{2}H^{a} + \alpha^{2}\Delta \Gamma^{a}_{~bc}g^{bc} - \alpha g^{ab}\partial_{b}\alpha\\
+		\begin{split}
+		D_{t}\rho_{a} & = - \rho_{b}{\bar D}_{a}\Delta\beta^{b} - P^{bc}\partial_{a}g_{bc} + 2\partial_{b}\left(P^{bc}g_{ac}\right) - \pi \partial_{a}\alpha\\
+		& - \Omega \partial_{a}H_{\perp} - \Omega_{b}\partial_{a}H^{b} - \partial_{b}\left(H^{b} \Omega_{a}\right)
+		\end{split}\\
+		D_{t}H_{\perp} & = 0\\
+		D_{t}\Omega & = \alpha^{2}\pi \\
+		D_{t}H^{a} & = 0\\
+		D_{t}\Omega_{a} & = -\alpha^{2}\rho_{a}
+		\end{align*}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Well-posedness
+		\begin{itemize}
+			\pause
+			\item{Small changes in initial conditions leads to small changes of solution}
+			\pause
+			\item{Changes in some region should only cause changes inside the causal future of this region}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Hyperbolicity
+		\begin{itemize}
+			\item{Weakly hyperbolic: ill-posed}
+			\item{Strongly hyperbolic: well-posed without boundaries}
+			\item{Symmetric hyperbolic: well-posed with boundaries}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		Hyperbolicity
+		\begin{itemize}
+			\item{Weakly hyperbolic: ill-posed}
+			\item{Strongly hyperbolic: well-posed without boundaries}
+			\item{\textbf{{\color{red}Symmetric hyperbolic: well-posed with boundaries}}}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Summary and Future Work}
+		Summary
+		\begin{itemize}
+			\item{Foliation preserving transformation in 3 + 1 decomposition}
+			\item{Covariant time derivative}
+			\item{Covariant gauge conditions of BSSN formulation}
+			\item{Covariant Hamiltonian approach to GH formulation}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Summary and Future Work}
+		Future Work
+		\begin{itemize}
+			\item{Numerical experiments of Hamiltonian approach to GH formulation}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\Huge
+		\begin{center}
+			Thank You!
+		\end{center}
 	\end{frame}
 \end{document}
