@@ -12,7 +12,7 @@
 \usecolortheme[named=BrickRed]{structure}
 \usetheme[height=7mm]{Rochester}
 %\usetheme{default}
-\title{\small{General Covariant Hamiltonian Approach\\to\\Generalized Harmonic Formulation of General Relativity}}
+\title{\small{Generally Covariant Hamiltonian Approach\\to\\Generalized Harmonic Formulation of General Relativity}}
 \author[M. Cao]{Meng Cao\\Advisor: Dr. John David Brown}
 \institute[NCSU]{Department of Physics\\North Carolina State University\\Raleigh, NC 27695\\
 \texttt{mcao2@ncsu.edu}}
@@ -66,6 +66,21 @@
 		\end{itemize}
 	\end{frame}
 	\begin{frame}{Introduction}
+		Breakthrough on March 17th, 2014
+		\pause
+		\begin{center}
+			\includegraphics[scale=0.6]{bicep2-hires.jpg}\\
+			\tiny{BICEP2 Collaboration}
+		\end{center}
+	\end{frame}
+	\begin{frame}{Introduction}
+		Breakthrough on March 17th, 2014
+		\begin{center}
+			\includegraphics[scale=0.3]{bicep2.jpg}\\
+			\tiny{Steffen Richter (Harvard University)}
+		\end{center}
+	\end{frame}
+	\begin{frame}{Introduction}
 		Einstein Field Equations
 		\huge
 		\begin{center}
@@ -92,13 +107,13 @@
 			\column{2in}
 			\begin{center}
 				\includegraphics[scale=0.07]{nr-baker.jpg}\\
-				\tiny{simulation: John Baker(NASA)}\\
-				\tiny{visualization: Henze(NASA)}
+				\tiny{simulation: John Baker (NASA)}\\
+				\tiny{visualization: Henze (NASA)}
 			\end{center}
 			\column{2in}
 			\begin{center}
 				\includegraphics[scale=0.5]{nr-mpg.jpg}\\
-				\tiny{simulation: C. Reisswig, L. Rezzolla(Albert Einstein Institute)}\\
+				\tiny{simulation: C. Reisswig, L. Rezzolla (Albert Einstein Institute)}\\
 				\tiny{visualization: M. Koppitz (Albert Einstein Institute/Zuse Institute Berlin)}
 			\end{center}
 		\end{columns}		
@@ -137,9 +152,9 @@
 	\begin{frame}{Introduction}
 		Advantages of Hamiltonian Formulation
 		\begin{itemize}
-			\item{Equal Status of Coordinates and Momenta}
-			\item{More Abstract Presentation of Physics}
-			\item{Embarking Point of Modern Theories}
+			\item{Equal status of coordinates and momenta}
+			\item{More abstract presentation of physics}
+			\item{Embarking point of modern theories}
 		\end{itemize}
 	\end{frame}
 	\begin{frame}{Numerical Relativity}
@@ -179,7 +194,7 @@
 			\item{ADM/BSSN}
 			\pause
 			\begin{itemize}
-				\item{Arnowitt, Deser and Minser}
+				\item{Arnowitt, Deser and Misner}
 			\pause
 				\item{Baumgarte, Shapiro, Shibata and Nakamura}
 			\end{itemize}
@@ -194,11 +209,11 @@
 	\begin{frame}{Numerical Relativity}
 		Motivation
 		\begin{itemize}
-			\item{Importance of Hamiltonian Formalism}
+			\item{Importance of Hamiltonian formalism}
 			\item{Well-posedness of GH formualation}
 			\pause
-			\item{3 + 1 Form of GH Equations[Brown, 2011]}
-			\item{Action Principle for GH formulation[Brown, 2011]}
+			\item{3 + 1 form of GH equations[Brown, 2011]}
+			\item{Action principle for GH formulation[Brown, 2011]}
 		\end{itemize}
 	\end{frame}
 	\begin{frame}{General Covariance}
@@ -220,8 +235,8 @@
 	\begin{frame}{General Covariance}
 		3 + 1 Coordinate Transformation
 		\begin{itemize}
-			\item{General Class}
-			\item{Preserve 3 + 1 Structure}
+			\item{General class}
+			\item{Preserve 3 + 1 structure}
 		\end{itemize}
 	\end{frame}
 	\begin{frame}{General Covariance}
@@ -320,17 +335,20 @@
 	\end{frame}
 	\begin{frame}{General Covariance}
 		Covariant Time Derivative
-		\begin{align*}
-		D_{t}\alpha &\equiv \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha - \frac{\alpha}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{c}\partial_{c}{\bar \alpha}\right)\\
-		D_{t}\beta^{a} &\equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \beta^{b}{\bar D}_{b}\Delta \beta^{a} + \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a}
-		\end{align*}
+		\[
+		D_{t}\alpha \equiv \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha - \frac{\alpha}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{c}\partial_{c}{\bar \alpha}\right)
+		\]
+		\pause
+		\[
+		D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \beta^{b}{\bar D}_{b}\Delta \beta^{a} + \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a}
+		\]
 	\end{frame}
 	\begin{frame}{General Covariance}
 		Gauge Conditions
 		\pause
 		\begin{align*}
 			\partial_{t}\alpha - \beta^{c}\partial_{c}\alpha &= -2\alpha K\\
-			\partial_{t}\beta^{a} &= \beta^{b}\partial_{b}\beta^{a} + \frac{3}{4}{\tilde \Gamma}^{a} - \eta \beta^{a}
+			\partial_{t}\beta^{a} - \beta^{b}\partial_{b}\beta^{a} &=  \frac{3}{4}{\tilde \Gamma}^{a} - \eta \beta^{a}
 		\end{align*}
 		\tiny
 		\[
@@ -355,6 +373,14 @@
 		\[
 			\left[\Delta {\tilde \Gamma}^{a} \equiv \sqrt{\frac{g}{{\bar g}}}^{2/3}\left(\Delta \Gamma^{a}_{~bc}g^{bc} + \frac{1}{3}g^{ab}\Delta \Gamma^{c}_{~bc}\right)\right]
 		\]
+	\end{frame}
+	\begin{frame}{Hamiltonian Approach}
+		\begin{itemize}
+			\item{Einstein-Hilbert Action}
+			\item{Non-covariant Hamiltonian System}
+			\item{Covariant Hamiltonian System}
+			\item{Well-posedness}
+		\end{itemize}
 	\end{frame}
 	\begin{frame}{Hamiltonian Approach}
 		Einstein-Hilbert Action
