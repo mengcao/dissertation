@@ -374,7 +374,7 @@ Moving puncture gauge condition consists of two parts, the 1 + log slicing condi
 \begin{equation}\label{1 + log slicing}
 \partial_{t}\alpha - \beta^{c}\partial_{c}\alpha = -2\alpha K \ .
 \end{equation}
-As we can notice that the left hand side shares several terms with $D_{t}\alpha$, it is intuitive and appropriate to replace the left hand side with $D_{t}\alpha$. However, this substitution make the left hand side transforms as a weight 2 density under time reparameterization while the right hand side transforms as a weight 1 density under such transformation. Therefore, we multiply by the background lapse function ${\bar \alpha}$, which transforms as a weight 1 density, on the right hand side to balance the equation's density weights. This leads to the general covariant 1 + log slicing condition, as following
+As we can notice that the left hand side shares several terms with $D_{t}\alpha$, it is intuitive and appropriate to replace the left hand side with $D_{t}\alpha$. However, this substitution makes the left hand side transforms as a weight 2 density under time reparameterization while the right hand side transforms as a weight 1 density under such transformation. Therefore, we multiply by the background lapse function ${\bar \alpha}$, which transforms as a weight 1 density, on the right hand side to balance the equation's density weights. This leads to the generally covariant 1 + log slicing condition, as follows
 \begin{equation}\label{covariant 1 + log slicing}
 D_{t}\alpha = -2\alpha{\bar \alpha}K \ .
 \end{equation}
@@ -414,7 +414,7 @@ D_{t}B^{a} & \equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right)B^{a}\\
 D_{t}{\tilde \Gamma}^{a} & \equiv \left(\partial_{t} - \mathcal{L}_{\beta}\right){\tilde \Gamma}^{a} \ .
 \end{align}
 \end{subequations}
-In summary, Eqs.~(\ref{gammadrivershiftfirstcovariant}, \ref{gammadrivershiftsecondcovariant}) represent general covariant Gamma-driver shift condition as a system of two equations. 
+In summary, Eqs.~(\ref{gammadrivershiftfirstcovariant}, \ref{gammadrivershiftsecondcovariant}) represent generally covariant Gamma-driver shift condition as a system of two equations. 
 
 In some other literatures\cite{vanMeter:2006vi}, Eqs.~(\ref{gammadrivershiftset}) can be integrated with initial conditions $\beta^{a}\left(t=0\right) = B^{a}\left(t=0\right) = {\tilde \Gamma}^{a}\left(t = 0\right) = 0$ and yields a single-equation form of Gamma-driver shift condition
 \begin{equation}\label{gammadrivershift}
@@ -457,13 +457,13 @@ For the other gauge source term $H_{\perp}$, the traditional gauge condition is
 \begin{equation}\label{damped gauge scalar}
 H_{\perp} = -\mu_{L}\log\left(\frac{\sqrt{g}}{\alpha}\right) \ .
 \end{equation}
-Since $H_{\perp}$ transforms as a scalar under both time-dependent spatial diffeomorphism and time reparameterization, it is obvious that we can modify Eq.~(\ref{damped gauge scalar}) as following
+Since $H_{\perp}$ transforms as a scalar under both time-dependent spatial diffeomorphism and time reparameterization, it is obvious that we can modify Eq.~(\ref{damped gauge scalar}) as below
 \begin{equation}\label{covariant damped gauge scalar}
 H_{\perp} = -\mu_{L}\log\left(\frac{\sqrt{g/{\bar g}}}{\alpha/{\bar \alpha}}\right)
 \end{equation} 
 so that it is manifestly covariant. 
 
-As mentioned in the beginning of this chapter, general covariant gauge conditions enjoy superior preference in numerical simulation when change of coordinates is necessary, since the equations are invariant under coordinate transformation. Another way to obtain correct gauge condition under coordinate transformation is to transform the non-covariant gauge condition explicitly. We briefly discuss equivalence of these two methods in Sec.~\ref{transformgauge} and in Sec.~\ref{example} we demonstrate these two methods in action under a specific kind of coordinate transformation. 
+As mentioned in the beginning of this chapter, generally covariant gauge conditions enjoy superior preference in numerical simulation when change of coordinates is necessary, since the equations are invariant under coordinate transformation. Another way to obtain correct gauge conditions under coordinate transformation is to transform the non-covariant gauge condition explicitly. We briefly discuss equivalence of these two methods in Sec.~\ref{transformgauge} and in Sec.~\ref{example} we demonstrate these two methods in action under a specific kind of coordinate transformation. It is further proved that these two methods yields equivalent results. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Another Way to Achieve Transformed Gauge Condition}\label{transformgauge}
 Assume we have some variables $v$. Under a change of coordinates, they transform to $v' = T\left(v\right)$ where $T$ is some function. We also introduce a 
@@ -527,7 +527,7 @@ We also assume that the background metric is trivial
 {\bar \alpha} & = 1\notag\\
 {\bar \beta}^{a} & = 0 \ . 
 \end{align}
-Under this transformation, let us first review the moving puncture gauge condition. Since $\partial t/\partial t' = 1$, ${\bar \alpha}' = {\bar \alpha} = 1$, the covariant time derivative of $\alpha$ collapses to
+Under this transformation, let us first try to obtain the correct moving puncture gauge condition via the covariant method. Since $\partial t/\partial t' = 1$, ${\bar \alpha}' = {\bar \alpha} = 1$, the covariant time derivative of $\alpha$ collapses to
 \begin{equation}
 D_{t}\alpha = \partial_{t}\alpha - \beta^{a}\partial_{a}\alpha \ .
 \end{equation}
@@ -604,5 +604,5 @@ One can easily check that, component-wisely, Eq.~(\ref{invertedgammadrivershift}
 
 Hereby it is proved that covariant method and transformed method lead to identical moving puncture gauge conditions under a change of coordinates and hence we can claim that our derivation of covariant gauge conditions is valid. 
 
-Although the content of this chapter seems irrelevant to the purpose of this paper, it lays down the foundation for developing Hamiltonian formulation of GH equations. Achieve general covariance is one of the most important aspects for deriving the action and Hamiltonian for GH system. It illustrates later in this paper that with the knowledge of covariant time derivative, we are able to extend the Hamiltonian and rewrite non-covariant Hamilton's equations in a general covariant format.  
+Although the content of this chapter seems irrelevant to the purpose of this paper, it lays down the foundation for developing a covariant Hamiltonian formulation of GH equations. Achieve general covariance is one of the most important aspects for deriving the action and Hamiltonian for GH system. It illustrates later in this paper that with the knowledge of covariant time derivative, we are able to extend the Hamiltonian and rewrite non-covariant Hamilton's equations in a generally covariant format.  
 

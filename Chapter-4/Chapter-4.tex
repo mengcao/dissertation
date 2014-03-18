@@ -1,5 +1,5 @@
 \chapter{Hamiltonian Approach to Generalized Harmonic Formulation}\label{hamiltonian}
-Einstein-Hilbert action encodes complete dynamic information of general relativity system. Applying variational principle to the action yields Einstein field equations. Both Lagrangian and Hamiltonian equations can be derived from the principle of least action. In this chapter, we write down the Einstein-Hilbert action in Sec.~\ref{action}. Hamiltonian and equations of motion for GH system are spelled out in Sec.~\ref{hamiltonian}. An extension of the Hamiltonian for the purpose of general covariance is discussed in Sec.~\ref{extension}. In the end, a well-posedness analysis of the system is presented in Sec.~\ref{wellposedness}. 
+Einstein-Hilbert action encodes complete dynamic information of general relativity system. Applying variational principle to the action yields Einstein field equations. Both Lagrangian and Hamiltonian equations can be derived from the principle of least action. In this chapter, we write down the Einstein-Hilbert action of generalized harmonic formulation in Sec.~\ref{action}. Hamiltonian and equations of motion for GH system are spelled out in Sec.~\ref{hamiltonian}. An extension of the Hamiltonian for the purpose of general covariance is discussed in Sec.~\ref{extension}. In the end, a well-posedness analysis of the system is presented in Sec.~\ref{wellposedness}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Action of Generalized Harmonic Formulation}\label{action}
@@ -17,11 +17,11 @@ C_{\mu} = H_{\mu} + \Delta \Gamma^{~~~\beta}_{\mu\beta}
 \end{equation}
 where $H_{\mu}$ is the gauge source vector. 
 
-With the 3 + 1 splitting of the spacetime metric $g_{\mu\nu}$ into spatial metric $g_{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$, the gauge source vector $H_{\mu}$ into its time-like component $H_{\perp}$ and spatial component $H_{a}$, the action turns into the following 3 + 1 form
+Employing 3 + 1 decomposition to split the spacetime metric $g_{\mu\nu}$ into spatial metric $g_{ab}$, lapse function $\alpha$ and shift vector $\beta^{a}$, the gauge source vector $H_{\mu}$ into its time-like component $H_{\perp}$ and spatial component $H_{a}$, the action turns into the following 3 + 1 form
 \begin{equation}\label{3+1action}
 S\left[g_{ab}, \alpha, \beta^{a}, H_{\perp}, H^{a}\right] = \int d^{4}x~~\alpha \sqrt{g} \left( R + K^{ab}K_{ab} - K^{2} - \frac{1}{2}C^{a}C_{a} + \frac{1}{2}C_{\perp}^{2}\right).
 \end{equation}
-In Eq.~(\ref{action}), $R$ is the spatial Ricci scalar, $K$ is the trace of extrinsic curvature and $\mathcal{L}_{\beta}$ is the Lie derivative along the shift vector. 
+In Eq.~(\ref{3+1action}), $R$ is the spatial Ricci scalar, $K$ is the trace of extrinsic curvature and $\mathcal{L}_{\beta}$ is the Lie derivative along the shift vector. 
 
 The splitting of $C_{\mu}$ is more delicate. According to the 3 + 1 splitting discussed in Appendix A of Ref.~\cite{Brown:2011qg}, we split $C_{\mu}$ into $C_{\perp}$ and $C_{a}$, where
 \begin{equation}
@@ -60,14 +60,15 @@ P^{ab} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot g}_{ab}} = \sqrt{g}\l
 \pi & \equiv \frac{\partial \mathscr{L}}{\partial {\dot \alpha}} = \frac{\sqrt{g}}{\alpha}C_{\perp}\\
 \rho_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot \beta}^{a}} = \frac{\sqrt{g}}{\alpha}C_{a}\\
 \Omega & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}_{\perp}} = 0\\
-\Omega_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}^{a}} = 0 \ .  
+\Omega_{a} & \equiv \frac{\partial \mathscr{L}}{\partial {\dot H}^{a}} = 0 \ .
 \end{align}
 \end{subequations}
+
 By definition of Hamiltonian density, we have
 \begin{equation}
 \mathscr{H} \equiv P^{ab}{\dot g}_{ab} + \pi{\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega {\dot H}_{\perp} + \Omega_{a}{\dot H}^{a} - \mathscr{L} \ . 
 \end{equation}
-To obtain the explicit expression of $\mathscr{H}$ in terms of $g_{ab}$, $\alpha$, $\beta^{a}$, $H_{\perp}$, $H^{a}$ and their conjugate momenta $P^{ab}$, $\pi$, $\rho_{a}$, $\Omega$, $\Omega_{a}$ we need to invert Eqs.~(\ref{momenta}) to eliminate $\partial_{t}g_{ab}$, $\partial_{t}\alpha$ and $\partial_{t}\beta^{a}$. The inversion can be written down as following
+To obtain the explicit expression of $\mathscr{H}$ in terms of $g_{ab}$, $\alpha$, $\beta^{a}$, $H_{\perp}$, $H^{a}$ and their conjugate momenta $P^{ab}$, $\pi$, $\rho_{a}$, $\Omega$, $\Omega_{a}$ we need to invert Eqs.~(\ref{momenta}) to eliminate ${\dot g}_{ab}$, ${\dot \alpha}$ and ${\dot \beta}^{a}$. The inversion can be written down as follows
 \begin{subequations}
 \begin{align}
 D_{t}g_{ab} & = \frac{2\alpha P_{ab}}{\sqrt{g}} - \frac{\alpha P g_{ab}}{\sqrt{g}} - \frac{\alpha^{2}\pi g_{ab}}{2\sqrt{g}}\\
@@ -84,18 +85,19 @@ However, it is impossible to invert the last two equations in Eqs.~(\ref{momenta
 {\dot H}^{a} & = \Lambda^{a} \ .
 \end{align}
 \end{subequations}
-The resulting Hamiltonian density is $\mathscr{H} \equiv P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega \Lambda + \Omega_{a}\Lambda^{a} - \mathscr{L}$. Wirte it out explicitly, we have
+Write the resulting Hamiltonian density out explicitly, we have
 \begin{align}
-\begin{split}
-\mathscr{H} &= \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
-& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + P^{ab} \mathcal{L}_{\beta}g_{ab} + \pi \mathcal{L}_{\beta}\alpha + \rho_{a}\left(\beta^{b}{\bar D}_{b}\Delta \beta^{a} - \Delta \beta^{b} {\bar D}_{b}{\bar \beta}^{a}\right)\\
-& + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha + \rho_{a}{\dot {\bar \beta}}^{a} + \frac{1}{{\bar \alpha}}\left(\rho_{a}\Delta \beta^{a} + \pi \alpha \right)\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) - \alpha\sqrt{g}R\\
-& + \Omega \Lambda + \Omega_{a}\Lambda^{a} \ .
-\end{split}
+	\begin{split}
+		\mathscr{H} &= \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
+		& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
+		& + P^{ab} \mathcal{L}_{\beta}g_{ab} + \pi \left[\beta^{c}\partial_{c}\alpha + \frac{\alpha}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right)\right]\\
+		& + \rho_{a}\left[{\dot {\bar \beta}}^{a} + \frac{\Delta \beta^{a}}{{\bar \alpha}}\left({\dot {\bar \alpha}} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \beta^{b}{\bar D}_{b}\Delta \beta^{a} - \Delta \beta^{b} {\bar D}_{b}{\bar \beta}^{a}\right]\\
+		& + \Omega \Lambda + \Omega_{a}\Lambda^{a}
+	\end{split}
 \end{align}
 Consequently, we can write the action in Hamiltonian form as
 \begin{equation}\label{non covariant action}
-S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = \int d^{4}x \left(P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega{\dot H_{\perp}} + \Omega_{a}{\dot H}^{a} - \mathscr{H}\right) \ .
+S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ]\footnote{Indices of arguments are ommitted here for the purpose of a concise presentation. } = \int d^{4}x \left(P^{ab}{\dot g}_{ab} + \pi {\dot \alpha} + \rho_{a}{\dot \beta}^{a} + \Omega{\dot H_{\perp}} + \Omega_{a}{\dot H}^{a} - \mathscr{H}\right) \ .
 \end{equation}
 Hamilton's equations of motion can be derived from the action by applying the least action principle, i.e., $\delta S = 0$. Therefore, by varying the action with respect to the canonical variables, we have
 \begin{subequations}\label{non covariant hamilton}
@@ -128,7 +130,7 @@ Hamilton's equations of motion can be derived from the action by applying the le
 \end{align}
 \end{subequations}
 
-One may notice that Eqs.~(\ref{non covariant hamilton}) are not manifestly covariant under foliation preserving coordinate transformation. This is a direct result from the fact that the action itself(\ref{non covariant action}) is not covariant. It is the presence of non-covariant time derivatives, such as $P^{ab}{\dot g}_{ab}$, $\pi{\dot \alpha}$, $\rho_{a}{\dot \beta}$, $\Omega{\dot H}_{\perp}$ and $\Omega_{a}{\dot H}^{a}$, that prevents the action from being general covariant. However, a more careful observation reveals that, non-coincidentally, we can extract some terms from the hamiltonian $\mathscr{H}$ to combine with the regular time derivatives and make them covariant time derivatives $D_{t}g_{ab}$, $D_{t}\alpha$, $D_{t}\beta^{a}$, as presented in Eqs.~(\ref{spatialmetriccovarianttimederivative}, \ref{lapsecovarianttimederivative}, \ref{shiftcovarianttimederivative}). Therefore, we start to modify the action presentation as following
+One may notice that Eqs.~(\ref{non covariant hamilton}) are not manifestly covariant under foliation preserving transformation. This is a direct result from the fact that the action itself(\ref{non covariant action}) is not manifestly covariant. It is the presence of non-covariant time derivatives, such as $P^{ab}{\dot g}_{ab}$, $\pi{\dot \alpha}$, $\rho_{a}{\dot \beta}$, $\Omega{\dot H}_{\perp}$ and $\Omega_{a}{\dot H}^{a}$, that prevents the action from being manifestly covariant. However, a more careful observation reveals that, non-coincidentally, we can extract some terms from the hamiltonian $\mathscr{H}$ to combine with the ordinary time derivative terms and make them covariant time derivatives $D_{t}g_{ab}$, $D_{t}\alpha$, $D_{t}\beta^{a}$, as presented in Eqs.~(\ref{spatialmetriccovarianttimederivative}, \ref{lapsecovarianttimederivative}, \ref{shiftcovarianttimederivative}). Therefore, we start to modify the action presentation as following
 \begin{equation}\label{modified action}
 S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = \int d^{4}x \left( P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\beta^{a} + \Omega {\dot H}_{\perp} + \Omega_{a}{\dot H}^{a} - \tilde{\mathscr{H}}\right)
 \end{equation}
@@ -154,14 +156,14 @@ Due to the Hamiltonian's constraints $\Omega = 0$ and $\Omega_{a} = 0$, we notic
 & + \Omega {\hat \Lambda} + \Omega_{a}{\hat \Lambda}^{a} \ .
 \end{split}
 \end{align}
-Note that here we absorb $\Lambda$ and $\Lambda^{a}$ into functions ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$, respectively. Now we can choose ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ appropriately so that they can combine with $\partial_{t}H_{\perp}$ and $\partial_{t}H^{a}$ to form $D_{t}H_{\perp}$ and $D_{t}H^{a}$ respectively, i.e., 
+Note that here we absorb $\Lambda$ and $\Lambda^{a}$ into functions ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$, respectively. Now we can choose ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ appropriately so that they can combine with ${\dot H}_{\perp}$ and ${\dot H}^{a}$ to form $D_{t}H_{\perp}$ and $D_{t}H^{a}$ respectively, i.e., 
 \begin{subequations}
 \begin{align}
 {\hat \Lambda} & = \mathcal{L}_{\beta}H_{\perp}\\
 {\hat \Lambda}^{a} & = \mathcal{L}_{\beta}H^{a} \ .
 \end{align}
 \end{subequations}
-Then we obtain a general covariant format of the action as
+From here we obtain a generally covariant format of the action as
 \begin{equation}\label{covariant action}
 \begin{split}
 S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = & \int d^{4}x ~~~~P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta \beta^{a} + \Omega D_{t}H_{\perp} + \Omega_{a}D_{t}H^{a}\\
@@ -171,9 +173,9 @@ S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = & \int d^{4}x ~~~~P^{ab
 \end{equation}
 Note that this action is both implicitly and explicitly covariant, i.e., it is covariant as a whole object and each individual term in the action is covariant by itself as well. 
 
-A careful reader will also notice that, besides making the action covariant, there is one extra change from Eq.~(\ref{modified action}) to Eq.~(\ref{covariant action}) as well. The term coupling with $\rho_{a}$ is $D_{t}\Delta \beta$ instead of $D_{t}\beta^{a}$ now. A superficial justification for this operation is that from Eq.~(\ref{shiftcovarianttimederivative}) we can tell that $D_{t}{\bar \beta}^{a} = 0$ and hence $D_{t}\Delta \beta^{a} = D_{t}\beta^{a}$. Prior to a deeper understanding of this operation, let's first take a look at our approach to vary the action to get a set of explicitly covariant Hamilton's equations. 
+A careful reader would also notice that, besides making the action manifestly covariant, there is one extra change from Eq.~(\ref{modified action}) to Eq.~(\ref{covariant action}) as well. The term coupling with $\rho_{a}$ is $D_{t}\Delta \beta$ instead of $D_{t}\beta^{a}$ now. A superficial justification for this operation is that from Eq.~(\ref{shiftcovarianttimederivative}) we can tell that $D_{t}{\bar \beta}^{a} = 0$ and hence $D_{t}\Delta \beta^{a} = D_{t}\beta^{a}$. Prior to a deeper understanding of this operation, let's first take a look at our approach to vary the action to get a set of manifestly covariant Hamilton's equations. 
 
-By manifestly covariant, what we want is that terms on the left hand side and right hand side of equations of motion are both covariant. Therefore, instead of a regular time derivative operator on the lefthand side of the equations, we require a covariant time derivative operator. Hence, when varying the action, we want the terms with covariant time derivative have the same product rule as regular time derivatives, i.e., for any generic coordinate variable $q$ and its conjugate momentum $p$, we require that
+By manifestly covariant, what we want is that terms on the left hand side and right hand side of equations of motion are both covariant. Therefore, instead of a ordinary time derivative operator on the left hand side of the equations, we require a covariant time derivative operator. Hence, when varying the action, we want the terms with covariant time derivative have the same product rule as ordinary time derivatives, i.e., for any generic coordinate variable $q$ and its conjugate momentum $p$, we require that
 \begin{equation}\label{productrule}
 D_{t}( pq ) = pD_{t}q + qD_{t}p \ .
 \end{equation}
@@ -181,7 +183,7 @@ We also require $D_{t}(pq)$ has a format of total derivative so that it can be t
 \begin{equation}
 D_{t}(pq) = \partial_{t}(pq) - \mathcal{L}_{\beta}(pq) = \partial_{t}(pq) - \partial_{c}\left(\beta^{c}pq\right) \ .
 \end{equation}
-This is the reason why we want to replace $\rho_{a}D_{t}\beta^{a}$ with $\rho_{a}D_{t}\Delta \beta^{a}$, since $\rho_{a}\Delta \beta^{a}$ is a weight 1 density under spatial diffeomorphism and a scalar under time reparameterization while $\rho_{a}\beta^{a}$ is not. 
+Here resides the reason why we want to replace $\rho_{a}D_{t}\beta^{a}$ with $\rho_{a}D_{t}\Delta \beta^{a}$, since $\rho_{a}\Delta \beta^{a}$ is a weight 1 density under spatial diffeomorphism and a scalar under time reparameterization while $\rho_{a}\beta^{a}$ is not. 
 
 With explicit definition of $D_{t}q$, the product rule allows us to define $D_{t}p$ from Eq.~(\ref{productrule}) in the following way
 \begin{subequations}
@@ -194,7 +196,7 @@ D_{t}\Omega_{a} & \equiv {\dot \Omega}_{a} - \mathcal{L}_{\beta}\Omega_{a} \ .
 \end{align}
 \end{subequations}
 
-With these two properties of covariant time derivative, we can vary the covariant action to obtain the explicitly covariant Hamilton's equations,
+With these two properties of covariant time derivative, we can vary the covariant action to obtain the explicitly covariant Hamilton's equations as below,
 \begin{subequations}\label{covarianthamilton}
 \begin{align}
 D_{t}g_{ab} & = \frac{2\alpha}{\sqrt{g}}P_{ab} - \frac{\alpha P}{\sqrt{g}}g_{ab} - \frac{\alpha^{2}\pi}{2\sqrt{g}}g_{ab}\\
@@ -225,20 +227,20 @@ In order for the Hamiltonian formulation discussed above to be practical in nume
 \subsection{Definition}\label{wellposednessdefinition}
 The notion of ``well-posed'' is originated from Jacques Hadamard, a French mathematician. He argues that mathematical models of physical phenomena should have the properties that a unique solution exists and the solution's behavior changes continuously with the initial conditions. Wald gave his own yet similar definition of well-posedness in his book {\em General Relativity}\cite{Wald:GRbook}. Wald's definition states that in order for a numerical formulation to be well-posed, firstly small changes in initial data should produce only correspondingly small changes in the solution over any fixed compact region of spacetime; and secondly changes of initial data in a region should only be responsible for changes in the solution inside the causal future of this region. The first requirement is necessary since it is impossible to measure initial condition in infinite accuracy. The second property guarantees no signal could propagate faster than the speed of light and keep the numerical formulation under framework of relativity theory. 
 
-An algebraic criterion is introduced and widely adopted to analyze well-posedness of a quasilinear partial differential equation system, namely hyperbolicity. An initial value problem with weakly hyperbolicity is regarded as ill-posed. Strongly hyperbolicity is necessary and sufficient for an initial value problem without boundaries in space to be well-posed. For initial value systems with space boundaries being well-posed, an even stronger notion of hyperbolicity, symmetric hyperbolicity, is required. Gundlach, Mart\' \i n-Garc\' \i a\cite{Gundlach:2005ta} and Brown\cite{Brown:2008cca} have presented practical definition of various types of hyperbolicity and prescriptions to prove them. Their theories to determine the hyperbolicity of a Hamiltonian system is briefly reviewed as following. 
+An algebraic criterion is introduced and widely adopted to analyze well-posedness of a quasilinear partial differential equation system, namely {\em hyperbolicity}. An initial value problem with weakly hyperbolicity is regarded as ill-posed. Strongly hyperbolicity is necessary and sufficient for an initial value problem without boundaries in space to be well-posed. For initial value systems with space boundaries being well-posed, an even stronger notion of hyperbolicity, symmetric hyperbolicity, is required. Gundlach, Mart\' \i n-Garc\' \i a\cite{Gundlach:2005ta} and Brown\cite{Brown:2008cca} have presented practical definition of various types of hyperbolicity and prescriptions to prove them. Their theories to determine the hyperbolicity of a Hamiltonian system is briefly reviewed as following. 
 
-Well-posedness guarantees small perturbation in initial data only leads to proportional deviations of the solution. Therefore in analyzing well-posedness we are primary concerned with evolutions of high wave number modes in initial value perturbations. For large wave numbers, behavior of the Hamiltonian system depends on the coefficients of the highest weight terms in the Hamiltonian, namely the principal terms. The principal symbol $A$ is a square matrix obtained by identifying the principal terms in Hamilton's equations. According to Brown's prescription\cite{Brown:2008cca}, for a Hamiltonian system with generalized coordinates $q_{\mu}$ and momenta $p_{\mu}$ \footnote{Here the subscript $\mu$ is merely a counting index rather than tensor notation.}, the principal parts of $\partial_{t}q_{\mu}$ equations are the terms proportional to $p_{\mu}$ and $\partial_{a}q_{\mu}$; principal parts of $\partial_{t}p_{\mu}$ equations are the terms proportional to $\partial_{a}p_{\mu}$ and $\partial_{a}\partial_{b}q_{\mu}$. To construct the principal symbol $A$, one only needs to carry out the following substitution
+Well-posedness guarantees small perturbation in initial data only leads to proportional deviations of the solution. Therefore in analyzing well-posedness we are primarily concerned with evolutions of high wave number modes in initial value perturbations. For large wave numbers, behavior of the Hamiltonian system depends on the coefficients of the highest weight terms in the Hamiltonian, namely the principal terms. The principal symbol $A$ is a square matrix obtained by identifying the principal terms in Hamilton's equations. According to Brown's prescription\cite{Brown:2008cca}, for a Hamiltonian system with generalized coordinates $q_{\mu}$ and momenta $p_{\mu}$ \footnote{Here the subscript $\mu$ is merely a counting index rather than tensor notation.}, the principal parts of ${\dot q}_{\mu}$ equations are the terms proportional to $p_{\mu}$ and $\partial_{a}q_{\mu}$; principal parts of ${\dot p}_{\mu}$ equations are the terms proportional to $\partial_{a}p_{\mu}$ and $\partial_{a}\partial_{b}q_{\mu}$. To construct the principal symbol $A$, one only needs to carry out the following substitution
 \begin{subequations}\label{substitution}
 \begin{align}
-p & \rightarrow {\bar p}\\
-\partial_{a}q &\rightarrow n_{a}{\bar q}\\
-\partial_{a}p & \rightarrow n_{a}{\bar p}\\
-\partial_{a}\partial_{b}p & \rightarrow n_{a}n_{b}{\bar p} \ ,
+p_{\mu} & \rightarrow {\bar p}_{\mu}\\
+\partial_{a}q_{\mu} &\rightarrow n_{a}{\bar q}_{\mu}\\
+\partial_{a}p_{\mu} & \rightarrow n_{a}{\bar p}_{\mu}\\
+\partial_{a}\partial_{b}p_{\mu} & \rightarrow n_{a}n_{b}{\bar p}_{\mu} \ ,
 \end{align}
 \end{subequations}
 where ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$ are Fourier mode amplitudes of corresponding perturbations for $q_{\mu}$ and $p_{\mu}$. The principal symbol $A$ is formed from the coefficients of ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$. 
 
-Solving eigen problem of the principal symbol $A$ reveals hyperbolicity of the PDE system in consideration. If $A$ has real eigenvalues but its eigenvectors are not complete, the system is regarded as weakly hyperbolic. By contrast, a system whose principal symbol $A$ has real eigenvalues and a complete set of eigenvectors is said to be strongly hyperbolic. 
+Solving eigen problem of the principal symbol $A$ reveals hyperbolicity of the PDE system in consideration. If all eigenvalues of $A$ are real but the eigenvectors are not complete, the system is regarded as weakly hyperbolic. By contrast, a system whose principal symbol $A$ has all real eigenvalues and a complete set of eigenvectors is said to be strongly hyperbolic. 
 
 To further prove symmetric hyperbolicity, an energy term $\epsilon$ in quadratic form of the dynamic variables $p_{\mu}$, $q_{\mu}$ needs to be determined. Gundlach and Mart\' \i n-Garc\' \i a\cite{Gundlach:2005ta} pointed out that if $\epsilon$ is positive definite\footnote{$\epsilon = 0$ if and only if $q_{\mu} = 0$ and $p_{\mu} = 0$.} and the principal part of its time derivative can be written as the gradient of a vector $\phi^{a}$, i.e., $\partial_{t}\epsilon \cong \partial_{a}\phi^{a}$, the Hamiltonian system is considered to be symmetric hyperbolic. 
 
@@ -265,7 +267,7 @@ Following the recipe given above, we first extract the principal part of Eqs.~(\
 \end{subequations}
 The $\cong$ symbol denotes equality up to non principal terms. These equations are expressed in terms of the operator $\partial_{\perp} \equiv \partial_{t} - \beta^{a}\partial_{a}$ so that the characteristic speeds are defined with respect to observers who are at rest in the spacelike slices. 
 
-The next step is to construct the principal symbol $A$ by making the replacement described in Eqs.~(\ref{substitution}) and identifying coefficients on the right-hand sides of Eqs.~(\ref{principalhamilton}). We also divide these coefficients by a factor of $\alpha$ so that the characteristic speeds can be expressed in terms of proper time rather that coordinate time. The resulting eigenvalue problem is
+The next step is to construct the principal symbol $A$ by making the replacement described in Eqs.~(\ref{substitution}) and identifying coefficients on the right-hand sides of Eqs.~(\ref{principalhamilton}). We also divide these coefficients by a factor of $\alpha$ so that the characteristic speeds can be expressed in terms of proper time rather than coordinate time. The resulting eigenvalue problem is
 \begin{subequations}\label{eigensystem}
 \begin{align}
 \mu {\bar g}_{ab} & = \frac{2}{\alpha}n_{(a}{\bar \beta}_{b)} + \frac{2}{\sqrt{g}}{\bar P}_{ab} - \frac{g_{ab}}{\sqrt{g}}\left({\bar P}_{nn} + {\bar P}_{AB}\delta^{AB}\right) - \frac{\alpha g_{ab}}{2\sqrt{g}}{\bar \pi}\\
@@ -323,9 +325,9 @@ At last, the trace-free tensor sector is
 \mu {\bar P}^{tf}_{AB} & = \frac{\sqrt{g}}{2}{\bar g}^{tf}_{AB} \ .
 \end{align}
 \end{subequations}
-Solving the three sub-eigenproblems reveals that the eigenvalues for the scalar sector are $\pm 1$ and 0, each with multiplicity four. The eigenvalues for the vector sector are $\pm 1$ with multiplicity two and 0 with multiplicity two as well; the eigenvalues for the trace-free tensor sector are $\pm 1$; the eigenvectors for all the three sectors are complete, which draws the conclusion that the system is strongly hyperbolic. 
+Solving the three sub-eigenproblems reveals that eigenvalues for the scalar sector are $\pm 1$ and 0, each with multiplicity four; eigenvalues for the vector sector are $\pm 1$ with multiplicity two and 0 with multiplicity two as well; eigenvalues for the trace-free tensor sector are $\pm 1$; eigenvectors for all the three sectors are complete, which draws the conclusion that the system is strongly hyperbolic. 
 
-To further prove this system is symmetric hyperbolic, we apply Gundlach and Matrtin-Garcia\cite{Gundlach:2005ta}'s definition of symmetric hyperbolicity that applies to quasilinear systems of partial differential equations with first-order time and second-order space derivatives and follow the analysis described in Ref.~\cite{Brown:2011qg}. To begin with, we introduce the spatial derivates of the 3 + 1 coordinate variables $g_{ab}, \alpha, \beta^{a}, H_{\perp}$ and $H^{a}$ as a new set of variables
+To further prove this system is symmetric hyperbolic, we apply Gundlach and Matrtin-Garcia\cite{Gundlach:2005ta}'s definition of symmetric hyperbolicity for quasilinear systems of partial differential equations with first-order time and second-order space derivatives and follow the analysis described in Ref.~\cite{Brown:2011qg}. To begin with, we introduce the spatial derivates of the 3 + 1 coordinate variables $g_{ab}, \alpha, \beta^{a}, H_{\perp}$ and $H^{a}$ as a new set of variables
 \begin{subequations}
 \begin{align}
 g_{cab} & \equiv \partial_{c}g_{ab}\\
@@ -335,7 +337,7 @@ H_{\perp a} & \equiv \partial_{a}H_{\perp}\\
 H_{ab} & \equiv g_{ac}\partial_{b}H^{c} \ .
 \end{align}
 \end{subequations}
-Then we compute the equations of motion for this new set of variables by differentiating Eqs.~(\ref{covarianthamilton}). Combine the resulting equations of motion with the equations of motion for the momenta, we obtain a new set of equations of motion as following(up to the principal terms)
+Then we compute the equations of motion for this new set of variables by differentiating Eqs.~(\ref{covarianthamilton}). Combine the resulting equations of motion with Hamilton's equations for the momenta, we obtain a new system as following(up to the principal terms)
 \begin{subequations}\label{symmetric hamilton}
 \begin{align}
 \partial_{\perp}g_{cab} & \cong 2\partial_{c}\beta_{(ab)} + \frac{2\alpha}{\sqrt{g}}\partial_{c}P_{ab} - \frac{\alpha}{\sqrt{g}}g_{ab}g^{de}\partial_{c}P_{de} - \frac{\alpha^{2}}{2\sqrt{g}}g_{ab}\partial_{c}\pi\\
@@ -354,7 +356,7 @@ Then we compute the equations of motion for this new set of variables by differe
 \partial_{\perp}\Omega_{a} & \cong 0.
 \end{align}
 \end{subequations}
-Then we define the quadratic form
+The quadratic energy term is defined as follows
 \tiny
 \begin{align}
 \begin{split}
