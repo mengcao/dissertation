@@ -148,30 +148,22 @@ Note that in the modified action (\ref{modified action}), we still have two non-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hamiltonian Extension}\label{extension}
-Due to the Hamiltonian's constraints $\Omega = 0$ and $\Omega_{a} = 0$, we notice that the histories extremize the action, which contains $\Omega \Lambda$ and $\Omega_{a}\Lambda^{a}$, are invariant if we replace the multipliers by $\Lambda \rightarrow \Lambda + {\hat \Lambda}$ and $\Lambda^{a} \rightarrow \Lambda^{a} + {\hat \Lambda}^{a}$ while restraining ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ to be quasilinear functions of the canonical variables. What quasilinear means is that the principal parts of ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ are linear in the momenta $P^{ab}$, $\pi$, $\rho_{a}$, $\Omega$ and $\Omega_{a}$; and first spatial derivatives of the coordinates $\partial_{c}g_{ab}$, $\partial_{a}\alpha$, $\partial_{b}\beta^{a}$, $\partial_{a}H_{\perp}$ and $\partial_{b}H^{a}$ with coefficients depending on the coordinates. With these replacements, the modified Hamiltonian density becomes
-\begin{align}
-\begin{split}
-\tilde{\mathscr{H}} & = \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
-& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
-& + \Omega {\hat \Lambda} + \Omega_{a}{\hat \Lambda}^{a} \ .
-\end{split}
-\end{align}
-Note that here we absorb $\Lambda$ and $\Lambda^{a}$ into functions ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$, respectively. Now we can choose ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ appropriately so that they can combine with ${\dot H}_{\perp}$ and ${\dot H}^{a}$ to form $D_{t}H_{\perp}$ and $D_{t}H^{a}$ respectively, i.e., 
+Due to the Hamiltonian's constraints $\Omega = 0$ and $\Omega_{a} = 0$, we notice that the histories extremize the action, which contains $\Omega \Lambda$ and $\Omega_{a}\Lambda^{a}$, are invariant if we replace the multipliers by $\Lambda \rightarrow \Lambda + {\hat \Lambda}$ and $\Lambda^{a} \rightarrow \Lambda^{a} + {\hat \Lambda}^{a}$ while restraining ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ to be quasilinear functions of the canonical variables. What quasilinear means is that the principal parts of ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ are linear in the momenta $P^{ab}$, $\pi$, $\rho_{a}$, $\Omega$ and $\Omega_{a}$; and first spatial derivatives of the coordinates $\partial_{c}g_{ab}$, $\partial_{a}\alpha$, $\partial_{b}\beta^{a}$, $\partial_{a}H_{\perp}$ and $\partial_{b}H^{a}$ with coefficients depending on the coordinates. With these replacements, we can choose ${\hat \Lambda}$ and ${\hat \Lambda}^{a}$ appropriately so that they can combine with ${\dot H}_{\perp}$ and ${\dot H}^{a}$ in Eq.~(\ref{modified action}) to form $D_{t}H_{\perp}$ and $D_{t}H^{a}$ respectively, i.e., 
 \begin{subequations}
 \begin{align}
-{\hat \Lambda} & = \mathcal{L}_{\beta}H_{\perp}\\
-{\hat \Lambda}^{a} & = \mathcal{L}_{\beta}H^{a} \ .
+{\hat \Lambda} & \equiv \mathcal{L}_{\beta}H_{\perp}\\
+{\hat \Lambda}^{a} & \equiv \mathcal{L}_{\beta}H^{a} \ .
 \end{align}
 \end{subequations}
-From here we obtain a generally covariant format of the action as
+From here we obtain a manifestly covariant format of the action as
 \begin{equation}\label{covariant action}
 \begin{split}
 S[g, P, \alpha, \pi, \beta, \rho, H, \Omega, \Lambda ] = & \int d^{4}x ~~~~P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta \beta^{a} + \Omega D_{t}H_{\perp} + \Omega_{a}D_{t}H^{a}\\
 & - \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
-& +\alpha^{2}\pi H_{\perp} - \alpha^{2}\rho_{a}H^{a} - \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} + \alpha \rho^{a}\partial_{a}\alpha + \alpha\sqrt{g}R \ .
+& +\alpha^{2}\pi H_{\perp} - \alpha^{2}\rho_{a}H^{a} - \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} + \alpha \rho^{a}\partial_{a}\alpha + \alpha\sqrt{g}R\\
+& - \Omega\Lambda - \Omega_{a}\Lambda^{a} \ .
 \end{split}
-\end{equation}
-Note that this action is both implicitly and explicitly covariant, i.e., it is covariant as a whole object and each individual term in the action is covariant by itself as well. 
+\end{equation} 
 
 A careful reader would also notice that, besides making the action manifestly covariant, there is one extra change from Eq.~(\ref{modified action}) to Eq.~(\ref{covariant action}) as well. The term coupling with $\rho_{a}$ is $D_{t}\Delta \beta$ instead of $D_{t}\beta^{a}$ now. A superficial justification for this operation is that from Eq.~(\ref{shiftcovarianttimederivative}) we can tell that $D_{t}{\bar \beta}^{a} = 0$ and hence $D_{t}\Delta \beta^{a} = D_{t}\beta^{a}$. Prior to a deeper understanding of this operation, let's first take a look at our approach to vary the action to get a set of manifestly covariant Hamilton's equations. 
 
@@ -214,9 +206,9 @@ D_{t}\pi & = 2\alpha\pi H_{\perp} - 2\alpha \rho_{a}H^{a} - 2\alpha\Delta \Gamma
 \end{split}\\
 D_{t}\Delta \beta^{a} & = - \frac{\alpha^{3}}{\sqrt{g}}\rho^{a} + \alpha^{2}H^{a} + \alpha^{2}\Delta \Gamma^{a}_{~bc}g^{bc} - \alpha g^{ab}\partial_{b}\alpha\\
 D_{t}\rho_{a} & = - \rho_{b}{\bar D}_{a}\Delta\beta^{b} - P^{bc}\partial_{a}g_{bc} + 2\partial_{b}\left(P^{bc}g_{ac}\right) - \pi \partial_{a}\alpha - \Omega \partial_{a}H_{\perp} - \Omega_{b}\partial_{a}H^{b} - \partial_{b}\left(H^{b} \Omega_{a}\right)\\
-D_{t}H_{\perp} & = 0\\
+D_{t}H_{\perp} & = \Lambda\\
 D_{t}\Omega & = \alpha^{2}\pi \label{omega}\\
-D_{t}H^{a} & = 0\\
+D_{t}H^{a} & = \Lambda^{a}\\
 D_{t}\Omega_{a} & = -\alpha^{2}\rho_{a} \label{omega_a} \ .
 \end{align}
 \end{subequations}

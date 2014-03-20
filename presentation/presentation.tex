@@ -460,11 +460,12 @@
 		Covariant Hamiltonian
 		\begin{align*}
 		\tilde{\mathscr{H}} & = \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
-		& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R
+		& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
+		& + \Omega\Lambda + \Omega_{a}\Lambda^{a}
 		\end{align*}
 		\begin{align*}
 		S &= \int d^{4}x \left[ P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta\beta^{a}\right. \\
-		& \left. + \Omega \left({\dot H}_{\perp} - \Lambda\right) + \Omega_{a}\left({\dot H}^{a} - \Lambda^{a}\right) - \tilde{\mathscr{H}}\right]
+		& \left. + \Omega{\dot H}_{\perp} + \Omega_{a}{\dot H}^{a} - \tilde{\mathscr{H}}\right]
 		\end{align*}
 	\end{frame}
 	\begin{frame}{Hamiltonian Formalism of GH Formulation}
@@ -478,7 +479,8 @@
 		Hamiltonian Extension
 		\begin{align*}
 				\tilde{\mathscr{H}} & = \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
-				& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R
+				& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
+				& + \Omega\Lambda + \Omega_{a}\Lambda^{a}
 		\end{align*}
 		\begin{align*}
 			S &= \int d^{4}x \left[ P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta\beta^{a}\right. \\
@@ -501,7 +503,8 @@
 		Hamiltonian Extension
 		\begin{align*}
 				\tilde{\mathscr{H}} & = \frac{\alpha}{\sqrt{g}}\left(P^{ab}P_{ab} - \frac{P^{2}}{2} - \frac{\alpha P \pi}{2} + \frac{\alpha^{2}\pi^{2}}{8} - \frac{\alpha^{2}}{2}\rho_{a}\rho^{a}\right)\\
-				& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R
+				& -\alpha^{2}\pi H_{\perp} + \alpha^{2}\rho_{a}H^{a} + \alpha^{2}\Delta\Gamma^{a}_{~bc}g^{bc}\rho_{a} - \alpha \rho^{a}\partial_{a}\alpha - \alpha\sqrt{g}R\\
+				& + \Omega\Lambda + \Omega_{a}\Lambda^{a}
 		\end{align*}
 		\begin{align*}
 			S &= \int d^{4}x \left[ P^{ab}D_{t}g_{ab} + \pi D_{t}\alpha + \rho_{a}D_{t}\Delta\beta^{a}\right. \\
@@ -536,9 +539,9 @@
 		D_{t}\rho_{a} & = - \rho_{b}{\bar D}_{a}\Delta\beta^{b} - P^{bc}\partial_{a}g_{bc} + 2\partial_{b}\left(P^{bc}g_{ac}\right) - \pi \partial_{a}\alpha\\
 		& - \Omega \partial_{a}H_{\perp} - \Omega_{b}\partial_{a}H^{b} - \partial_{b}\left(H^{b} \Omega_{a}\right)
 		\end{split}\\
-		D_{t}H_{\perp} & = 0\\
+		D_{t}H_{\perp} & = \Lambda\\
 		D_{t}\Omega & = \alpha^{2}\pi \\
-		D_{t}H^{a} & = 0\\
+		D_{t}H^{a} & = \Lambda^{a}\\
 		D_{t}\Omega_{a} & = -\alpha^{2}\rho_{a}
 		\end{align*}
 	\end{frame}
