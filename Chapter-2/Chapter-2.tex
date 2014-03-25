@@ -3,6 +3,12 @@ As mentioned before, the rise of numerical relativity answered for the desire of
 \section{3 + 1 Decomposition}\label{3+1}
 For initial value problems of ordinary particle mechanics, the evolution of a system is dependent on the initial conditions and equations of motion for the system. It is easy to feed computers with initial value data and integrate the partial differential equations of motion along time axis numerically to obtain dynamic evolution of the system. During the past several decades, various types of numerical algorithms are developed to solve initial value problems and they are proved to be successful. However, since Einstein united time and space dimensions in his theory of gravity, initial value data is not native in Einstein's equations. Therefore, an important prerequisite for developing any numerical formulation for Einstein field equations is to decompose the four dimensional spacetime into a one-parameter family of nonintersecting spacelike hypersurfaces, namely foliations, ``one for each instant of time''. The operation of constructing a rigid structure of such series of foliations is referred as ``3 + 1 decomposition''. 
 
+\begin{figure}[hbtp]
+\centering
+\includegraphics{decomposition-1}
+\caption{A spacetime diagram illustrating the 3 + 1 decomposition}
+\end{figure}
+
 In order to  construct a rigid structure of the decomposition, several physical quantities need to be specified. First and foremost is the three dimensional spatial metric $g_{ab}$ on each foliation, which defines the proper distance between two points reside on the hypersurface. Second of all, the proper distance between each foliation is specified by the lapse function $\alpha$. Although it is not necessary to keep coordinate system on each foliation related to each other, due to practical consideration, a shift vector $\beta^{a}$ is defined to weld coordinate systems between each two consecutive hypersurfaces. The spacetime metric $^{(4)}g_{\mu\nu}$ is split in terms of spatial metric $g_{ab}$, lapse function $\alpha$, shift vector $\beta^{a}$ as follows
 \begin{equation}
 	{}^{\left(4\right)}g_{\mu\nu} = \left(-\alpha^2 + \beta^{a}\beta_{a}\right)\delta_\mu^0\delta_\nu^0 
