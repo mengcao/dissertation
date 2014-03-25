@@ -103,7 +103,7 @@ since Cartesian coordinates are not unique. Nevertheless, one chooses some set o
 and then writes the gauge equations in these coordinates.  One can then use the transformation rules for the fields to write the gauge conditions in terms of 
 other coordinate systems. As we will show, these calculations can be tedious. 
 
-The alternative discussed in this paper is to rewrite the gauge conditions in a form that is generally covariant under foliation preserving 
+The alternative discussed in this dissertation is to rewrite the gauge conditions in a form that is generally covariant under foliation preserving 
 transformations (\ref{foliationpreservingtransf}). The gauge equations then take the same form in any coordinate system, and there is no need derive a new form 
 for each coordinate system that one might consider. To carry out the analysis, we first derive the transformation rules for the ADM variables $\alpha$, $\beta^a$, 
 $g_{ab}$, $K_{ab}$, and their time and spatial derivatives, under the foliation preserving transformations (\ref{foliationpreservingtransf}). Next, we introduce a 
@@ -319,7 +319,7 @@ Define $\sigma \equiv c_{1}$, then we can write all the other constants in terms
 \begin{equation}
 	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{a}\partial_{a}{\bar \alpha}\right) + \sigma\beta^{b}{\bar D}_{b}\beta^{a} + \left(1-\sigma\right)\beta^{b}{\bar D}_{b}{\bar \beta}^{a} - \left(1 + \sigma\right){\bar \beta}^{b}{\bar D}_{b}\beta^{a} + \sigma{\bar \beta}^{b}{\bar D}_{b}{\bar \beta}^{a} \ .
 \end{equation}
-In both definitions of $D_{t}g_{ab}$ and $D_{t}\alpha$, the covariant time derivative operators share the same pattern as $\partial_{t} - \beta^{b}\partial_{b}$. In order to achieve the same pattern in $D_{t}\beta^{a}$, an appropriate choice for $\sigma$ is $\sigma = -1$. Therefore, in the rest of this paper, the covariant time derivative of shift vector is defined as
+In both definitions of $D_{t}g_{ab}$ and $D_{t}\alpha$, the covariant time derivative operators share the same pattern as $\partial_{t} - \beta^{b}\partial_{b}$. In order to achieve the same pattern in $D_{t}\beta^{a}$, an appropriate choice for $\sigma$ is $\sigma = -1$. Therefore, in the rest of this dissertation, the covariant time derivative of shift vector is defined as
 \begin{equation}\label{shiftcovarianttimederivative}
 	D_{t}\beta^{a} \equiv \partial_{t}\Delta \beta^{a} - \frac{\Delta \beta^{a}}{{\bar \alpha}}\left(\partial_{t}{\bar \alpha} - {\bar \beta}^{b}\partial_{b}{\bar \alpha}\right) - \beta^{b}{\bar D}_{b}\Delta \beta^{a} + \Delta \beta^{b}{\bar D}_{b}{\bar \beta}^{a} \ .	
 \end{equation}
@@ -424,7 +424,7 @@ Similarly, we can write the covariant form of Eq.~(\ref{gammadrivershift}) as
 \begin{equation}\label{covariant Gamma-driver shift}
 D_{t}\beta^{a} = \frac{3}{4}{\bar \alpha}^{2}\Delta {\tilde \Gamma}^{a} - \eta {\bar \alpha}\Delta\beta^{a} \ .
 \end{equation}
-Due to its simplicity, we focus our discussion of covariant Gamma-driver shift gauge on Eq.~(\ref{covariant Gamma-driver shift}) instead of Eqs.~(\ref{gammadrivershiftfirstcovariant}, \ref{gammadrivershiftsecondcovariant}) in the rest of this paper.
+Due to its simplicity, we focus our discussion of covariant Gamma-driver shift gauge on Eq.~(\ref{covariant Gamma-driver shift}) instead of Eqs.~(\ref{gammadrivershiftfirstcovariant}, \ref{gammadrivershiftsecondcovariant}) in the rest of this dissertation.
 
 %Writing down these covariant gauge conditions creates more possibilities for numerical simulation. When the need of evolving the system in a different coordinates system rises, one can just use the following equations as gauge conditions
 %\begin{align*}
@@ -498,7 +498,7 @@ These two results are equivalent. That is,
 \begin{equation}
 	F^A\left(T^{-1}\left(v'\right),\bar c\right) = 0 \Longleftrightarrow F^A\left(v',T\left(\bar c\right)\right) = 0 \ .
 \end{equation}
-This is guaranteed by the Eq.~(\ref{covariant equivalence}) above. In Eq.~(\ref{covariant equivalence}), just let $v = T^{-1}\left(v'\right)$ and $\bar v = \bar c$, which implies $\bar v' = T\left(\bar c\right)$. Later in this paper, we refer the first method as {\em covariant method} and the second method as {\em transformed method}. 
+This is guaranteed by the Eq.~(\ref{covariant equivalence}) above. In Eq.~(\ref{covariant equivalence}), just let $v = T^{-1}\left(v'\right)$ and $\bar v = \bar c$, which implies $\bar v' = T\left(\bar c\right)$. Later in this dissertation, we refer the first method as {\em covariant method} and the second method as {\em transformed method}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Time Dependent Spatial Rotation Coordinate Transformation}\label{example}
 A dual coordinate frame system\cite{Scheel:2006gg} is extensively employed in various binary black hole coalescence simulations\cite{Scheel:2008rj, Szilagyi:2009qz} by the CalTech/Cornell numerical relativity collaboration and it is this dual-frame technique that motivates us to study general covariant gauge conditions in the first place. In the dual-frame system, a comoving frame is rotating with respect to a asymtotically Minkowski inertial frame and the numerical simulation is build upon these two coordinate systems. In this section, a simple time dependent spatial rotation coordinate transformation is defined to demonstrate how to obtain correct gauge conditions under change of coordinates. 
@@ -604,5 +604,5 @@ One can easily check that, component-wisely, Eq.~(\ref{invertedgammadrivershift}
 
 Hereby it is proved that covariant method and transformed method lead to identical moving puncture gauge conditions under a change of coordinates and hence we can claim that our derivation of covariant gauge conditions is valid. 
 
-Although the content of this chapter seems irrelevant to the purpose of this paper, it lays down the foundation for developing a covariant Hamiltonian formulation of GH equations. Achieve general covariance is one of the most important aspects for deriving the action and Hamiltonian for GH system. It illustrates later in this paper that with the knowledge of covariant time derivative, we are able to extend the Hamiltonian and rewrite non-covariant Hamilton's equations in a generally covariant format.  
+Although the content of this chapter seems irrelevant to the purpose of this dissertation, it lays down the foundation for developing a covariant Hamiltonian formulation of GH equations. Achieve general covariance is one of the most important aspects for deriving the action and Hamiltonian for GH system. It illustrates later in this dissertation that with the knowledge of covariant time derivative, we are able to extend the Hamiltonian and rewrite non-covariant Hamilton's equations in a generally covariant format.  
 
