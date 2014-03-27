@@ -26,20 +26,28 @@ Ordinary partial derivative is denoted as a shorthand operator $
 \partial_{\mu} \equiv \frac{\partial}{\partial x^{\mu}}$. Sometimes for the purpose of a clean presentation, we also use a single dot notation to denote ordinary time derivative for arbitrary variable $v$, i.e., ${\dot v} \equiv \partial_{t}v$. $\nabla_{\mu}$ stands for spacetime covariant derivative while $D_{a}$ is spatial covariant derivative. And $D_{t}$ represents the covariant time derivative which is discussed later in this dissertation. Lie derivative along a generic vector $v$ is denoted as $\mathcal{L}_{v}$. 
 
 In this dissertation, we follow the convention used by Minser, Thorne and Wheeler\cite{Misner:1974qy}, namely the ``Landau-Lifshitz Spacelike Convertion'' (LLSC). Specifically, signature of spacetime metric $g_{\mu\nu}$ is ( --, +, +, + ), Riemann tensor is defined as 
-\begin{equation}
+\begin{equation}\label{riemanntensor}
 	R^{\alpha}_{~\beta \mu \nu} \equiv 
 	\partial_{\mu}\Gamma^{\alpha}_{~\beta \nu} - 
-	\partial_{\nu}\Gamma^{\alpha}_{~\beta \mu} + \Gamma^{\alpha}_{~\sigma \mu}\Gamma^{\sigma}_{~\beta \nu} - \Gamma^{\alpha}_{~\sigma \nu}\Gamma^{\sigma}_{~\beta\mu} \ , 
+	\partial_{\nu}\Gamma^{\alpha}_{~\beta \mu} + \Gamma^{\alpha}_{~\sigma \mu}\Gamma^{\sigma}_{~\beta \nu} - \Gamma^{\alpha}_{~\sigma \nu}\Gamma^{\sigma}_{~\beta\mu} \ .
 \end{equation}
-while the Ricci tensor 
+In Eq.~(\ref{riemanntensor}), $\Gamma^{\alpha}_{~\mu\nu}$ stands for the Christoffel symbols, or sometimes regarded as the connection. The Christoffel symbols help to describe how parallel transport is defined in curved manifolds. Its mathematical definition is as follows, 
 \begin{equation}
-	R_{\mu\nu} \equiv R^{\sigma}_{~\mu\sigma\nu} \ . 
+	\Gamma^{\alpha}_{~\mu\nu} \equiv \frac{1}{2}g^{\alpha\beta}\left(\partial_{\mu}g_{\beta\nu} + \partial_{\nu}g_{\beta\mu} - \partial_{\beta}g_{\mu\nu}\right) \ .
 \end{equation}
-Finally, the Einstein field equations are stated as 
+Contracting two indices of the Riemann tensor gives us the Ricci tensor as below
+\begin{equation}
+	R_{\mu\nu} \equiv R^{\sigma}_{~\mu\sigma\nu} \ ,  
+\end{equation}
+while the Ricci scalar $R$ is the trace of Ricci tensor, 
+\begin{equation}
+	R \equiv R_{\mu\nu}g^{\mu\nu}\ .
+\end{equation}
+With all these definitions listed above, the Einstein field equations are stated as 
 \begin{equation}
 	G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu} 
 \end{equation}
-where $R$ is the Ricci scalar $R^{\mu}_{~\mu}$ and $T_{\mu\nu}$ is the stree-energy tensor. 
+and $T_{\mu\nu}$ is the stress-energy tensor. 
 
 \section{Chapter Abstracts}\label{abstracts}
 The structure of the rest of this dissertation is as follows. Chap.~\ref{nr} reviews the development of numerical relativity; presents the foundation of solving Einstein's equations numerically: the $3 + 1$ decomposition; discusses several mainstream numerical formulations and reveals their limitations. Chap.~\ref{generalcovariance} studies an important class of coordinate transformation in the context of $3 + 1$ decomposition. General covariance of different numerical formalisms under this type of coordinate transformation is achieved by investigating transformation rules of various field variables and introducing the notion of covariant time derivatives. A Hamiltonian system of generalized harmonic formulation is developed in Chap.~\ref{hamiltonian}. With the knowledge about covariant time derivatives obtained in Chap.~\ref{generalcovariance}, the Hamiltonian system is extended to reach its general covariance. Such a system is further proved to be well-posed, i.e., symmetric hyperbolic, at the end of that chapter. Chap.~\ref{summary} reviews this dissertation and gives suggestions about possible future development of this project. 
