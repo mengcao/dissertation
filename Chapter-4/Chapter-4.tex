@@ -221,7 +221,7 @@ The notion of ``well-posed'' is originated from Jacques Hadamard, a French mathe
 
 An algebraic criterion is introduced and widely adopted to analyze well-posedness of a quasilinear partial differential equation system, namely {\em hyperbolicity}. An initial value problem with weak hyperbolicity is regarded as ill-posed. Strong hyperbolicity is necessary and sufficient for an initial value problem without boundaries in space to be well-posed. For initial value systems with space boundaries being well-posed, an even stronger notion of hyperbolicity, symmetric hyperbolicity, is required. Gundlach, Mart\' \i n-Garc\' \i a\cite{Gundlach:2005ta} and Brown\cite{Brown:2008cca} have presented practical definition of various types of hyperbolicity and prescriptions to prove them. Their theories to determine the hyperbolicity of a Hamiltonian system is briefly reviewed as following. 
 
-Well-posedness guarantees small perturbation in initial data only leads to proportional deviations of the solution. Therefore in analyzing well-posedness we are primarily concerned with evolutions of high wave number modes in initial value perturbations. For large wave numbers, behavior of the Hamiltonian system depends on the coefficients of the highest weight terms in the Hamiltonian, namely the principal terms. The principal symbol $A$ is a square matrix obtained by identifying the principal terms in Hamilton's equations. According to Brown's prescription\cite{Brown:2008cca}, for a Hamiltonian system with generalized coordinates $q_{\mu}$ and momenta $p_{\mu}$ \footnote{Here the subscript $\mu$ is merely a counting index rather than tensor notation.}, the principal parts of ${\dot q}_{\mu}$ equations are the terms proportional to $p_{\mu}$ and $\partial_{a}q_{\mu}$; principal parts of ${\dot p}_{\mu}$ equations are the terms proportional to $\partial_{a}p_{\mu}$ and $\partial_{a}\partial_{b}q_{\mu}$. To construct the principal symbol $A$, one only needs to carry out the following substitution
+Well-posedness guarantees small perturbation in initial data only leads to proportional deviations of the solution. Therefore in analyzing well-posedness we are primarily concerned with evolutions of high wave number modes in initial value perturbations. For large wave numbers, behavior of the Hamiltonian system depends on the coefficients of the highest weight terms in the Hamiltonian, namely the principal terms. The principal symbol $\mathcal{A}$ is a square matrix obtained by identifying the principal terms in Hamilton's equations. According to Brown's prescription\cite{Brown:2008cca}, for a Hamiltonian system with generalized coordinates $q_{\mu}$ and momenta $p_{\mu}$ \footnote{Here the subscript $\mu$ is merely a counting index rather than tensor notation.}, the principal parts of ${\dot q}_{\mu}$ equations are the terms proportional to $p_{\mu}$ and $\partial_{a}q_{\mu}$; principal parts of ${\dot p}_{\mu}$ equations are the terms proportional to $\partial_{a}p_{\mu}$ and $\partial_{a}\partial_{b}q_{\mu}$. To construct the principal symbol $\mathcal{A}$, one only needs to carry out the following substitution
 \begin{subequations}\label{substitution}
 \begin{align}
 p_{\mu} & \rightarrow {\bar p}_{\mu}\\
@@ -230,9 +230,9 @@ p_{\mu} & \rightarrow {\bar p}_{\mu}\\
 \partial_{a}\partial_{b}p_{\mu} & \rightarrow n_{a}n_{b}{\bar p}_{\mu} \ ,
 \end{align}
 \end{subequations}
-where ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$ are Fourier mode amplitudes of corresponding perturbations for $q_{\mu}$ and $p_{\mu}$. The principal symbol $A$ is formed from the coefficients of ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$. 
+where ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$ are Fourier mode amplitudes of corresponding perturbations for $q_{\mu}$ and $p_{\mu}$. The principal symbol $\mathcal{A}$ is formed from the coefficients of ${\bar q}_{\mu}$ and ${\bar p}_{\mu}$. 
 
-Solving the eigen problem of the principal symbol $A$ reveals hyperbolicity of the PDE system in consideration. If all eigenvalues of $A$ are real but the eigenvectors are not complete, the system is regarded as weakly hyperbolic. By contrast, a system whose principal symbol $A$ has all real eigenvalues and a complete set of eigenvectors is said to be strongly hyperbolic. 
+Solving the eigen problem of the principal symbol $\mathcal{A}$ reveals hyperbolicity of the PDE system in consideration. If all eigenvalues of $\mathcal{A}$ are real but the eigenvectors are not complete, the system is regarded as weakly hyperbolic. By contrast, a system whose principal symbol $\mathcal{A}$ has all real eigenvalues and a complete set of eigenvectors is said to be strongly hyperbolic. 
 
 To further prove symmetric hyperbolicity, an energy term $\epsilon$ in quadratic form of the dynamic variables $p_{\mu}$, $q_{\mu}$ needs to be determined. Gundlach and Mart\' \i n-Garc\' \i a\cite{Gundlach:2005ta} pointed out that if $\epsilon$ is positive definite\footnote{$\epsilon = 0$ if and only if $q_{\mu} = 0$ and $p_{\mu} = 0$.} and the principal part of its time derivative can be written as the gradient of a vector $\phi^{a}$, i.e., $\partial_{t}\epsilon \cong \partial_{a}\phi^{a}$, the Hamiltonian system is considered to be symmetric hyperbolic. 
 
@@ -259,7 +259,7 @@ Following the recipe given above, we first extract the principal part of Eqs.~(\
 \end{subequations}
 The $\cong$ symbol denotes equality up to non principal terms. These equations are expressed in terms of the operator $\partial_{\perp} \equiv \partial_{t} - \beta^{a}\partial_{a}$ so that the characteristic speeds are defined with respect to observers who are at rest in the spacelike slices. 
 
-The next step is to construct the principal symbol $A$ by making the replacement described in Eqs.~(\ref{substitution}) and identifying coefficients on the right-hand sides of Eqs.~(\ref{principalhamilton}). We also divide these coefficients by a factor of $\alpha$ so that the characteristic speeds can be expressed in terms of proper time rather than coordinate time. The resulting eigenvalue problem is
+The next step is to construct the principal symbol $\mathcal{A}$ by making the replacement described in Eqs.~(\ref{substitution}) and identifying coefficients on the right-hand sides of Eqs.~(\ref{principalhamilton}). We also divide these coefficients by a factor of $\alpha$ so that the characteristic speeds can be expressed in terms of proper time rather than coordinate time. The resulting eigenvalue problem is
 \begin{subequations}\label{eigensystem}
 \begin{align}
 \mu {\bar g}_{ab} & = \frac{2}{\alpha}n_{(a}{\bar \beta}_{b)} + \frac{2}{\sqrt{g}}{\bar P}_{ab} - \frac{g_{ab}}{\sqrt{g}}\left({\bar P}_{nn} + {\bar P}_{AB}\delta^{AB}\right) - \frac{\alpha g_{ab}}{2\sqrt{g}}{\bar \pi}\\
@@ -276,11 +276,11 @@ The next step is to construct the principal symbol $A$ by making the replacement
 \mu {\bar \Omega}_{a} & = 0 \ .
 \end{align}
 \end{subequations}
-Eqs.~(\ref{eigensystem}) can be interpreted as an eigensystem $\mu v = A v$ with eigenvalue $\mu$, where the eigenvector $v = [{\bar g}_{ab}, {\bar P}_{ab}, {\bar \alpha}, {\bar \pi}, {\bar \beta}_{a}, {\bar \rho}_{a}, {\bar H}_{\perp}, {\bar \Omega}, {\bar H}_{a}, {\bar \Omega}_{a}]^{T}$ and $A$ is the principal symbol we need. 
+Eqs.~(\ref{eigensystem}) can be interpreted as an eigensystem $\mu v = \mathcal{A} v$ with eigenvalue $\mu$, where the eigenvector $v = [{\bar g}_{ab}, {\bar P}_{ab}, {\bar \alpha}, {\bar \pi}, {\bar \beta}_{a}, {\bar \rho}_{a}, {\bar H}_{\perp}, {\bar \Omega}, {\bar H}_{a}, {\bar \Omega}_{a}]^{T}$ and $\mathcal{A}$ is the principal symbol we need. 
 
 In Eqs.~(\ref{eigensystem}), a subscript $n$ denotes contraction with $n^{a}$. We introduce an orthonormal diad $e^{a}_{A}$ with $A = 1, 2$ in the subspace orthogonal to $n_{a}$, which means $n_{a}e^{a}_{A} = 0$ and $e^{a}_{A}g^{ab}e^{b}_{B} = \delta^{AB}$. A subscript A denotes contraction with $e^{a}_{A}$.
 
-We can further split the eigensystem (\ref{eigensystem}) into scalar, vector and trace-free tensor blocks by contracting the equations with $n^{a}$ and/or $e^{a}_{A}$. Since these sectors can be interpreted as diagonal blocks of the principal symbol $A$, each block can be studied individually to gain some insight of the system's hyperbolicity. 
+We can further split the eigensystem (\ref{eigensystem}) into scalar, vector and trace-free tensor blocks by contracting the equations with $n^{a}$ and/or $e^{a}_{A}$. Since these sectors can be interpreted as diagonal blocks of the principal symbol $\mathcal{A}$, each block can be studied individually to gain some insight of the system's hyperbolicity. 
 
 First of all, the scalar block is
 \begin{subequations}
