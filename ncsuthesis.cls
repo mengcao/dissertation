@@ -199,10 +199,13 @@
    \chapter*{\abstractname}
    \MakeUppercase{\ncsu@authorlast{}, \ncsu@authorfirstmiddle{}}%
    \ifthenelse{\boolean{@ncsu@needsperiod}}{\@. }{~}%
-    \nohyphens{\nolbreaks{\ncsu@thesistitle}.
+    %%\nohyphens{\nolbreaks
+    {\ncsu@thesistitle}.
    (Under the direction of
    \ifthenelse{\equal{\ncsu@chairtype}{chair}}%
-              {\ncsu@chair}{\ncsu@cochairI\ and \ncsu@cochairII}.)}\\
+              {\ncsu@chair}{\ncsu@cochairI\ and \ncsu@cochairII}.)
+              %%}
+              \\
 
    \ncsu@defaultspacing
    \thispagestyle{empty}
